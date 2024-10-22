@@ -1,14 +1,14 @@
 import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { HealthCheckModule } from "./health-check/health-check.module";
+import { HealthModule } from "./apis/health/health.module";
 import { typeOrmModuleOptions } from "./configs/typeorm.config";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { GuestbookModule } from "./guestbook/guestbook.module";
+import { GuestbookModule } from "./apis/guestbook/guestbook.module";
 
 @Module({
   imports: [
-    HealthCheckModule,
+    HealthModule,
     TypeOrmModule.forRoot(typeOrmModuleOptions),
     GuestbookModule,
   ],
