@@ -1,8 +1,6 @@
 import { Module } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 import { HealthModule } from "./apis/health/health.module";
-import { typeOrmModuleOptions } from "./configs/typeorm.config";
+import { typeOrmModuleOptions } from "./database/typeorm.config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { GuestbookModule } from "./apis/guestbook/guestbook.module";
 
@@ -12,7 +10,5 @@ import { GuestbookModule } from "./apis/guestbook/guestbook.module";
     TypeOrmModule.forRoot(typeOrmModuleOptions),
     GuestbookModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
