@@ -10,10 +10,11 @@ import {
   HttpStatus,
 } from "@nestjs/common";
 import { GuestbookService } from "./guestbook.service";
-import { CreateGuestbookDto } from "./dto/create-guestbook.dto";
+import { Response } from "express";
 import { UpdateGuestbookDto } from "./dto/update-guestbook.dto";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { GuestbookMessage } from "./guestbook.message";
+import { GuestbookCreateRequestDto } from "./dto/request/guestbook-create-request.dto";
 
 @Controller({ path: "guestbook" })
 @ApiTags("방명록 API")
@@ -27,15 +28,26 @@ export class GuestbookController {
     const guestbooks = await this.guestbookService.findAll();
 
     return res.status(HttpStatus.OK).json({
-      statusCode: 200,
-      message: GuestbookMessage.GET_ALL_GUESTBOOKS,
+      code: 200,
+      message: GuestbookMessage.GET_LIST,
       data: guestbooks,
     });
   }
 
   @Post()
-  create(@Body() createGuestbookDto: CreateGuestbookDto) {
-    return this.guestbookService.create(createGuestbookDto);
+  @ApiOperation({ summary: "방명록 생성" })
+  @ApiOkResponse({ description: "방명록을 생성합니다." })
+  async create(
+    @Body() requestDto: GuestbookCreateRequestDto,
+    @Res() res: Response,
+  ) {
+    const guestbook = await this.guestbookService.create(requestDto);
+
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: GuestbookMessage.CREATED,
+      data: guestbook,
+    });
   }
 
   @Get(":id")

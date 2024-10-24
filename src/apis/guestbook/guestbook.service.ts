@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import { CreateGuestbookDto } from "./dto/create-guestbook.dto";
 import { UpdateGuestbookDto } from "./dto/update-guestbook.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Guestbook } from "./entities/guestbook.entity";
 import { Repository } from "typeorm";
 import { GuestbookResponseDto } from "./dto/response/guestbook-response.dto";
+import { GuestbookCreateRequestDto } from "./dto/request/guestbook-create-request.dto";
 
 @Injectable()
 export class GuestbookService {
@@ -12,8 +12,8 @@ export class GuestbookService {
     @InjectRepository(Guestbook)
     private guestbookRepository: Repository<Guestbook>,
   ) {}
-  create(createGuestbookDto: CreateGuestbookDto) {
-    return "This action adds a new guestbook";
+  async create(requestDto: GuestbookCreateRequestDto): Promise<Guestbook> {
+    return await this.guestbookRepository.save(requestDto.toEntity());
   }
 
   async findAll(): Promise<GuestbookResponseDto[]> {
