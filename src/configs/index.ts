@@ -1,2 +1,2 @@
-export * from "./app.config";
-export * from "./swagger.config";
+export * from "./config.module";
+export * from "./config.service";
