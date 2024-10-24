@@ -25,10 +25,12 @@ export class Guestbook {
 
   static create(title: string, content: string) {
     const guestbook = new Guestbook();
-
     guestbook.title = title;
     guestbook.content = content;
-
     return guestbook;
+  }
+  update(title: string, content: string): void {
+    this.title = title;
+    this.content = content;
   }
 }
