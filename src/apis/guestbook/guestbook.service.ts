@@ -4,6 +4,7 @@ import { UpdateGuestbookDto } from "./dto/update-guestbook.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Guestbook } from "./entities/guestbook.entity";
 import { Repository } from "typeorm";
+import { GuestbookResponseDto } from "./dto/response/guestbook-response.dto";
 
 @Injectable()
 export class GuestbookService {
@@ -15,8 +16,9 @@ export class GuestbookService {
     return "This action adds a new guestbook";
   }
 
-  async findAll() {
-    return await this.guestbookRepository.find();
+  async findAll(): Promise<GuestbookResponseDto[]> {
+    const guestbooks = await this.guestbookRepository.find();
+    return guestbooks.map((guestbook) => GuestbookResponseDto.of(guestbook));
   }
 
   findOne(id: number) {
