@@ -5,6 +5,7 @@ import { Guestbook } from "./entities/guestbook.entity";
 import { Repository } from "typeorm";
 import { GuestbookResponseDto } from "./dto/response/guestbook-response.dto";
 import { GuestbookCreateRequestDto } from "./dto/request/guestbook-create-request.dto";
+import { GuestbookUpdateRequestDto } from "./dto/request/guestbook-update-request.dto";
 
 @Injectable()
 export class GuestbookService {
@@ -25,8 +26,16 @@ export class GuestbookService {
     return `This action returns a #${id} guestbook`;
   }
 
-  update(id: number, updateGuestbookDto: UpdateGuestbookDto) {
-    return `This action updates a #${id} guestbook`;
+  async update(
+    id: number,
+    requestDto: GuestbookUpdateRequestDto,
+  ): Promise<Guestbook> {
+    const guestbook = await this.guestbookRepository.findOne({
+      where: { id },
+    });
+    const { title, content } = requestDto;
+    guestbook.update(title, content);
+    return await this.guestbookRepository.save(guestbook);
   }
 
   remove(id: number) {
