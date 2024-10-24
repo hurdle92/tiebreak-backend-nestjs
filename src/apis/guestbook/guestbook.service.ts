@@ -18,7 +18,7 @@ export class GuestbookService {
 
   async findAll(): Promise<GuestbookResponseDto[]> {
     const guestbooks = await this.guestbookRepository.find();
-    return guestbooks.map((guestbook) => GuestbookResponseDto.of(guestbook));
+    return guestbooks.map((guestbook) => new GuestbookResponseDto(guestbook));
   }
 
   findOne(id: number) {

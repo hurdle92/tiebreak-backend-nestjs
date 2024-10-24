@@ -11,17 +11,17 @@ export class GuestbookResponseDto {
   @ApiProperty({ description: "방명록 내용" })
   content: string;
 
-  constructor(id: number, title: string, content: string) {
-    this.id = id;
-    this.title = title;
-    this.content = content;
-  }
+  @ApiProperty({ description: "생성 일시" })
+  createdAt: Date;
 
-  static of(guestbook: Guestbook): GuestbookResponseDto {
-    return new GuestbookResponseDto(
-      guestbook.id,
-      guestbook.title,
-      guestbook.content,
-    );
+  @ApiProperty({ description: "수정 일시" })
+  updatedAt: Date;
+
+  constructor(guestbook: Guestbook) {
+    this.id = guestbook.id;
+    this.title = guestbook.title;
+    this.content = guestbook.content;
+    this.createdAt = guestbook.createdAt;
+    this.updatedAt = guestbook.updatedAt;
   }
 }
