@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -8,7 +7,7 @@ import {
 } from "typeorm";
 
 @Entity()
-export class Guestbook extends BaseEntity {
+export class Guestbook {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -23,4 +22,13 @@ export class Guestbook extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  static create(title: string, content: string) {
+    const guestbook = new Guestbook();
+
+    guestbook.title = title;
+    guestbook.content = content;
+
+    return guestbook;
+  }
 }
