@@ -1,4 +1,4 @@
-import { Court } from "apis/courts/entities/court.entity";
+import { Court } from "../../courts/entities/court.entity";
 import {
   Column,
   CreateDateColumn,
