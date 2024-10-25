@@ -8,8 +8,8 @@ import { TopicsModule } from "./apis/topics/topics.module";
 
 @Module({
   imports: [
-    HealthModule,
     TypeOrmModule.forRoot(typeOrmModuleOptions),
+    HealthModule,
     GuestbookModule,
     CourtsModule,
     TopicsModule,

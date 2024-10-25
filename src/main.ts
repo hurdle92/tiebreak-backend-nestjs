@@ -2,6 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { setupApp, setupSwagger } from "./configs/common";
 import helmet from "helmet";
+import { Logger } from "@nestjs/common";
 
 async function bootstrap() {
   const PORT = 3000;
@@ -14,6 +15,6 @@ async function bootstrap() {
 
   await app.listen(PORT);
 
-  console.info(`Server listening on port ${PORT}`);
+  Logger.log(`Server listening on port ${PORT}`);
 }
 bootstrap();
