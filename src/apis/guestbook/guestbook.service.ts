@@ -13,6 +13,7 @@ export class GuestbookService {
     @InjectRepository(Guestbook)
     private guestbookRepository: Repository<Guestbook>,
   ) {}
+
   async create(requestDto: GuestbookCreateRequestDto): Promise<Guestbook> {
     return await this.guestbookRepository.save(requestDto.toEntity());
   }
@@ -38,7 +39,7 @@ export class GuestbookService {
     return await this.guestbookRepository.save(guestbook);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} guestbook`;
+  async delete(id: number): Promise<void> {
+    await this.guestbookRepository.delete(id);
   }
 }

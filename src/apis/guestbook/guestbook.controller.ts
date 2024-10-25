@@ -13,7 +13,6 @@ import {
 } from "@nestjs/common";
 import { GuestbookService } from "./guestbook.service";
 import { Response } from "express";
-import { UpdateGuestbookDto } from "./dto/update-guestbook.dto";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { GuestbookMessage } from "./guestbook.message";
 import { GuestbookCreateRequestDto } from "./dto/request/guestbook-create-request.dto";
@@ -28,7 +27,7 @@ export class GuestbookController {
   @Get()
   @ApiOperation({ summary: "모든 방명록 조회" })
   @ApiOkResponse({ description: "모든 방명록을 조회합니다." })
-  async findAll(@Res() res) {
+  async findAll(@Res() res: Response) {
     const guestbooks = await this.guestbookService.findAll();
 
     return res.status(HttpStatus.OK).json({
@@ -74,7 +73,19 @@ export class GuestbookController {
   }
 
   @Delete(":id")
-  remove(@Param("id") id: string) {
-    return this.guestbookService.remove(+id);
+  @ApiOperation({ summary: "방명록 삭제" })
+  @ApiOkResponse({
+    description: "id가 일치하는 방명록을 삭제합니다.",
+    type: Guestbook,
+  })
+  async delete(
+    @Param("id", new ParseIntPipe()) id: number,
+    @Res() res: Response,
+  ) {
+    await this.guestbookService.delete(id);
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: GuestbookMessage.DELETED,
+    });
   }
 }
