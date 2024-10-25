@@ -3,12 +3,14 @@ import { HealthModule } from "./apis/health/health.module";
 import { typeOrmModuleOptions } from "./database/typeorm.config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { GuestbookModule } from "./apis/guestbook/guestbook.module";
+import { CourtsModule } from "./apis/courts/courts.module";
 
 @Module({
   imports: [
     HealthModule,
     TypeOrmModule.forRoot(typeOrmModuleOptions),
     GuestbookModule,
+    CourtsModule,
   ],
 })
 export class AppModule {}
