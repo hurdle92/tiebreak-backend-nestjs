@@ -81,13 +81,13 @@ export class CourtResponseDto {
   isStore: boolean;
 
   @ApiProperty({ description: "토픽 ID" })
-  topic_id: number;
+  topicId: number;
 
   @ApiProperty({ description: "생성 일시" })
-  created_at: Date;
+  createdAt: Date;
 
   @ApiProperty({ description: "수정 일시" })
-  updated_at: Date;
+  updatedAt: Date;
 
   constructor(court: Court) {
     this.id = court.id;
@@ -116,8 +116,8 @@ export class CourtResponseDto {
     this.priority = court.priority;
     this.courtPrice = court.courtPrice;
     this.isStore = court.isStore;
-    this.topic_id = court.topic_id;
-    this.created_at = court.created_at;
-    this.updated_at = court.updated_at;
+    this.topicId = court.topicId;
+    this.createdAt = court.createdAt;
+    this.updatedAt = court.updatedAt;
   }
 }

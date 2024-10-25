@@ -90,17 +90,17 @@ export class Court {
   isStore: boolean;
 
   @ManyToOne(() => Topic, (topic) => topic.courts)
-  @JoinColumn({ name: "topic_id" })
+  @JoinColumn({ name: "topicId" })
   topic: Topic;
 
   @Column({ type: "int", nullable: true })
-  topic_id: number;
+  topicId: number;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 
   static create(
     name: string,
