@@ -1,7 +1,10 @@
+import { Topic } from "src/apis/topics/entities/topic.entity";
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -85,6 +88,13 @@ export class Court {
 
   @Column({ type: "boolean", default: false })
   isStore: boolean;
+
+  @ManyToOne(() => Topic, (topic) => topic.courts)
+  @JoinColumn({ name: "topic_id" })
+  topic: Topic;
+
+  @Column({ type: "int", nullable: true })
+  topic_id: number;
 
   @CreateDateColumn()
   created_at: Date;
