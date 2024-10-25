@@ -4,6 +4,7 @@ import { typeOrmModuleOptions } from "./database/typeorm.config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { GuestbookModule } from "./apis/guestbook/guestbook.module";
 import { CourtsModule } from "./apis/courts/courts.module";
+import { TopicsModule } from "./apis/topics/topics.module";
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { CourtsModule } from "./apis/courts/courts.module";
     TypeOrmModule.forRoot(typeOrmModuleOptions),
     GuestbookModule,
     CourtsModule,
+    TopicsModule,
   ],
 })
 export class AppModule {}
