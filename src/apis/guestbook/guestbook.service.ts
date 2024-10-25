@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { UpdateGuestbookDto } from "./dto/update-guestbook.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Guestbook } from "./entities/guestbook.entity";
 import { Repository } from "typeorm";
