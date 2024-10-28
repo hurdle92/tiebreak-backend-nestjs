@@ -15,7 +15,7 @@ export class BannersController {
     description: "배너 리스트를 조회합니다.",
   })
   async findAll(@Res() res: Response) {
-    const banners = this.bannersService.findAll();
+    const banners = await this.bannersService.findAll();
     return res.status(HttpStatus.OK).json({
       code: 200,
       message: BannerMessage.GET_LIST,
