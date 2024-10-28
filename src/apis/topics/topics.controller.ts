@@ -1,14 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Res,
-  HttpStatus,
-} from "@nestjs/common";
+import { Controller, Get, Post, Body, Res, HttpStatus } from "@nestjs/common";
 import { TopicsService } from "./topics.service";
 import { CreateTopicDto } from "./dto/create-topic.dto";
 import { UpdateTopicDto } from "./dto/update-topic.dto";
@@ -37,20 +27,5 @@ export class TopicsController {
       message: TopicMessage.LIST,
       data: topics,
     });
-  }
-
-  @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.topicsService.findOne(+id);
-  }
-
-  @Patch(":id")
-  update(@Param("id") id: string, @Body() updateTopicDto: UpdateTopicDto) {
-    return this.topicsService.update(+id, updateTopicDto);
-  }
-
-  @Delete(":id")
-  remove(@Param("id") id: string) {
-    return this.topicsService.remove(+id);
   }
 }

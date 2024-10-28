@@ -13,10 +13,20 @@ export class GuestbookService {
     private guestbookRepository: Repository<Guestbook>,
   ) {}
 
+  /**
+   * 방명록을 생성한다.
+   *
+   * @returns {Promise<GuestbookResponseDto>}
+   */
   async create(requestDto: GuestbookCreateRequestDto): Promise<Guestbook> {
     return await this.guestbookRepository.save(requestDto.toEntity());
   }
 
+  /**
+   * 모든 방명록 정보를 조회한다.
+   *
+   * @returns {Promise<GuestbookResponseDto[]>}
+   */
   async findAll(): Promise<GuestbookResponseDto[]> {
     const guestbooks = await this.guestbookRepository.find();
     return guestbooks.map((guestbook) => new GuestbookResponseDto(guestbook));
@@ -26,6 +36,11 @@ export class GuestbookService {
     return `This action returns a #${id} guestbook`;
   }
 
+  /**
+   * id에 해당하는 방명록을 수정한다.
+   *
+   * @returns {Promise<Guestbook>}
+   */
   async update(
     id: number,
     requestDto: GuestbookUpdateRequestDto,
@@ -38,6 +53,11 @@ export class GuestbookService {
     return await this.guestbookRepository.save(guestbook);
   }
 
+  /**
+   * id에 해당하는 방명록을 삭제한다.
+   *
+   * @returns {Promise<void>}
+   */
   async delete(id: number): Promise<void> {
     await this.guestbookRepository.delete(id);
   }
