@@ -4,7 +4,6 @@ import {
   Post,
   Body,
   Put,
-  Patch,
   Param,
   Delete,
   Res,
@@ -19,7 +18,7 @@ import { GuestbookCreateRequestDto } from "./dto/request/guestbook-create-reques
 import { Guestbook } from "./entities/guestbook.entity";
 import { GuestbookUpdateRequestDto } from "./dto/request/guestbook-update-request.dto";
 
-@Controller({ path: "guestbook" })
+@Controller("guestbook")
 @ApiTags("방명록 API")
 export class GuestbookController {
   constructor(private readonly guestbookService: GuestbookService) {}

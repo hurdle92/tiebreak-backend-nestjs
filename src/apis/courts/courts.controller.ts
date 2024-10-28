@@ -11,7 +11,7 @@ import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { Response } from "express";
 import { CourtMessage } from "./courts.message";
 
-@Controller({ path: "courts" })
+@Controller("courts")
 @ApiTags("코트 API")
 export class CourtsController {
   constructor(private readonly courtsService: CourtsService) {}
@@ -19,7 +19,7 @@ export class CourtsController {
   @Get(":id")
   @ApiOperation({ summary: "코트 정보 상세 조회" })
   @ApiOkResponse({
-    description: "id가 일치하는 코트 정보를 조회한다.",
+    description: "id가 일치하는 코트 정보를 조회합니다.",
   })
   async findOne(
     @Param("id", new ParseIntPipe()) id: number,
