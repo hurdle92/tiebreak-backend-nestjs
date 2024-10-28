@@ -10,10 +10,6 @@ export class TopicsService {
     @InjectRepository(Topic) private topicRepository: Repository<Topic>,
   ) {}
 
-  create(createTopicDto: CreateTopicDto) {
-    return "This action adds a new topic";
-  }
-
   /**
    * 모든 토픽 정보를 조회한다.
    *

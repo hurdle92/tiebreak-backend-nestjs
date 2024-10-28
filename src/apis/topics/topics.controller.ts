@@ -1,7 +1,5 @@
-import { Controller, Get, Post, Body, Res, HttpStatus } from "@nestjs/common";
+import { Controller, Get, Res, HttpStatus } from "@nestjs/common";
 import { TopicsService } from "./topics.service";
-import { CreateTopicDto } from "./dto/create-topic.dto";
-import { UpdateTopicDto } from "./dto/update-topic.dto";
 import { ApiOkResponse, ApiOperation } from "@nestjs/swagger";
 import { Response } from "express";
 import { TopicMessage } from "./topics.message";
@@ -9,11 +7,6 @@ import { TopicMessage } from "./topics.message";
 @Controller("topics")
 export class TopicsController {
   constructor(private readonly topicsService: TopicsService) {}
-
-  @Post()
-  create(@Body() createTopicDto: CreateTopicDto) {
-    return this.topicsService.create(createTopicDto);
-  }
 
   @Get()
   @ApiOperation({ summary: "모든 토픽 조회" })
