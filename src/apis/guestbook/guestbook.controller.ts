@@ -13,7 +13,7 @@ import {
 import { GuestbookService } from "./guestbook.service";
 import { Response } from "express";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { GuestbookMessage } from "./guestbook.message";
+import { GuestbookMessage } from "./entities/guestbook.message";
 import { GuestbookCreateRequestDto } from "./dto/request/guestbook-create-request.dto";
 import { Guestbook } from "./entities/guestbook.entity";
 import { GuestbookUpdateRequestDto } from "./dto/request/guestbook-update-request.dto";
