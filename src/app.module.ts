@@ -6,6 +6,7 @@ import { GuestbookModule } from "./apis/guestbook/guestbook.module";
 import { CourtsModule } from "./apis/courts/courts.module";
 import { TopicsModule } from "./apis/topics/topics.module";
 import { BannersModule } from "./apis/banners/banners.module";
+import { RegionsModule } from "./apis/regions/regions.module";
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { BannersModule } from "./apis/banners/banners.module";
     CourtsModule,
     TopicsModule,
     BannersModule,
+    RegionsModule,
   ],
 })
 export class AppModule {}
