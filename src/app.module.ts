@@ -7,6 +7,7 @@ import { CourtsModule } from "./apis/courts/courts.module";
 import { TopicsModule } from "./apis/topics/topics.module";
 import { BannersModule } from "./apis/banners/banners.module";
 import { RegionsModule } from "./apis/regions/regions.module";
+import { UpdateConfigModule } from "./apis/update_config/update_config.module";
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { RegionsModule } from "./apis/regions/regions.module";
     TopicsModule,
     BannersModule,
     RegionsModule,
+    UpdateConfigModule,
   ],
 })
 export class AppModule {}
