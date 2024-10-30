@@ -2,7 +2,7 @@ import { Controller, Get, HttpStatus, Res } from "@nestjs/common";
 import { BannersService } from "./banners.service";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { Response } from "express";
-import { BannerMessage } from "./entities/banners.message";
+import { BannerMessage } from "./entities/banner.message";
 
 @Controller("banners")
 @ApiTags("배너 API")
