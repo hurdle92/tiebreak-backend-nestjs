@@ -14,10 +14,10 @@ export class UpdateConfigResponseDto {
   @ApiProperty({ description: "앱 업데이트가 필요한 최소 버전" })
   minReuqiredUpdateVersion: string;
 
-  @ApiProperty({ description: "행정구역 생성일시" })
+  @ApiProperty({ description: "앱 환경 생성일시" })
   createdAt: Date;
 
-  @ApiProperty({ description: "행정구역 수정일시" })
+  @ApiProperty({ description: "앱 환경 수정일시" })
   updatedAt: Date;
 
   constructor(updateConfig: UpdateConfig) {
