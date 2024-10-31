@@ -1,5 +1,6 @@
 import { INestApplication } from "@nestjs/common";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import { apiReference } from "@scalar/nestjs-api-reference";
 
 /**
  * Swagger 세팅
@@ -25,4 +26,12 @@ export function setupSwagger(app: INestApplication): void {
       "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css",
     ],
   });
+  app.use(
+    "/scalarDocs",
+    apiReference({
+      spec: {
+        content: document,
+      },
+    }),
+  );
 }
