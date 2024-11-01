@@ -1,8 +1,10 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Post } from "../../posts/entities/post.entity";
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -36,6 +38,9 @@ export class User {
 
   @Column({ type: "text" })
   appleEmail: string;
+
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
 
   @CreateDateColumn()
   createdAt: Date;

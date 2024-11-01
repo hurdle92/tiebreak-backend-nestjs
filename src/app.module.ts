@@ -9,6 +9,7 @@ import { BannersModule } from "./apis/banners/banners.module";
 import { RegionsModule } from "./apis/regions/regions.module";
 import { UpdateConfigModule } from "./apis/update_config/update_config.module";
 import { UsersModule } from "./apis/users/users.module";
+import { PostsModule } from "./apis/posts/posts.module";
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { UsersModule } from "./apis/users/users.module";
     RegionsModule,
     UpdateConfigModule,
     UsersModule,
+    PostsModule,
   ],
 })
 export class AppModule {}
