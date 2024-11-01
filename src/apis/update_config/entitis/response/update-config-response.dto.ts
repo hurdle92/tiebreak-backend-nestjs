@@ -14,6 +14,9 @@ export class UpdateConfigResponseDto {
   @ApiProperty({ description: "앱 업데이트가 필요한 최소 버전" })
   minReuqiredUpdateVersion: string;
 
+  @ApiProperty({ description: "앱 업데이트가 필요한 최소 버전" })
+  expireTimeHours: number;
+
   @ApiProperty({ description: "앱 환경 생성일시" })
   createdAt: Date;
 
@@ -25,6 +28,7 @@ export class UpdateConfigResponseDto {
     this.isNeedUpdate = updateConfig.isNeedUpdate;
     this.currentVersion = updateConfig.currentVersion;
     this.minReuqiredUpdateVersion = updateConfig.minReuqiredUpdateVersion;
+    this.expireTimeHours = updateConfig.expireTimeHours;
     this.createdAt = updateConfig.createdAt;
     this.updatedAt = updateConfig.updatedAt;
   }

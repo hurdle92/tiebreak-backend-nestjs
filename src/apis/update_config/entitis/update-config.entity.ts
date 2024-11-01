@@ -20,6 +20,9 @@ export class UpdateConfig {
   @Column({ type: "text" })
   minReuqiredUpdateVersion: string;
 
+  @Column({ type: "int" })
+  expireTimeHours: number;
+
   @CreateDateColumn()
   createdAt: Date;
 
