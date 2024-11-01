@@ -8,6 +8,7 @@ import { TopicsModule } from "./apis/topics/topics.module";
 import { BannersModule } from "./apis/banners/banners.module";
 import { RegionsModule } from "./apis/regions/regions.module";
 import { UpdateConfigModule } from "./apis/update_config/update_config.module";
+import { UsersModule } from "./apis/users/users.module";
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UpdateConfigModule } from "./apis/update_config/update_config.module";
     BannersModule,
     RegionsModule,
     UpdateConfigModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
