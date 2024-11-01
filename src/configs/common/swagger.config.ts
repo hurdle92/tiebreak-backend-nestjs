@@ -9,8 +9,8 @@ import { apiReference } from "@scalar/nestjs-api-reference";
  */
 export function setupSwagger(app: INestApplication): void {
   const options = new DocumentBuilder()
-    .setTitle("NestJS API Docs")
-    .setDescription("NestJS API 입니다")
+    .setTitle("타이브레이크 Backend API Docs")
+    .setDescription("타이브레이크 API 입니다")
     .setVersion("1.0.0")
     .build();
 
