@@ -10,6 +10,8 @@ import { RegionsModule } from "./apis/regions/regions.module";
 import { UpdateConfigModule } from "./apis/update_config/update_config.module";
 import { UsersModule } from "./apis/users/users.module";
 import { PostsModule } from "./apis/posts/posts.module";
+import { DiaryConditionsModule } from "./apis/diary_conditions/diary_conditions.module";
+import { DiaryOptionsModule } from './diary_options/diary_options.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { PostsModule } from "./apis/posts/posts.module";
     UpdateConfigModule,
     UsersModule,
     PostsModule,
+    DiaryConditionsModule,
+    DiaryOptionsModule,
   ],
 })
 export class AppModule {}
