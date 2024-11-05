@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import { DataSource } from "typeorm";
+import { Guestbook } from "src/apis/guestbook/entities/guestbook.entity";
 
 dotenv.config();
 
@@ -11,7 +12,8 @@ export default new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   synchronize: false,
-  entities: ["src/**/*.entity.ts"],
+  // entities: ["src/**/*.entity.ts"],
+  entities: [Guestbook],
   migrations: ["src/database/migrations/*.ts"],
   migrationsTableName: "migrations",
 });

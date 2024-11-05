@@ -11,11 +11,14 @@ export class Guestbook {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: "text" })
   title: string;
 
-  @Column()
+  @Column({ type: "text" })
   content: string;
+
+  @Column({ type: "text", nullable: true, default: "" })
+  description: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -23,10 +26,11 @@ export class Guestbook {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  static create(title: string, content: string) {
+  static create(title: string, content: string, description: string) {
     const guestbook = new Guestbook();
     guestbook.title = title;
     guestbook.content = content;
+    guestbook.description = description;
     return guestbook;
   }
   update(title: string, content: string): void {

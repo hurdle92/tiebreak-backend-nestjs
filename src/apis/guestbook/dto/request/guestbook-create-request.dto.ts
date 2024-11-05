@@ -13,7 +13,12 @@ export class GuestbookCreateRequestDto {
   @ApiProperty({ description: "내용" })
   content: string;
 
+  @IsNotEmpty()
+  @IsString()
+  @ApiProperty({ description: "내용" })
+  description: string;
+
   toEntity(): Guestbook {
-    return Guestbook.create(this.title, this.content);
+    return Guestbook.create(this.title, this.content, this.description);
   }
 }
