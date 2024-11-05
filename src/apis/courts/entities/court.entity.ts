@@ -1,3 +1,4 @@
+import { Diary } from "../../diary/entities/diary.entity";
 import { Topic } from "../../topics/entities/topic.entity";
 import {
   Column,
@@ -5,6 +6,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -95,6 +97,9 @@ export class Court {
 
   @Column({ type: "int", nullable: true })
   topicId: number;
+
+  @OneToOne(() => Diary, (diary) => diary.court)
+  diary: Diary;
 
   @CreateDateColumn()
   createdAt: Date;

@@ -5,9 +5,11 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Diary } from "src/apis/diary/entities/diary.entity";
 
 @Entity()
 export class User {
@@ -41,6 +43,9 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.user)
   posts: Post[];
+
+  @OneToMany(() => Diary, (diary) => diary.user)
+  daries: Diary[];
 
   @CreateDateColumn()
   createdAt: Date;
