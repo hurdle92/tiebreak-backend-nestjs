@@ -6,6 +6,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -46,10 +47,12 @@ export class Diary {
   @Column({ type: "bool" })
   isUse: boolean;
 
-  @OneToOne(() => Court, (court) => court.diary)
+  @OneToOne(() => Court)
+  @JoinColumn()
   court: Court;
 
-  @OneToOne(() => DiaryCondition, (diaryCondition) => diaryCondition.diary)
+  @OneToOne(() => DiaryCondition)
+  @JoinColumn()
   diaryCondition: DiaryCondition;
 
   @CreateDateColumn()
