@@ -3,43 +3,44 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from "typeorm";
-import { BannerCategory } from "./banner-category";
+import { BannerType } from "./banner-type.enum";
+import { ApiProperty } from "@nestjs/swagger";
 
 @Entity()
-export class Banner {
-  @PrimaryGeneratedColumn()
+export class Banners {
+  @PrimaryGeneratedColumn({ type: "int8" })
+  @ApiProperty({ description: "배너 ID" })
   id: number;
 
   @Column({ type: "text" })
+  @ApiProperty({ description: "배너 제목" })
   title: string;
 
   @Column({ type: "text" })
-  content: string;
-
-  @Column({ type: "text" })
+  @ApiProperty({ description: "배너 썸네일" })
   thumbnail: string;
 
   @Column({ type: "int" })
+  @ApiProperty({ description: "배너 순서" })
   order: number;
 
   @Column({ type: "text" })
-  link: string;
-
-  @Column({ type: "text" })
+  @ApiProperty({ description: "배너 코트 id" })
   courtId: string;
 
   @Column({
     type: "enum",
-    enum: BannerCategory,
-    default: BannerCategory.COURT,
+    enum: BannerType,
+    default: BannerType.COURT,
   })
-  category: BannerCategory;
+  @ApiProperty({ description: "배너 카테고리" })
+  type: BannerType;
+
+  @Column({ type: "text" })
+  @ApiProperty({ description: "배너 매거진 링크" })
+  magazineLink: string;
 
   @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
+  created_at: Date;
 }

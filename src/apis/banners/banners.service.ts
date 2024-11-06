@@ -1,14 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Banner } from "./entities/banner.entity";
+import { Banners } from "./entities/banner.entity";
 import { Repository } from "typeorm";
 import { BannerResponseDto } from "./dto/response/banner-response.dto";
 
 @Injectable()
 export class BannersService {
   constructor(
-    @InjectRepository(Banner)
-    private bannerRepository: Repository<Banner>,
+    @InjectRepository(Banners)
+    private bannerRepository: Repository<Banners>,
   ) {}
 
   /**
