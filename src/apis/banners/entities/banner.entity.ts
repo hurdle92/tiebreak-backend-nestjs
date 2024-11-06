@@ -25,7 +25,7 @@ export class Banners {
   @ApiProperty({ description: "배너 순서" })
   order: number;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   @ApiProperty({ description: "배너 코트 id" })
   courtId: string;
 
