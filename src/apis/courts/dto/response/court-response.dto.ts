@@ -26,9 +26,6 @@ export class CourtResponseDto {
   @ApiProperty({ description: "경도" })
   lng: number;
 
-  @ApiProperty({ description: "네이버 링크" })
-  naverLink: string;
-
   @ApiProperty({ description: "코트 설명" })
   description: string;
 
@@ -92,7 +89,6 @@ export class CourtResponseDto {
     this.instagram = court.instagram;
     this.lat = court.lat;
     this.lng = court.lng;
-    this.naverLink = court.naverLink;
     this.description = court.description;
     this.city = court.city;
     this.district = court.district;

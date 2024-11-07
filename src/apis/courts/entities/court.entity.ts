@@ -13,7 +13,7 @@ import {
 
 @Entity()
 export class Courts {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
   @Column({ type: "text" })
@@ -36,9 +36,6 @@ export class Courts {
 
   @Column({ type: "float" })
   lng: number;
-
-  @Column({ type: "text" })
-  naverLink: string;
 
   @Column({ type: "text" })
   description: string;
