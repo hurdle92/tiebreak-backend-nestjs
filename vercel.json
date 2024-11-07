@@ -23,10 +23,5 @@
       "headers": { "Content-Type": "application/javascript" }
     },
     { "src": "/docs/(.*)", "dest": "/docs/$1" }
-  ],
-  "functions": {
-    "src/main.ts": {
-      "includeFiles": "src/**"
-    }
-  }
+  ]
 }
