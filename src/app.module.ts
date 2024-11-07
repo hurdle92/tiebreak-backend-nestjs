@@ -20,7 +20,7 @@ import { DiaryModule } from "./apis/diary/diary.module";
     HealthModule,
     GuestbookModule,
     BannersModule,
-    // CourtsModule,
+    CourtsModule,
     // TopicsModule,
     // RegionsModule,
     // UpdateConfigModule,

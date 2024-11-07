@@ -1,4 +1,4 @@
-import { Court } from "../../courts/entities/court.entity";
+import { Courts } from "../../courts/entities/court.entity";
 import {
   Column,
   CreateDateColumn,
@@ -19,8 +19,8 @@ export class Topic {
   @Column({ type: "int" })
   order: number;
 
-  @OneToMany(() => Court, (court) => court.topic)
-  courts: Court[];
+  @OneToMany(() => Courts, (court) => court.topic)
+  courts: Courts[];
 
   @CreateDateColumn()
   createdAt: Date;

@@ -12,7 +12,7 @@ import {
 } from "typeorm";
 
 @Entity()
-export class Court {
+export class Courts {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -92,18 +92,11 @@ export class Court {
   isStore: boolean;
 
   @ManyToOne(() => Topic, (topic) => topic.courts)
-  @JoinColumn({ name: "topicId" })
   topic: Topic;
-
-  @Column({ type: "int", nullable: true })
-  topicId: number;
 
   @OneToOne(() => Diary, (diary) => diary.court)
   diary: Diary;
 
   @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
+  created_at: Date;
 }

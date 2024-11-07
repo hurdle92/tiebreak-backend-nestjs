@@ -1,5 +1,5 @@
 import { User } from "../../users/entities/user.entity";
-import { Court } from "../..//courts/entities/court.entity";
+import { Courts } from "../..//courts/entities/court.entity";
 import { DiaryCondition } from "../../diary_conditions/entities/diary_condition.entity";
 import { ApiProperty } from "@nestjs/swagger";
 import {
@@ -47,9 +47,9 @@ export class Diary {
   @Column({ type: "bool" })
   isUse: boolean;
 
-  @OneToOne(() => Court)
+  @OneToOne(() => Courts)
   @JoinColumn()
-  court: Court;
+  court: Courts;
 
   @OneToOne(() => DiaryCondition)
   @JoinColumn()

@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Court } from "../../entities/court.entity";
+import { Courts } from "../../entities/court.entity";
 
 export class CourtResponseDto {
   @ApiProperty({ description: "코트 ID" })
@@ -80,16 +80,10 @@ export class CourtResponseDto {
   @ApiProperty({ description: "매점 여부" })
   isStore: boolean;
 
-  @ApiProperty({ description: "토픽 ID" })
-  topicId: number;
-
   @ApiProperty({ description: "생성 일시" })
-  createdAt: Date;
+  created_at: Date;
 
-  @ApiProperty({ description: "수정 일시" })
-  updatedAt: Date;
-
-  constructor(court: Court) {
+  constructor(court: Courts) {
     this.id = court.id;
     this.name = court.name;
     this.address = court.address;
@@ -116,8 +110,6 @@ export class CourtResponseDto {
     this.priority = court.priority;
     this.courtPrice = court.courtPrice;
     this.isStore = court.isStore;
-    this.topicId = court.topicId;
-    this.createdAt = court.createdAt;
-    this.updatedAt = court.updatedAt;
+    this.created_at = court.created_at;
   }
 }
