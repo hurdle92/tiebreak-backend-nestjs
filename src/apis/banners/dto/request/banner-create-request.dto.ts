@@ -6,7 +6,7 @@ import {
   IsEnum,
 } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { Banners } from "../../entities/banner.entity";
+import { Banner } from "../../entities/banner.entity";
 import { BannerType } from "../../entities/banner-type.enum";
 
 export class BannerCreateRequestDto {
@@ -43,8 +43,8 @@ export class BannerCreateRequestDto {
   @ApiProperty({ description: "배너 매거진 링크" })
   magazineLink: string;
 
-  toEntity(): Banners {
-    const banner = new Banners();
+  toEntity(): Banner {
+    const banner = new Banner();
     banner.title = this.title;
     banner.thumbnail = this.thumbnail;
     banner.order = this.order;

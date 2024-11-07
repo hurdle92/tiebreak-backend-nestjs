@@ -7,8 +7,8 @@ import {
 import { BannerType } from "./banner-type.enum";
 import { ApiProperty } from "@nestjs/swagger";
 
-@Entity()
-export class Banners {
+@Entity("banners")
+export class Banner {
   @PrimaryGeneratedColumn({ type: "int8" })
   @ApiProperty({ description: "배너 ID" })
   id: number;

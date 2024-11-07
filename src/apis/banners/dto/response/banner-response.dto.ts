@@ -1,5 +1,5 @@
 import { BannerType } from "../../entities/banner-type.enum";
-import { Banners } from "../../entities/banner.entity";
+import { Banner } from "../../entities/banner.entity";
 
 export class BannerResponseDto {
   id: number;
@@ -11,7 +11,7 @@ export class BannerResponseDto {
   magazineLink: string;
   created_at: Date;
 
-  constructor(banner: Banners) {
+  constructor(banner: Banner) {
     this.id = banner.id;
     this.title = banner.title;
     this.thumbnail = banner.thumbnail;

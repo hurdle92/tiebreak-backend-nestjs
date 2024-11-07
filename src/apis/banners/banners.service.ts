@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Banners } from "./entities/banner.entity";
+import { Banner } from "./entities/banner.entity";
 import { Repository } from "typeorm";
 import { BannerResponseDto } from "./dto/response/banner-response.dto";
 import { BannerCreateRequestDto } from "./dto/request/banner-create-request.dto";
@@ -8,8 +8,8 @@ import { BannerCreateRequestDto } from "./dto/request/banner-create-request.dto"
 @Injectable()
 export class BannersService {
   constructor(
-    @InjectRepository(Banners)
-    private bannerRepository: Repository<Banners>,
+    @InjectRepository(Banner)
+    private bannerRepository: Repository<Banner>,
   ) {}
 
   /**
@@ -28,7 +28,7 @@ export class BannersService {
    *
    * @returns {Promise<BannerCreateRequestDto>}
    */
-  async create(requestDto: BannerCreateRequestDto): Promise<Banners> {
+  async create(requestDto: BannerCreateRequestDto): Promise<Banner> {
     return await this.bannerRepository.save(requestDto.toEntity());
   }
 }
