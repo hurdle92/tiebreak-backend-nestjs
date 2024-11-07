@@ -2,6 +2,9 @@ import dotenv from "dotenv";
 import { DataSource } from "typeorm";
 import { Guestbook } from "src/apis/guestbook/entities/guestbook.entity";
 import { Banners } from "src/apis/banners/entities/banner.entity";
+import { Topics } from "src/apis/topics/entities/topic.entity";
+import { Courts } from "src/apis/courts/entities/court.entity";
+import { UpdateConfig } from "src/apis/update_config/entitis/update-config.entity";
 
 dotenv.config();
 
@@ -14,7 +17,7 @@ export default new DataSource({
   database: process.env.DB_DATABASE,
   synchronize: false,
   // entities: ["src/**/*.entity.ts"],
-  entities: [Guestbook, Banners],
+  entities: [Guestbook, Banners, UpdateConfig],
   migrations: ["src/database/migrations/*.ts"],
   migrationsTableName: "migrations",
 });

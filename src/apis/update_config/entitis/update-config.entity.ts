@@ -6,26 +6,20 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity()
+@Entity("updateConfig")
 export class UpdateConfig {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
   @Column({ type: "boolean", default: false })
   isNeedUpdate: boolean;
 
   @Column({ type: "text" })
-  currentVersion: string;
-
-  @Column({ type: "text" })
-  minReuqiredUpdateVersion: string;
+  needUpdateVersion: string;
 
   @Column({ type: "int" })
   expireTimeHours: number;
 
   @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
+  created_at: Date;
 }

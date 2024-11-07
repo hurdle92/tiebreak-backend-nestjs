@@ -8,28 +8,20 @@ export class UpdateConfigResponseDto {
   @ApiProperty({ description: "앱 강제 업데이트 여부" })
   isNeedUpdate: boolean;
 
-  @ApiProperty({ description: "앱 현재 버전" })
-  currentVersion: string;
-
   @ApiProperty({ description: "앱 업데이트가 필요한 최소 버전" })
-  minReuqiredUpdateVersion: string;
+  needUpdateVersion: string;
 
   @ApiProperty({ description: "앱 업데이트가 필요한 최소 버전" })
   expireTimeHours: number;
 
   @ApiProperty({ description: "앱 환경 생성일시" })
-  createdAt: Date;
-
-  @ApiProperty({ description: "앱 환경 수정일시" })
-  updatedAt: Date;
+  created_at: Date;
 
   constructor(updateConfig: UpdateConfig) {
     this.id = updateConfig.id;
     this.isNeedUpdate = updateConfig.isNeedUpdate;
-    this.currentVersion = updateConfig.currentVersion;
-    this.minReuqiredUpdateVersion = updateConfig.minReuqiredUpdateVersion;
+    this.needUpdateVersion = updateConfig.needUpdateVersion;
     this.expireTimeHours = updateConfig.expireTimeHours;
-    this.createdAt = updateConfig.createdAt;
-    this.updatedAt = updateConfig.updatedAt;
+    this.created_at = updateConfig.created_at;
   }
 }

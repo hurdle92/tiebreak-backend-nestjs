@@ -23,7 +23,7 @@ import { DiaryModule } from "./apis/diary/diary.module";
     CourtsModule,
     TopicsModule,
     // RegionsModule,
-    // UpdateConfigModule,
+    UpdateConfigModule,
     // UsersModule,
     // PostsModule,
     // DiaryConditionsModule,

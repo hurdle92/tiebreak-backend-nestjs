@@ -10,7 +10,7 @@ import {
 
 @Entity()
 export class Topics {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
   @Column({ type: "text" })
