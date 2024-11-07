@@ -3,7 +3,7 @@ import { DataSource } from "typeorm";
 import { Guestbook } from "src/apis/guestbook/entities/guestbook.entity";
 import { Banners } from "src/apis/banners/entities/banner.entity";
 import { Topics } from "src/apis/topics/entities/topic.entity";
-import { Courts } from "src/apis/courts/entities/court.entity";
+import { Court } from "src/apis/courts/entities/court.entity";
 import { UpdateConfig } from "src/apis/update_config/entitis/update-config.entity";
 
 dotenv.config();

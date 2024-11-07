@@ -11,7 +11,7 @@ import {
 } from "typeorm";
 import { Diary } from "src/apis/diary/entities/diary.entity";
 
-@Entity()
+@Entity("users")
 export class User {
   @PrimaryGeneratedColumn()
   @ApiProperty({ description: "유저 id" })

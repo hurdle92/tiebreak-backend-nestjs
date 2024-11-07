@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Courts } from "../../entities/court.entity";
+import { Court } from "../../entities/court.entity";
 
 export class CourtResponseDto {
   @ApiProperty({ description: "코트 ID" })
@@ -80,7 +80,7 @@ export class CourtResponseDto {
   @ApiProperty({ description: "생성 일시" })
   created_at: Date;
 
-  constructor(court: Courts) {
+  constructor(court: Court) {
     this.id = court.id;
     this.name = court.name;
     this.address = court.address;

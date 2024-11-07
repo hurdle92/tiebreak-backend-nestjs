@@ -11,8 +11,8 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity()
-export class Courts {
+@Entity("courts")
+export class Court {
   @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
