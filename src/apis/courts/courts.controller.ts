@@ -9,7 +9,7 @@ import {
 import { CourtsService } from "./courts.service";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { Response } from "express";
-import { CourtMessage } from "./courts.message";
+import { CourtMessage } from "./entities/courts.message";
 
 @Controller("courts")
 @ApiTags("코트 API")
