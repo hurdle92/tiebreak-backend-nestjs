@@ -1,13 +1,12 @@
 import { Injectable } from "@nestjs/common";
-import { CreateTopicDto } from "./dto/create-topic.dto";
-import { Topic } from "./entities/topic.entity";
+import { Topics } from "./entities/topic.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
 @Injectable()
 export class TopicsService {
   constructor(
-    @InjectRepository(Topic) private topicRepository: Repository<Topic>,
+    @InjectRepository(Topics) private topicRepository: Repository<Topics>,
   ) {}
 
   /**
@@ -15,7 +14,7 @@ export class TopicsService {
    *
    * @returns {Promise<Topic[]>}
    */
-  async findAll(): Promise<Topic[]> {
+  async findAll(): Promise<Topics[]> {
     return await this.topicRepository.find({ relations: ["courts"] });
   }
 }

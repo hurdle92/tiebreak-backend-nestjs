@@ -21,7 +21,7 @@ import { DiaryModule } from "./apis/diary/diary.module";
     GuestbookModule,
     BannersModule,
     CourtsModule,
-    // TopicsModule,
+    TopicsModule,
     // RegionsModule,
     // UpdateConfigModule,
     // UsersModule,

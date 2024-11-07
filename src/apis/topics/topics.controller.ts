@@ -11,7 +11,7 @@ export class TopicsController {
   @Get()
   @ApiOperation({ summary: "모든 토픽 조회" })
   @ApiOkResponse({
-    description: "모든 토픽을 조회한다.",
+    description: "모든 토픽을 조회합니다.",
   })
   async findAll(@Res() res: Response) {
     const topics = await this.topicsService.findAll();

@@ -1,5 +1,5 @@
 import { Diary } from "../../diary/entities/diary.entity";
-import { Topic } from "../../topics/entities/topic.entity";
+import { Topics } from "../../topics/entities/topic.entity";
 import {
   Column,
   CreateDateColumn,
@@ -88,8 +88,8 @@ export class Courts {
   @Column({ type: "boolean", default: false })
   isStore: boolean;
 
-  @ManyToOne(() => Topic, (topic) => topic.courts)
-  topic: Topic;
+  @ManyToOne(() => Topics, (topic) => topic.courts)
+  topic: Topics;
 
   @OneToOne(() => Diary, (diary) => diary.court)
   diary: Diary;

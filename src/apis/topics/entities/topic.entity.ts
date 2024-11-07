@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 
 @Entity()
-export class Topic {
+export class Topics {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -23,8 +23,5 @@ export class Topic {
   courts: Courts[];
 
   @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
+  created_at: Date;
 }
