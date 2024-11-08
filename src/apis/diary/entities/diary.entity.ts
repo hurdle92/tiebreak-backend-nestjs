@@ -1,6 +1,5 @@
 import { User } from "../../users/entities/user.entity";
 import { Court } from "../..//courts/entities/court.entity";
-import { DiaryCondition } from "../../diary_conditions/entities/diary_condition.entity";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   Column,
@@ -51,9 +50,9 @@ export class Diary {
   @JoinColumn()
   court: Court;
 
-  @OneToOne(() => DiaryCondition)
-  @JoinColumn()
-  diaryCondition: DiaryCondition;
+  // @OneToOne(() => DiaryCondition)
+  // @JoinColumn()
+  // diaryCondition: DiaryCondition;
 
   @CreateDateColumn()
   created_at: Date;
