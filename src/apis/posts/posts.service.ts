@@ -19,7 +19,7 @@ export class PostsService {
   async findOne(id: number): Promise<PostResponseDto> {
     const post = await this.postRepository.findOne({
       where: { id },
-      relations: ["user"],
+      relations: ["user", "comments", "comments.user"],
     });
     return new PostResponseDto(post);
   }

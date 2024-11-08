@@ -13,6 +13,7 @@ import { PostsModule } from "./apis/posts/posts.module";
 import { DiaryConditionsModule } from "./apis/diary_conditions/diary_conditions.module";
 import { DiaryOptionsModule } from "./apis/diary_options/diary_options.module";
 import { DiaryModule } from "./apis/diary/diary.module";
+import { CommentsModule } from "./apis/comments/comments.module";
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { DiaryModule } from "./apis/diary/diary.module";
     TopicsModule,
     UpdateConfigModule,
     PostsModule,
+    CommentsModule,
     // RegionsModule,
     // UsersModule,
     // DiaryConditionsModule,

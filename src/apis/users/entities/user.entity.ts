@@ -10,6 +10,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Diary } from "src/apis/diary/entities/diary.entity";
+import { Comment } from "src/apis/comments/entitis/comment.entity";
 
 @Entity("users")
 export class User {
@@ -43,6 +44,9 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.user)
   posts: Post[];
+
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments: Comment[];
 
   // @OneToMany(() => Diary, (diary) => diary.user)
   // daries: Diary[];
