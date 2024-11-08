@@ -26,10 +26,10 @@ export class DiaryOption {
   })
   type: DiaryOptionType;
 
-  @Column({ type: "text", default: " " })
+  @Column({ type: "text" })
   img: string;
 
-  @Column({ type: "int" })
+  @Column({ type: "int", default: 0, nullable: true })
   priority: number;
 
   @CreateDateColumn()

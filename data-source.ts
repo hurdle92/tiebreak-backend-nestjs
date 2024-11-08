@@ -9,6 +9,7 @@ import { User } from "src/apis/users/entities/user.entity";
 import { Post } from "src/apis/posts/entities/post.entity";
 import { Comment } from "src/apis/comments/entitis/comment.entity";
 import { Region } from "src/apis/regions/entities/region.entity";
+import { DiaryOption } from "src/apis/diary_options/entities/diary-option.entity";
 
 dotenv.config();
 
@@ -21,7 +22,16 @@ export default new DataSource({
   database: process.env.DB_DATABASE,
   synchronize: false,
   // entities: ["src/**/*.entity.ts"],
-  entities: [Guestbook, Banner, UpdateConfig, User, Post, Comment, Region],
+  entities: [
+    Guestbook,
+    Banner,
+    UpdateConfig,
+    User,
+    Post,
+    Comment,
+    Region,
+    DiaryOption,
+  ],
   migrations: ["src/database/migrations/*.ts"],
   migrationsTableName: "migrations",
 });
