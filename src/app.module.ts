@@ -11,7 +11,7 @@ import { UpdateConfigModule } from "./apis/update_config/update_config.module";
 import { UsersModule } from "./apis/users/users.module";
 import { PostsModule } from "./apis/posts/posts.module";
 import { DiaryConditionsModule } from "./apis/diary_conditions/diary_conditions.module";
-import { DiaryOptionsModule } from "./apis/diary_options/diary_options.module";
+import { DiaryOptionsModule } from "./apis/diary_options/diary-options.module";
 import { DiaryModule } from "./apis/diary/diary.module";
 import { CommentsModule } from "./apis/comments/comments.module";
 
@@ -27,9 +27,9 @@ import { CommentsModule } from "./apis/comments/comments.module";
     PostsModule,
     CommentsModule,
     RegionsModule,
-    // UsersModule,
+    DiaryOptionsModule,
+    UsersModule,
     // DiaryConditionsModule,
-    // DiaryOptionsModule,
     // DiaryModule,
   ],
 })

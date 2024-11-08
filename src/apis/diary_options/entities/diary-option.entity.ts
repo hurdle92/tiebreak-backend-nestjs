@@ -3,20 +3,17 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from "typeorm";
 import { DiaryOptionType } from "./diary-option-type.enum";
 
-@Entity()
+@Entity("diaryOptions")
 export class DiaryOption {
-  @PrimaryGeneratedColumn()
-  @ApiProperty({ description: "다이어리 컨디션 id" })
+  @PrimaryGeneratedColumn({ type: "int8" })
+  @ApiProperty({ description: "다이어리 생성 옵션 id" })
   id: number;
 
   @Column({ type: "text" })
-  @ApiProperty({ description: "다이어리 컨디션 라벨" })
   label: string;
 
   @Column({ type: "text" })
@@ -29,7 +26,7 @@ export class DiaryOption {
   })
   type: DiaryOptionType;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", default: " " })
   img: string;
 
   @Column({ type: "int" })
@@ -37,7 +34,4 @@ export class DiaryOption {
 
   @CreateDateColumn()
   created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
 }
