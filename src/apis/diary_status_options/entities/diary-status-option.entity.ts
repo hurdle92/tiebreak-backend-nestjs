@@ -21,9 +21,13 @@ export class DiaryStatusOption {
   @Column({ type: "text" })
   img: string;
 
-  @Column({ type: "int" })
+  @Column({ type: "int2" })
   priority: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({
+    type: "timestamp with time zone",
+    default: () => "CURRENT_TIMESTAMP",
+    nullable: false,
+  })
   created_at: Date;
 }
