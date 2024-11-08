@@ -5,6 +5,7 @@ import { Banner } from "src/apis/banners/entities/banner.entity";
 import { Topics } from "src/apis/topics/entities/topic.entity";
 import { Court } from "src/apis/courts/entities/court.entity";
 import { UpdateConfig } from "src/apis/update_config/entitis/update-config.entity";
+import { User } from "src/apis/users/entities/user.entity";
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ export default new DataSource({
   database: process.env.DB_DATABASE,
   synchronize: false,
   // entities: ["src/**/*.entity.ts"],
-  entities: [Guestbook, Banner, UpdateConfig],
+  entities: [Guestbook, Banner, UpdateConfig, User],
   migrations: ["src/database/migrations/*.ts"],
   migrationsTableName: "migrations",
 });

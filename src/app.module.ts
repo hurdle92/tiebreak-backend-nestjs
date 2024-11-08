@@ -24,7 +24,7 @@ import { DiaryModule } from "./apis/diary/diary.module";
     TopicsModule,
     // RegionsModule,
     UpdateConfigModule,
-    UsersModule,
+    // UsersModule,
     // PostsModule,
     // DiaryConditionsModule,
     // DiaryOptionsModule,

@@ -35,8 +35,8 @@ export class Diary {
   @Column({ type: "date" })
   playDate: Date;
 
-  @ManyToOne(() => User, (user) => user.daries)
-  user: User;
+  // @ManyToOne(() => User, (user) => user.daries)
+  // user: User;
 
   @Column({ type: "int" })
   playDateYear: number;

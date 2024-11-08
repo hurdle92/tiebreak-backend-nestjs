@@ -28,8 +28,8 @@ export class Post {
   @Column({ type: "text" })
   image: string;
 
-  @ManyToOne(() => User, (user) => user.posts)
-  user: User;
+  // @ManyToOne(() => User, (user) => user.posts)
+  // user: User;
 
   @CreateDateColumn()
   created_at: Date;
