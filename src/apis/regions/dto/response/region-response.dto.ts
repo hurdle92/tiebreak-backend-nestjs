@@ -15,17 +15,17 @@ export class RegionResponseDto {
   order: number;
 
   @ApiProperty({ description: "행정구역 생성일시" })
-  createdAt: Date;
+  created_at: Date;
 
   @ApiProperty({ description: "행정구역 수정일시" })
-  updatedAt: Date;
+  updated_at: Date;
 
   constructor(region: Region) {
     this.id = region.id;
     this.name = region.name;
     this.thumbnail = region.thumbnail;
     this.order = region.order;
-    this.createdAt = region.createdAt;
-    this.updatedAt = region.updatedAt;
+    this.created_at = region.created_at;
+    this.updated_at = region.updated_at;
   }
 }

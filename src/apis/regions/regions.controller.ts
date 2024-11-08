@@ -5,13 +5,13 @@ import { Response } from "express";
 import { RegionMessage } from "./entities/region.message";
 
 @Controller("regions")
-@ApiTags("지역 API")
+@ApiTags("행정구역 API")
 export class RegionsController {
   constructor(private readonly regionsService: RegionsService) {}
   @Get()
-  @ApiOperation({ summary: "배너 리스트 조회" })
+  @ApiOperation({ summary: "행정구역 리스트 조회" })
   @ApiOkResponse({
-    description: "배너 리스트를 조회합니다.",
+    description: "행정구역 리스트를 조회합니다.",
   })
   async findAll(@Res() res: Response) {
     const regions = await this.regionsService.findAll();

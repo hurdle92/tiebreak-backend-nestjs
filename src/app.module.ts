@@ -26,7 +26,7 @@ import { CommentsModule } from "./apis/comments/comments.module";
     UpdateConfigModule,
     PostsModule,
     CommentsModule,
-    // RegionsModule,
+    RegionsModule,
     // UsersModule,
     // DiaryConditionsModule,
     // DiaryOptionsModule,

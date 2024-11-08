@@ -1,8 +1,5 @@
 import { IsNotEmpty, IsString, IsNumber } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { Comment } from "../comment.entity";
-import { Post } from "src/apis/posts/entities/post.entity";
-import { User } from "src/apis/users/entities/user.entity";
 
 export class CommentCreateRequestDto {
   @IsString()

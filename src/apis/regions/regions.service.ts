@@ -12,13 +12,13 @@ export class RegionsService {
   ) {}
 
   /**
-   * 모든 지역 정보를 조회합니다.
+   * 모든 행정구역 정보를 조회합니다.
    *
    * @returns {Promise<RegionResponseDto[]>}
    */
   async findAll() {
-    const banners = await this.regionRepository.find();
-    const result = banners.map((item) => new RegionResponseDto(item));
+    const regions = await this.regionRepository.find();
+    const result = regions.map((item) => new RegionResponseDto(item));
     return result;
   }
 }

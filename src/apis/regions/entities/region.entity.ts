@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import {
   Column,
   CreateDateColumn,
@@ -6,9 +7,10 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity()
+@Entity("regions")
 export class Region {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int8" })
+  @ApiProperty({ description: "지역 id" })
   id: number;
 
   @Column({ type: "text" })
@@ -17,12 +19,12 @@ export class Region {
   @Column({ type: "text" })
   thumbnail: string;
 
-  @Column({ type: "int" })
+  @Column({ type: "int", default: 0 })
   order: number;
 
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updated_at: Date;
 }
