@@ -10,30 +10,39 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity()
+@Entity("posts")
 export class Post {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int8" })
   @ApiProperty({ description: "게시글 id" })
   id: number;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", default: " " })
   title: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", default: " " })
   content: string;
 
-  @Column({ type: "bool" })
+  @Column({ type: "bool", default: true })
   isUse: boolean;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", default: " " })
   image: string;
 
-  // @ManyToOne(() => User, (user) => user.posts)
-  // user: User;
+  @ManyToOne(() => User, (user) => user.posts)
+  @JoinColumn({ name: "user" })
+  user: User;
 
-  @CreateDateColumn()
+  @CreateDateColumn({
+    type: "timestamp with time zone",
+    default: () => "CURRENT_TIMESTAMP",
+    nullable: false,
+  })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({
+    type: "timestamp with time zone",
+    default: () => "CURRENT_TIMESTAMP",
+    nullable: true,
+  })
   updated_at: Date;
 }

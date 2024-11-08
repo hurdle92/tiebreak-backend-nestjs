@@ -41,8 +41,8 @@ export class User {
   @Column({ type: "text", default: " ", nullable: true })
   appleEmail: string;
 
-  // @OneToMany(() => Post, (post) => post.user)
-  // posts: Post[];
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
 
   // @OneToMany(() => Diary, (diary) => diary.user)
   // daries: Diary[];
