@@ -41,4 +41,12 @@ export class Comment {
     nullable: true,
   })
   updated_at: Date;
+
+  static create(content: string, post: Post, user: User) {
+    const comment = new Comment();
+    comment.content = content;
+    comment.post = post;
+    comment.user = user;
+    return comment;
+  }
 }

@@ -24,11 +24,11 @@ export class PostsController {
     @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response,
   ) {
-    const user = await this.postsService.findOne(id);
+    const post = await this.postsService.findOne(id);
     return res.status(HttpStatus.OK).json({
       code: 200,
       message: PostMessage.DETAIL,
-      data: user,
+      data: post,
     });
   }
 }
