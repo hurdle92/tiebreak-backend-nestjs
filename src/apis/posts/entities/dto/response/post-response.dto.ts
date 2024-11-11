@@ -1,6 +1,6 @@
-import { UserResponseDto } from "src/apis/users/entities/response/user-response.dto";
+import { UserResponseDto } from "../../../../users/entities/response/user-response.dto";
+import { CommentResponseDto } from "../../../../comments/entitis/response/comment-response.dto";
 import { Post } from "../../post.entity";
-import { CommentResponseDto } from "src/apis/comments/entitis/response/comment-response.dto";
 
 export class PostResponseDto {
   id: number;
