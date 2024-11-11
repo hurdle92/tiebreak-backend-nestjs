@@ -14,6 +14,7 @@ import { DiaryOptionsModule } from "./apis/diary_options/diary-options.module";
 import { DiaryModule } from "./apis/diary/diary.module";
 import { CommentsModule } from "./apis/comments/comments.module";
 import { DiaryStatusOptionsModule } from "./apis/diary_status_options/diary_status_options.module";
+import { LessonModule } from "./lesson/lesson.module";
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { DiaryStatusOptionsModule } from "./apis/diary_status_options/diary_stat
     DiaryOptionsModule,
     UsersModule,
     DiaryStatusOptionsModule,
+    LessonModule,
     // DiaryModule,
   ],
 })

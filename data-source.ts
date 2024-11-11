@@ -9,6 +9,7 @@ import { Comment } from "./src/apis/comments/entitis/comment.entity";
 import { Region } from "./src/apis/regions/entities/region.entity";
 import { DiaryOption } from "./src/apis/diary_options/entities/diary-option.entity";
 import { DiaryStatusOption } from "./src/apis/diary_status_options/entities/diary-status-option.entity";
+import { Lesson } from "./src/lesson/entities/lesson.entity";
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ export default new DataSource({
     Region,
     DiaryOption,
     DiaryStatusOption,
+    Lesson,
   ],
   migrations: ["src/database/migrations/*.ts"],
   migrationsTableName: "migrations",
