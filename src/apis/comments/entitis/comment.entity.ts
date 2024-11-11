@@ -1,6 +1,4 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Post } from "src/apis/posts/entities/post.entity";
-import { User } from "src/apis/users/entities/user.entity";
 import {
   Column,
   CreateDateColumn,
@@ -10,6 +8,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Post } from "../../posts/entities/post.entity";
+import { User } from "../../users/entities/user.entity";
 
 @Entity("comments")
 export class Comment {

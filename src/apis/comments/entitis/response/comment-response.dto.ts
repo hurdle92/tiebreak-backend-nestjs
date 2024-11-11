@@ -1,4 +1,4 @@
-import { UserResponseDto } from "src/apis/users/entities/response/user-response.dto";
+import { UserResponseDto } from "../../../users/entities/response/user-response.dto";
 import { Comment } from "../comment.entity";
 
 export class CommentResponseDto {

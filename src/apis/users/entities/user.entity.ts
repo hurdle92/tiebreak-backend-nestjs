@@ -9,8 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Diary } from "src/apis/diary/entities/diary.entity";
-import { Comment } from "src/apis/comments/entitis/comment.entity";
+import { Comment } from "../../comments/entitis/comment.entity";
 
 @Entity("users")
 export class User {
