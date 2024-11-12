@@ -32,7 +32,7 @@ import { LessonModule } from "./lesson/lesson.module";
     UsersModule,
     DiaryStatusOptionsModule,
     LessonModule,
-    // DiaryModule,
+    DiaryModule,
   ],
 })
 export class AppModule {}
