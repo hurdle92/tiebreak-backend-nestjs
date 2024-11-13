@@ -35,7 +35,7 @@ export default new DataSource({
     Region,
     DiaryOption,
     DiaryStatusOption,
-    // Lesson,
+    Lesson,
     DiaryCategory,
     Court,
     Topics,

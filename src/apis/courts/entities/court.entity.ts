@@ -97,7 +97,7 @@ export class Court {
   // lesson: Lesson;
 
   @CreateDateColumn({
-    type: "timestamp with time zone",
+    type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP",
     nullable: false,
   })

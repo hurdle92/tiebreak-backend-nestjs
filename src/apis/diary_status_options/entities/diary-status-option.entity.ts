@@ -25,7 +25,7 @@ export class DiaryStatusOption {
   priority: number;
 
   @CreateDateColumn({
-    type: "timestamp with time zone",
+    type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP",
     nullable: false,
   })

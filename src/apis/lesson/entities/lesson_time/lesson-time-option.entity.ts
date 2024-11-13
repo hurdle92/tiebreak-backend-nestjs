@@ -23,14 +23,14 @@ export class LessonTimeOption {
   thumbnail: string;
 
   @CreateDateColumn({
-    type: "timestamp with time zone",
+    type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP",
     nullable: false,
   })
   created_at: Date;
 
   @UpdateDateColumn({
-    type: "timestamp with time zone",
+    type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP",
     nullable: true,
   })
