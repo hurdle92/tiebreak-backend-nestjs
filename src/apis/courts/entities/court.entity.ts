@@ -1,14 +1,13 @@
 import { Diary } from "../../diary/entities/diary.entity";
+import { Lesson } from "../../lesson/entities/lesson.entity";
 import { Topics } from "../../topics/entities/topic.entity";
 import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from "typeorm";
 
 @Entity("courts")
@@ -28,16 +27,16 @@ export class Court {
   @Column({ type: "text" })
   phoneNumber: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", default: " " })
   instagram: string;
 
-  @Column({ type: "float" })
+  @Column({ type: "numeric" })
   lat: number;
 
-  @Column({ type: "float" })
+  @Column({ type: "numeric" })
   lng: number;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", default: " " })
   description: string;
 
   @Column({ type: "text" })
@@ -46,7 +45,7 @@ export class Court {
   @Column({ type: "text" })
   district: string;
 
-  @Column({ type: "boolean" })
+  @Column({ type: "boolean", default: true })
   isParking: boolean;
 
   @Column({ type: "text" })
@@ -61,10 +60,10 @@ export class Court {
   @Column({ type: "boolean", default: false })
   isOnlineReservation: boolean;
 
-  @Column({ type: "boolean", default: false })
+  @Column({ type: "boolean", default: true })
   isUse: boolean;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", default: " " })
   reservationLink: string;
 
   @Column({ type: "text" })
@@ -79,10 +78,10 @@ export class Court {
   @Column({ type: "boolean", default: false })
   isShower: boolean;
 
-  @Column({ type: "int", default: 0 })
+  @Column({ type: "int2", default: 1 })
   priority: number;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", default: " " })
   courtPrice: string;
 
   @Column({ type: "boolean", default: false })
@@ -91,9 +90,16 @@ export class Court {
   @ManyToOne(() => Topics, (topic) => topic.courts)
   topic: Topics;
 
-  @OneToOne(() => Diary, (diary) => diary.court)
-  diary: Diary;
+  // @OneToOne(() => Diary, (diary) => diary.court)
+  // diary: Diary;
 
-  @CreateDateColumn()
+  // @OneToOne(() => Lesson, (lesson) => lesson.court)
+  // lesson: Lesson;
+
+  @CreateDateColumn({
+    type: "timestamp with time zone",
+    default: () => "CURRENT_TIMESTAMP",
+    nullable: false,
+  })
   created_at: Date;
 }

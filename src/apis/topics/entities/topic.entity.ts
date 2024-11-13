@@ -16,12 +16,16 @@ export class Topics {
   @Column({ type: "text" })
   title: string;
 
-  @Column({ type: "int" })
+  @Column({ type: "int2", nullable: false, default: 1 })
   order: number;
 
   @OneToMany(() => Court, (court) => court.topic)
   courts: Court[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({
+    type: "timestamp with time zone",
+    default: () => "CURRENT_TIMESTAMP",
+    nullable: false,
+  })
   created_at: Date;
 }
