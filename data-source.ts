@@ -9,8 +9,10 @@ import { Comment } from "./src/apis/comments/entitis/comment.entity";
 import { Region } from "./src/apis/regions/entities/region.entity";
 import { DiaryOption } from "./src/apis/diary_options/entities/diary-option.entity";
 import { DiaryStatusOption } from "./src/apis/diary_status_options/entities/diary-status-option.entity";
-import { Lesson } from "./src/lesson/entities/lesson.entity";
+import { Lesson } from "./src/apis/lesson/entities/lesson.entity";
 import { DiaryCategory } from "./src/apis/diary/entities/diary-category.entity";
+import { Court } from "./src/apis/courts/entities/court.entity";
+import { Topics } from "./src/apis/topics/entities/topic.entity";
 
 dotenv.config();
 
@@ -33,8 +35,10 @@ export default new DataSource({
     Region,
     DiaryOption,
     DiaryStatusOption,
-    Lesson,
+    // Lesson,
     DiaryCategory,
+    Court,
+    Topics,
   ],
   migrations: ["src/database/migrations/*.ts"],
   migrationsTableName: "migrations",

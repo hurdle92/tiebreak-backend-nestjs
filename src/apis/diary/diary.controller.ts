@@ -1,6 +1,6 @@
 import { DiaryService } from "./diary.service";
 import { Controller, Get, HttpStatus, Res } from "@nestjs/common";
-import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiOkResponse, ApiOperation } from "@nestjs/swagger";
 import { Response } from "express";
 import { DiaryCategoryMessage } from "./entities/diary-category.message";
 
