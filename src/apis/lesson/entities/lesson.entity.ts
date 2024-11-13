@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Court } from "../../courts/entities/court.entity";
+import { User } from "../../users/entities/user.entity";
 
 @Entity("lesson")
 export class Lesson {
@@ -26,6 +27,10 @@ export class Lesson {
   @OneToOne(() => Court)
   @JoinColumn()
   court: Court;
+
+  @OneToOne(() => User)
+  @JoinColumn()
+  user: User;
 
   @CreateDateColumn({
     type: "timestamptz",
