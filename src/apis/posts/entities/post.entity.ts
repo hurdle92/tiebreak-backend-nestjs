@@ -50,4 +50,20 @@ export class Post {
     nullable: true,
   })
   updated_at: Date;
+
+  static create(
+    title: string,
+    content: string,
+    isUse: boolean = true,
+    user: User,
+    image: string = " ",
+  ): Post {
+    const post = new Post();
+    post.title = title;
+    post.content = content;
+    post.isUse = isUse;
+    post.user = user;
+    post.image = image;
+    return post;
+  }
 }
