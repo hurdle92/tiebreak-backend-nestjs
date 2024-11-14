@@ -5,11 +5,14 @@ import {
   ParseIntPipe,
   Res,
   HttpStatus,
+  Post,
+  Body,
 } from "@nestjs/common";
 import { ApiOkResponse, ApiOperation } from "@nestjs/swagger";
 import { Response } from "express";
 import { PostsService } from "./posts.service";
 import { PostMessage } from "./entities/post.message";
+import { PostCreateRequestDto } from "./entities/dto/request/post-create-request.dto";
 
 @Controller("posts")
 export class PostsController {
@@ -28,6 +31,19 @@ export class PostsController {
     return res.status(HttpStatus.OK).json({
       code: 200,
       message: PostMessage.DETAIL,
+      data: post,
+    });
+  }
+
+  @Post()
+  @ApiOperation({ summary: "게시글 생성" })
+  @ApiOkResponse({ description: "게시글을 생성합니다." })
+  async create(@Body() requestDto: PostCreateRequestDto, @Res() res: Response) {
+    const post = await this.postsService.create(requestDto);
+
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: PostMessage.CREATED,
       data: post,
     });
   }
