@@ -46,7 +46,8 @@ export class Lesson {
   })
   updated_at: Date;
 
-  static create(title: string, content: string, description: string) {
+  // NOTE : lesson entity 생성
+  static create() {
     const lesson = new Lesson();
     return lesson;
   }
