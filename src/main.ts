@@ -1,7 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import { setupApp, setupSwagger } from "./configs/common";
-import helmet from "helmet";
+import { setupApp, setupSwagger } from "./configs";
 import { Logger, ValidationPipe } from "@nestjs/common";
 
 async function bootstrap() {
