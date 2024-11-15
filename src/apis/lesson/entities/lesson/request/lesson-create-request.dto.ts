@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { Lesson } from "../lesson.entity";
-import { Court } from "../../../courts/entities/court.entity";
-import { User } from "../../../users/entities/user.entity";
+import { Court } from "../../../../courts/entities/court.entity";
+import { User } from "../../../../users/entities/user.entity";
 
 export class LessonCreateRequestDto {
   @IsNotEmpty()

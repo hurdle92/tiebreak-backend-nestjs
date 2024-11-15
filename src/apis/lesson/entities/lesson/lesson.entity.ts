@@ -7,8 +7,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Court } from "../../courts/entities/court.entity";
-import { User } from "../../users/entities/user.entity";
+import { Court } from "../../../courts/entities/court.entity";
+import { User } from "../../../users/entities/user.entity";
 
 @Entity("lesson")
 export class Lesson {

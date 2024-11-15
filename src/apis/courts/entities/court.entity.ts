@@ -1,5 +1,5 @@
 import { Diary } from "../../diary/entities/diary.entity";
-import { Lesson } from "../../lesson/entities/lesson.entity";
+import { Lesson } from "../../lesson/entities/lesson/lesson.entity";
 import { Topics } from "../../topics/entities/topic.entity";
 import {
   Column,
