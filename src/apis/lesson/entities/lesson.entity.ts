@@ -47,8 +47,20 @@ export class Lesson {
   updated_at: Date;
 
   // NOTE : lesson entity 생성
-  static create() {
+
+  static create(
+    good_comment: string,
+    bad_comment: string,
+    coach_comment: string,
+    court: Court,
+    user: User,
+  ) {
     const lesson = new Lesson();
+    lesson.good_comment = good_comment;
+    lesson.bad_comment = bad_comment;
+    lesson.coach_comment = coach_comment;
+    lesson.court = court;
+    lesson.user = user;
     return lesson;
   }
 }

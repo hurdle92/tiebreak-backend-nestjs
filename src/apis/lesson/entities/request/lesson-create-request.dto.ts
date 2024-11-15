@@ -28,12 +28,13 @@ export class LessonCreateRequestDto {
   @ApiProperty({ description: "유저 정보" })
   user: User;
 
-  toEntity(user: User): Lesson {
-    const lesson = new Lesson();
-    lesson.good_comment = this.good_comment;
-    lesson.bad_comment = this.bad_comment;
-    lesson.coach_comment = this.coach_comment;
-    lesson.court = this.court;
-    return lesson;
+  toEntity(court: Court, user: User): Lesson {
+    return Lesson.create(
+      this.good_comment,
+      this.bad_comment,
+      this.coach_comment,
+      court,
+      user,
+    );
   }
 }
