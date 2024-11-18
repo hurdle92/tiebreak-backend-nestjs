@@ -10,6 +10,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Comment } from "../../comments/entitis/comment.entity";
+import { Lesson } from "../../lesson/entities/lesson/lesson.entity";
 
 @Entity("users")
 export class User {
@@ -49,6 +50,9 @@ export class User {
 
   // @OneToMany(() => Diary, (diary) => diary.user)
   // daries: Diary[];
+
+  @OneToMany(() => Lesson, (lesson) => lesson.user)
+  lessons: Lesson[];
 
   @CreateDateColumn({
     type: "timestamptz",

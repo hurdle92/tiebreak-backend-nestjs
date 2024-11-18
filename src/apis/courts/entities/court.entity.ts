@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -90,11 +91,8 @@ export class Court {
   @ManyToOne(() => Topics, (topic) => topic.courts)
   topic: Topics;
 
-  // @OneToOne(() => Diary, (diary) => diary.court)
-  // diary: Diary;
-
-  // @OneToOne(() => Lesson, (lesson) => lesson.court)
-  // lesson: Lesson;
+  @OneToMany(() => Lesson, (lesson) => lesson.court)
+  lessons: Lesson[];
 
   @CreateDateColumn({
     type: "timestamptz",
