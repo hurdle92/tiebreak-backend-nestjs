@@ -45,9 +45,12 @@ export class LessonService {
     const user = await this.userRepository.findOne({
       where: { id: requestDto.userId },
     });
-    const court = await this.courtRepository.findOne({
-      where: { id: requestDto.courtId },
-    });
+    let court: Court = null;
+    if (requestDto.courtId) {
+      court = await this.courtRepository.findOne({
+        where: { id: requestDto.courtId },
+      });
+    }
     const lesson = requestDto.toEntity(user, court);
     return await this.lessonRepository.save(lesson);
   }
