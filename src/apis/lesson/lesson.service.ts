@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { IsNull, Repository } from "typeorm";
 import { User } from "../users/entities/user.entity";
 import { Court } from "../courts/entities/court.entity";
 import { LessonResponseDto } from "./entities/lesson/request/lesson-response.dto";
@@ -45,12 +45,9 @@ export class LessonService {
     const user = await this.userRepository.findOne({
       where: { id: requestDto.userId },
     });
-    let court: Court = null;
-    if (requestDto.courtId) {
-      court = await this.courtRepository.findOne({
-        where: { id: requestDto.courtId },
-      });
-    }
+    const court = await this.courtRepository.findOne({
+      where: { id: requestDto.courtId || IsNull() },
+    });
     const lesson = requestDto.toEntity(user, court);
     return await this.lessonRepository.save(lesson);
   }
