@@ -13,14 +13,15 @@ import {
   ApiOperation,
   ApiParam,
   ApiResponse,
+  ApiTags,
 } from "@nestjs/swagger";
 import { Response } from "express";
 import { LessonService } from "./lesson.service";
 import { LessonMessage } from "./entities/lesson/lesson.message";
-import { LessonResponseDto } from "./entities/lesson/request/lesson-response.dto";
 import { LessonCreateRequestDto } from "./entities/lesson/request/lesson-create-request.dto";
 
 @Controller("lesson")
+@ApiTags("레슨 API")
 export class LessonController {
   constructor(private readonly lessonService: LessonService) {}
 
@@ -48,7 +49,6 @@ export class LessonController {
     @Res() res: Response,
   ) {
     const lesson = await this.lessonService.create(requestDto);
-
     return res.status(HttpStatus.OK).json({
       code: 200,
       message: LessonMessage.CREATED,

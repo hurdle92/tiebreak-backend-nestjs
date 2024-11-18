@@ -5,17 +5,14 @@ import { Court } from "../../../../courts/entities/court.entity";
 import { User } from "../../../../users/entities/user.entity";
 
 export class LessonCreateRequestDto {
-  @IsNotEmpty()
   @IsString()
   @ApiProperty({ description: "좋은 점 코멘트" })
   good_comment: string;
 
-  @IsNotEmpty()
   @IsString()
   @ApiProperty({ description: "나쁜 점 코멘트" })
   bad_comment: string;
 
-  @IsNotEmpty()
   @IsString()
   @ApiProperty({ description: "코치 코멘트" })
   coach_comment: string;
