@@ -17,6 +17,8 @@ import {
 import { Response } from "express";
 import { LessonService } from "./lesson.service";
 import { LessonMessage } from "./entities/lesson/lesson.message";
+import { LessonResponseDto } from "./entities/lesson/request/lesson-response.dto";
+import { LessonCreateRequestDto } from "./entities/lesson/request/lesson-create-request.dto";
 
 @Controller("lesson")
 export class LessonController {
@@ -34,6 +36,22 @@ export class LessonController {
     return res.status(HttpStatus.OK).json({
       code: 200,
       message: LessonMessage.GET_DETAIL,
+      data: lesson,
+    });
+  }
+
+  @Post()
+  @ApiOperation({ summary: "레슨 생성" })
+  @ApiOkResponse({ description: "레슨을 생성합니다." })
+  async create(
+    @Body() requestDto: LessonCreateRequestDto,
+    @Res() res: Response,
+  ) {
+    const lesson = await this.lessonService.create(requestDto);
+
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: LessonMessage.CREATED,
       data: lesson,
     });
   }

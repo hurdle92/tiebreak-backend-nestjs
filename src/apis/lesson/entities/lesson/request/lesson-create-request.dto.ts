@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { Lesson } from "../lesson.entity";
 import { Court } from "../../../../courts/entities/court.entity";
@@ -20,21 +20,22 @@ export class LessonCreateRequestDto {
   @ApiProperty({ description: "코치 코멘트" })
   coach_comment: string;
 
-  @IsNotEmpty()
-  @ApiProperty({ description: "코트 정보" })
-  court: Court;
+  @IsNumber()
+  @ApiProperty({ description: "유저 ID" })
+  userId: number;
 
-  @IsNotEmpty()
-  @ApiProperty({ description: "유저 정보" })
-  user: User;
+  @IsOptional()
+  @IsNumber()
+  @ApiProperty({ description: "코트 ID" })
+  courtId: number;
 
-  toEntity(court: Court, user: User): Lesson {
+  toEntity(user: User, court: Court): Lesson {
     return Lesson.create(
       this.good_comment,
       this.bad_comment,
       this.coach_comment,
-      court,
       user,
+      court,
     );
   }
 }
