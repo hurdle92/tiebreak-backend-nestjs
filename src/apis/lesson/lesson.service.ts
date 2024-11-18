@@ -1,11 +1,6 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  NotFoundException,
-} from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { IsNull, Repository } from "typeorm";
+import { Equal, Repository } from "typeorm";
 import { User } from "../users/entities/user.entity";
 import { Court } from "../courts/entities/court.entity";
 import { LessonResponseDto } from "./entities/lesson/request/lesson-response.dto";
@@ -37,7 +32,7 @@ export class LessonService {
   }
 
   /**
-   * 게시글을 생성한다.
+   * 레슨을 생성합니다.
    *
    * @returns {Promise<LessonCreateRequestDto>}
    */
@@ -46,7 +41,7 @@ export class LessonService {
       where: { id: requestDto.userId },
     });
     const court = await this.courtRepository.findOne({
-      where: { id: requestDto.courtId || IsNull() },
+      where: { id: Equal(requestDto.courtId) },
     });
     const lesson = requestDto.toEntity(user, court);
     return await this.lessonRepository.save(lesson);
