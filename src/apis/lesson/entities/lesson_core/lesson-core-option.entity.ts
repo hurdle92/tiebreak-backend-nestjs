@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
-import { LessonCoreBridge } from "./lesson_core_bridge.entity";
+import { LessonCoreBridge } from "./lesson-core-bridge.entity";
 
 @Entity("lesson_core_option")
 export class LessonCoreOption {

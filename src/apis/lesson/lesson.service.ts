@@ -26,7 +26,12 @@ export class LessonService {
   async findOne(id: number): Promise<LessonResponseDto> {
     const lesson = await this.lessonRepository.findOne({
       where: { id },
-      relations: ["user", "court", "lesson_core_bridges.lesson_core_option"],
+      relations: [
+        "user",
+        "court",
+        "lesson_core_bridges.lesson_core_option",
+        "lesson_time_bridges.lesson_time_option",
+      ],
     });
     return new LessonResponseDto(lesson);
   }

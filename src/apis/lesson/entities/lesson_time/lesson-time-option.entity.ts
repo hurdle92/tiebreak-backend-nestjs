@@ -3,11 +3,12 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
-import { Lesson } from "../lesson/lesson.entity";
+import { LessonTimeBridge } from "./lesson-time-bridge.entity";
 
 @Entity("lesson_time_option")
 export class LessonTimeOption {
@@ -26,6 +27,12 @@ export class LessonTimeOption {
 
   @Column("int", { default: 0 })
   order: number;
+
+  @OneToMany(
+    () => LessonTimeBridge,
+    (lessonTimeBridge) => lessonTimeBridge.lesson_time_option,
+  )
+  lesson_time_bridges: LessonTimeBridge[];
 
   @CreateDateColumn({
     type: "timestamptz",

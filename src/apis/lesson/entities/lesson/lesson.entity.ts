@@ -10,9 +10,8 @@ import {
 } from "typeorm";
 import { Court } from "../../../courts/entities/court.entity";
 import { User } from "../../../users/entities/user.entity";
-import { LessonCoreOption } from "../lesson_core/lesson-core-option.entity";
-import { LessonTimeOption } from "../lesson_time/lesson-time-option.entity";
-import { LessonCoreBridge } from "../lesson_core/lesson_core_bridge.entity";
+import { LessonCoreBridge } from "../lesson_core/lesson-core-bridge.entity";
+import { LessonTimeBridge } from "../lesson_time/lesson-time-bridge.entity";
 
 @Entity("lesson")
 export class Lesson {
@@ -41,6 +40,12 @@ export class Lesson {
     (lessonCoreBridge) => lessonCoreBridge.lesson,
   )
   lesson_core_bridges: LessonCoreBridge[];
+
+  @OneToMany(
+    () => LessonTimeBridge,
+    (lessonTimeBridge) => lessonTimeBridge.lesson,
+  )
+  lesson_time_bridges: LessonTimeBridge[];
 
   @CreateDateColumn({
     type: "timestamptz",
