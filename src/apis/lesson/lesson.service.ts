@@ -1,9 +1,4 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  NotFoundException,
-} from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Equal, Repository } from "typeorm";
 import { User } from "../users/entities/user.entity";
@@ -37,7 +32,7 @@ export class LessonService {
   }
 
   /**
-   * 게시글을 생성한다.
+   * 레슨을 생성합니다.
    *
    * @returns {Promise<LessonCreateRequestDto>}
    */
