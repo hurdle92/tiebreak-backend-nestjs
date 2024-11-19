@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsNumber, IsOptional, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { Lesson } from "../lesson.entity";
 import { Court } from "../../../../courts/entities/court.entity";
@@ -19,12 +19,12 @@ export class LessonCreateRequestDto {
 
   @IsNumber()
   @ApiProperty({ description: "유저 ID" })
-  userId: number;
+  user_id: number;
 
   @IsOptional()
   @IsNumber()
   @ApiProperty({ description: "코트 ID" })
-  courtId: number;
+  court_id: number;
 
   toEntity(user: User, court: Court): Lesson {
     return Lesson.create(

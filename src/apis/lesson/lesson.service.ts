@@ -38,10 +38,10 @@ export class LessonService {
    */
   async create(requestDto: LessonCreateRequestDto): Promise<Lesson> {
     const user = await this.userRepository.findOne({
-      where: { id: requestDto.userId },
+      where: { id: requestDto.user_id },
     });
     const court = await this.courtRepository.findOne({
-      where: { id: Equal(requestDto.courtId) },
+      where: { id: Equal(requestDto.court_id) },
     });
     const lesson = requestDto.toEntity(user, court);
     return await this.lessonRepository.save(lesson);

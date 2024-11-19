@@ -27,9 +27,6 @@ export class LessonTimeOption {
   @Column("int", { default: 0 })
   order: number;
 
-  @ManyToOne(() => Lesson, (lesson) => lesson.lesson_core_options)
-  lesson: Lesson;
-
   @CreateDateColumn({
     type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP",
