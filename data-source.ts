@@ -13,6 +13,8 @@ import { Lesson } from "./src/apis/lesson/entities/lesson/lesson.entity";
 import { DiaryCategory } from "./src/apis/diary/entities/diary-category.entity";
 import { Court } from "./src/apis/courts/entities/court.entity";
 import { Topics } from "./src/apis/topics/entities/topic.entity";
+import { LessonTimeOption } from "./src/apis/lesson/entities/lesson_time/lesson-time-option.entity";
+import { LessonCoreOption } from "./src/apis/lesson/entities/lesson_core/lesson-core-option.entity";
 
 dotenv.config();
 
@@ -24,7 +26,6 @@ export default new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   synchronize: false,
-  // entities: ["src/**/*.entity.ts"],
   entities: [
     Guestbook,
     Banner,
@@ -39,6 +40,8 @@ export default new DataSource({
     DiaryCategory,
     Court,
     Topics,
+    LessonTimeOption,
+    LessonCoreOption,
   ],
   migrations: ["src/database/migrations/*.ts"],
   migrationsTableName: "migrations",

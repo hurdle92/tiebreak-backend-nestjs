@@ -2,10 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
+import { Lesson } from "../lesson/lesson.entity";
 
 @Entity("lesson_time_option")
 export class LessonTimeOption {
@@ -21,6 +23,12 @@ export class LessonTimeOption {
 
   @Column("text", { default: "" })
   thumbnail: string;
+
+  @Column("int", { default: 0 })
+  order: number;
+
+  @ManyToOne(() => Lesson, (lesson) => lesson.lesson_core_options)
+  lesson: Lesson;
 
   @CreateDateColumn({
     type: "timestamptz",

@@ -4,12 +4,14 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { Court } from "../../../courts/entities/court.entity";
 import { User } from "../../../users/entities/user.entity";
+import { LessonCoreOption } from "../lesson_core/lesson-core-option.entity";
+import { LessonTimeOption } from "../lesson_time/lesson-time-option.entity";
 
 @Entity("lesson")
 export class Lesson {
@@ -32,6 +34,18 @@ export class Lesson {
   @ManyToOne(() => Court, (court) => court.lessons)
   @JoinColumn({ name: "court" })
   court: Court;
+
+  @OneToMany(
+    () => LessonCoreOption,
+    (lessonCoreOption) => lessonCoreOption.lesson,
+  )
+  lesson_core_options: LessonCoreOption[];
+
+  @OneToMany(
+    () => LessonTimeOption,
+    (lessonTimeOption) => lessonTimeOption.lesson,
+  )
+  lesson_time_options: LessonTimeOption[];
 
   @CreateDateColumn({
     type: "timestamptz",
