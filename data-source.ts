@@ -15,6 +15,7 @@ import { Court } from "./src/apis/courts/entities/court.entity";
 import { Topics } from "./src/apis/topics/entities/topic.entity";
 import { LessonTimeOption } from "./src/apis/lesson/entities/lesson_time/lesson-time-option.entity";
 import { LessonCoreOption } from "./src/apis/lesson/entities/lesson_core/lesson-core-option.entity";
+import { LessonCoreBridge } from "./src/apis/lesson/entities/lesson_core/lesson_core_bridge.entity";
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ export default new DataSource({
     Topics,
     LessonTimeOption,
     LessonCoreOption,
+    LessonCoreBridge,
   ],
   migrations: ["src/database/migrations/*.ts"],
   migrationsTableName: "migrations",
