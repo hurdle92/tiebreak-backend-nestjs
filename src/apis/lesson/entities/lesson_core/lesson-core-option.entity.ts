@@ -27,6 +27,9 @@ export class LessonCoreOption {
   @Column("text", { default: "" })
   thumbnail: string;
 
+  @Column("int", { default: 0 })
+  order: number;
+
   @OneToMany(
     () => LessonCoreBridge,
     (lessonCoreBridge) => lessonCoreBridge.lesson_core_option,
