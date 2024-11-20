@@ -25,6 +25,30 @@ import { LessonCreateRequestDto } from "./entities/lesson/request/lesson-create-
 export class LessonController {
   constructor(private readonly lessonService: LessonService) {}
 
+  @Get("time-options")
+  @ApiOperation({ summary: "레슨 시간 옵션 조회" })
+  @ApiResponse({ status: 200, description: "레슨 시간 옵션 조회 성공" })
+  async getLessonTimeOptions(@Res() res: Response) {
+    const lessonTimeOptions = await this.lessonService.findLessonTimeOptions();
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: "레슨 시간 옵션 조회 성공",
+      data: lessonTimeOptions,
+    });
+  }
+
+  @Get("core-options")
+  @ApiOperation({ summary: "레슨 코어 옵션 조회" })
+  @ApiResponse({ status: 200, description: "레슨 코어 옵션 조회 성공" })
+  async getLessonCoreOptions(@Res() res: Response) {
+    const lessonCoreOptions = await this.lessonService.findLessonCoreOptions();
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: "레슨 코어 옵션 조회 성공",
+      data: lessonCoreOptions,
+    });
+  }
+
   @Get(":id")
   @ApiOperation({ summary: "레슨 상세 조회" })
   @ApiParam({ name: "id", description: "레슨 ID" })

@@ -50,6 +50,24 @@ export class LessonService {
   }
 
   /**
+   * 레슨 시간 옵션을 조회합니다.
+   *
+   * @returns {Promise<LessonCreateRequestDto>}
+   */
+  async findLessonTimeOptions(): Promise<LessonTimeOption[]> {
+    return await this.lessonTimeRepository.find();
+  }
+
+  /**
+   * 레슨 코어 옵션을 조회합니다.
+   *
+   * @returns {Promise<LessonCoreOption[]>}
+   */
+  async findLessonCoreOptions(): Promise<LessonCoreOption[]> {
+    return await this.lessonCoreRepository.find();
+  }
+
+  /**
    * 레슨을 생성합니다.
    *
    * @returns {Promise<LessonCreateRequestDto>}
