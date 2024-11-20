@@ -55,9 +55,10 @@ export class LessonService {
    * @returns {Promise<LessonCreateRequestDto>}
    */
   async findLessonTimeOptions(): Promise<LessonTimeOption[]> {
-    return await this.lessonTimeRepository.find({
+    const lessonTimeOptions = await this.lessonTimeRepository.find({
       order: { order: "ASC" },
     });
+    return lessonTimeOptions;
   }
 
   /**
@@ -66,9 +67,10 @@ export class LessonService {
    * @returns {Promise<LessonCoreOption[]>}
    */
   async findLessonCoreOptions(): Promise<LessonCoreOption[]> {
-    return await this.lessonCoreRepository.find({
+    const lessonCoreOptions = await this.lessonCoreRepository.find({
       order: { order: "ASC" },
     });
+    return lessonCoreOptions;
   }
 
   /**
