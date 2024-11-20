@@ -30,8 +30,14 @@ export class LessonCreateRequestDto {
   @IsArray()
   @IsNumber({}, { each: true })
   @Type(() => Number)
-  @ApiProperty({ description: "코어 옵션 ID 배열", type: [Number] })
-  core_option_ids: number[];
+  @ApiProperty({ description: "레슨 코어 옵션 ID 리스트", type: [Number] })
+  lesson_core_option_ids: number[];
+
+  @IsArray()
+  @IsNumber({}, { each: true })
+  @Type(() => Number)
+  @ApiProperty({ description: "레슨 타임 옵션 ID 리스트", type: [Number] })
+  lesson_time_option_ids: number[];
 
   toEntity(user: User, court: Court): Lesson {
     return Lesson.create(

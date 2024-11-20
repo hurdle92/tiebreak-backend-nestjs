@@ -8,6 +8,8 @@ import { Lesson } from "./entities/lesson/lesson.entity";
 import { LessonCreateRequestDto } from "./entities/lesson/request/lesson-create-request.dto";
 import { LessonCoreOption } from "./entities/lesson_core/lesson-core-option.entity";
 import { LessonCoreBridge } from "./entities/lesson_core/lesson-core-bridge.entity";
+import { LessonTimeOption } from "./entities/lesson_time/lesson-time-option.entity";
+import { LessonTimeBridge } from "./entities/lesson_time/lesson-time-bridge.entity";
 
 @Injectable()
 export class LessonService {
@@ -21,7 +23,11 @@ export class LessonService {
     @InjectRepository(LessonCoreOption)
     private lessonCoreRepository: Repository<LessonCoreOption>,
     @InjectRepository(LessonCoreBridge)
-    private lessonCoreBridgeRepository: Repository<LessonCoreOption>,
+    private lessonCoreBridgeRepository: Repository<LessonCoreBridge>,
+    @InjectRepository(LessonTimeOption)
+    private lessonTimeRepository: Repository<LessonTimeOption>,
+    @InjectRepository(LessonTimeBridge)
+    private lessonTimeBridgeRepository: Repository<LessonTimeBridge>,
     private dataSource: DataSource,
   ) {}
   /**
@@ -60,15 +66,22 @@ export class LessonService {
         where: { id: Equal(requestDto.court_id) },
       });
       const lessonCoreOptions = await this.lessonCoreRepository.find({
-        where: { id: In(requestDto.core_option_ids) },
+        where: { id: In(requestDto.lesson_core_option_ids) },
+      });
+      const lessonTimeOptions = await this.lessonTimeRepository.find({
+        where: { id: In(requestDto.lesson_time_option_ids) },
       });
       const lesson = requestDto.toEntity(user, court);
+
       const lessonCoreBridges = lessonCoreOptions.map((option) =>
         LessonCoreBridge.create(lesson, option),
       );
 
+      const lessonTimeBridges = lessonTimeOptions.map((option) =>
+        LessonTimeBridge.create(lesson, option),
+      );
       lesson.lesson_core_bridges = lessonCoreBridges;
-      lesson.lesson_time_bridges = [];
+      lesson.lesson_time_bridges = lessonTimeBridges;
       await this.lessonRepository.save(lesson);
       await this.lessonCoreBridgeRepository.save(lessonCoreBridges);
       await queryRunner.commitTransaction();

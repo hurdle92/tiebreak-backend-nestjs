@@ -46,4 +46,14 @@ export class LessonTimeBridge {
     nullable: true,
   })
   updated_at: Date;
+
+  static create(
+    lesson: Lesson,
+    lessonTimeOption: LessonTimeOption,
+  ): LessonTimeBridge {
+    const bridge = new LessonTimeBridge();
+    bridge.lesson = lesson;
+    bridge.lesson_time_option = lessonTimeOption;
+    return bridge;
+  }
 }
