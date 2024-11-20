@@ -1,8 +1,9 @@
-import { IsNumber, IsOptional, IsString } from "class-validator";
+import { IsArray, IsNumber, IsOptional, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { Lesson } from "../lesson.entity";
 import { Court } from "../../../../courts/entities/court.entity";
 import { User } from "../../../../users/entities/user.entity";
+import { Type } from "class-transformer";
 
 export class LessonCreateRequestDto {
   @IsString()
@@ -25,6 +26,12 @@ export class LessonCreateRequestDto {
   @IsNumber()
   @ApiProperty({ description: "코트 ID" })
   court_id: number;
+
+  @IsArray()
+  @IsNumber({}, { each: true })
+  @Type(() => Number)
+  @ApiProperty({ description: "코어 옵션 ID 배열", type: [Number] })
+  core_option_ids: number[];
 
   toEntity(user: User, court: Court): Lesson {
     return Lesson.create(

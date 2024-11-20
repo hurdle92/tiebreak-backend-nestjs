@@ -61,7 +61,6 @@ export class Lesson {
   })
   updated_at: Date;
 
-  // NOTE : lesson entity 생성
   static create(
     good_comment: string,
     bad_comment: string,

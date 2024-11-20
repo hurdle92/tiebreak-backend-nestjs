@@ -46,4 +46,14 @@ export class LessonCoreBridge {
     nullable: true,
   })
   updated_at: Date;
+
+  static create(
+    lesson: Lesson,
+    lessonCoreOption: LessonCoreOption,
+  ): LessonCoreBridge {
+    const bridge = new LessonCoreBridge();
+    bridge.lesson = lesson;
+    bridge.lesson_core_option = lessonCoreOption;
+    return bridge;
+  }
 }
