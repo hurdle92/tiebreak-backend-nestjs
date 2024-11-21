@@ -13,6 +13,7 @@ export class LessonResponseDto {
   user: UserResponseDto;
   lesson_core_options: LessonCoreOption[];
   lesson_time_options: LessonTimeOption[];
+  lesson_date: Date;
   created_at: Date;
   updated_at: Date;
 
@@ -29,6 +30,7 @@ export class LessonResponseDto {
     this.lesson_time_options = lesson.lesson_time_bridges.map(
       (bridge) => bridge.lesson_time_option,
     );
+    this.lesson_date = lesson.lesson_date;
     this.created_at = lesson.created_at;
     this.updated_at = lesson.updated_at;
   }
