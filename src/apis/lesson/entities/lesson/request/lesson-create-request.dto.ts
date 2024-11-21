@@ -1,4 +1,10 @@
-import { IsArray, IsNumber, IsOptional, IsString } from "class-validator";
+import {
+  IsArray,
+  IsDateString,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { Lesson } from "../lesson.entity";
 import { Court } from "../../../../courts/entities/court.entity";
@@ -33,6 +39,10 @@ export class LessonCreateRequestDto {
   @ApiProperty({ description: "레슨 코어 옵션 ID 리스트", type: [Number] })
   lesson_core_option_ids: number[];
 
+  @IsDateString()
+  @ApiProperty({ description: "레슨 날짜", example: "2024-11-11T10:00:00Z" })
+  lesson_date: string;
+
   @IsArray()
   @IsNumber({}, { each: true })
   @Type(() => Number)
@@ -46,6 +56,7 @@ export class LessonCreateRequestDto {
       this.coach_comment,
       user,
       court,
+      new Date(this.lesson_date),
     );
   }
 }

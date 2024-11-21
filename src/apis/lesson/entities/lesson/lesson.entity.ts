@@ -47,6 +47,13 @@ export class Lesson {
   )
   lesson_time_bridges: LessonTimeBridge[];
 
+  @Column({
+    type: "timestamptz",
+    default: () => "CURRENT_TIMESTAMP",
+    nullable: false,
+  })
+  lesson_date: Date;
+
   @CreateDateColumn({
     type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP",
@@ -67,6 +74,7 @@ export class Lesson {
     coach_comment: string,
     user: User,
     court: Court,
+    lesson_date: Date,
   ) {
     const lesson = new Lesson();
     lesson.good_comment = good_comment;
@@ -74,6 +82,7 @@ export class Lesson {
     lesson.coach_comment = coach_comment;
     lesson.user = user;
     lesson.court = court;
+    lesson.lesson_date = lesson_date;
     return lesson;
   }
 }
