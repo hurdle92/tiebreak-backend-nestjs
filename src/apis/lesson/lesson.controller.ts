@@ -119,6 +119,7 @@ export class LessonController {
     return res.status(HttpStatus.OK).json({
       code: 200,
       message: LessonMessage.DELETED,
+      data: true,
     });
   }
 }
