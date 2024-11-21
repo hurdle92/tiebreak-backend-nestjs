@@ -7,11 +7,13 @@ import {
   HttpStatus,
   Post,
   Body,
+  Query,
 } from "@nestjs/common";
 import {
   ApiOkResponse,
   ApiOperation,
   ApiParam,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from "@nestjs/swagger";
@@ -20,7 +22,7 @@ import { LessonService } from "./lesson.service";
 import { LessonMessage } from "./entities/lesson/lesson.message";
 import { LessonCreateRequestDto } from "./entities/lesson/request/lesson-create-request.dto";
 
-@Controller("lesson")
+@Controller("lessons")
 @ApiTags("레슨 API")
 export class LessonController {
   constructor(private readonly lessonService: LessonService) {}
@@ -49,7 +51,31 @@ export class LessonController {
     });
   }
 
-  @Get(":id")
+  @Get()
+  @ApiOperation({ summary: "레슨 목록 조회" })
+  @ApiQuery({ name: "user_id", description: "사용자 ID", required: true })
+  @ApiQuery({ name: "year", description: "연도", required: true })
+  @ApiQuery({ name: "month", description: "월", required: true })
+  @ApiResponse({ status: 200, description: "레슨 목록 조회 성공" })
+  async findLessonsByUserAndDate(
+    @Query("user_id") userId: number,
+    @Query("year") year: number,
+    @Query("month") month: number,
+    @Res() res: Response,
+  ) {
+    const lessons = await this.lessonService.findLessonsByUserAndDate(
+      userId,
+      year,
+      month,
+    );
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: "레슨 목록 조회 성공",
+      data: lessons,
+    });
+  }
+
+  @Get("/:id")
   @ApiOperation({ summary: "레슨 상세 조회" })
   @ApiParam({ name: "id", description: "레슨 ID" })
   @ApiResponse({ status: 200, description: "레슨 상세 정보 조회 성공" })

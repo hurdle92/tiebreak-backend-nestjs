@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { DataSource, Equal, In, Repository } from "typeorm";
+import { Between, DataSource, Equal, In, Repository } from "typeorm";
 import { User } from "../users/entities/user.entity";
 import { Court } from "../courts/entities/court.entity";
 import { LessonResponseDto } from "./entities/lesson/request/lesson-response.dto";
@@ -47,6 +47,41 @@ export class LessonService {
       ],
     });
     return new LessonResponseDto(lesson);
+  }
+  /**
+   * 특정 사용자의 특정 연월에 해당하는 레슨 목록을 조회합니다.
+   *
+   * @param {number} userId - 사용자 ID
+   * @param {number} year - 연도
+   * @param {number} month - 월
+   * @returns {Promise<LessonResponseDto[]>}
+   */
+  async findLessonsByUserAndDate(
+    userId: number,
+    year: number,
+    month: number,
+  ): Promise<LessonResponseDto[]> {
+    const startDate = new Date(year, month - 1, 1);
+    const endDate = new Date(year, month, 0);
+    console.log(startDate);
+    console.log(endDate);
+    const lessons = await this.lessonRepository.find({
+      where: {
+        user: { id: userId },
+        created_at: Between(startDate, endDate),
+      },
+      relations: [
+        "user",
+        "court",
+        "lesson_core_bridges.lesson_core_option",
+        "lesson_time_bridges.lesson_time_option",
+      ],
+      order: {
+        created_at: "DESC",
+      },
+    });
+    const result = lessons.map((lesson) => new LessonResponseDto(lesson));
+    return result;
   }
 
   /**
