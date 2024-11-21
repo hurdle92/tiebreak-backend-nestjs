@@ -147,4 +147,33 @@ export class LessonService {
       await queryRunner.rollbackTransaction();
     }
   }
+  /**
+   * 레슨을 삭제합니다.
+   *
+   * @param {number} id - 레슨 ID
+   * @returns {Promise<void>}
+   */
+  async remove(id: number): Promise<void> {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      const lesson = await this.lessonRepository.findOne({
+        where: { id },
+        relations: ["lesson_core_bridges", "lesson_time_bridges"],
+      });
+
+      await this.lessonCoreBridgeRepository.remove(lesson.lesson_core_bridges);
+      await this.lessonTimeBridgeRepository.remove(lesson.lesson_time_bridges);
+      await this.lessonRepository.remove(lesson);
+
+      await queryRunner.commitTransaction();
+    } catch (e) {
+      await queryRunner.rollbackTransaction();
+      throw e;
+    } finally {
+      await queryRunner.release();
+    }
+  }
 }

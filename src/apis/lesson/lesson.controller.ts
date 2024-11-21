@@ -8,6 +8,7 @@ import {
   Post,
   Body,
   Query,
+  Delete,
 } from "@nestjs/common";
 import {
   ApiOkResponse,
@@ -103,6 +104,21 @@ export class LessonController {
       code: 200,
       message: LessonMessage.CREATED,
       data: lesson,
+    });
+  }
+
+  @Delete("/:id")
+  @ApiOperation({ summary: "레슨 삭제" })
+  @ApiParam({ name: "id", description: "레슨 ID" })
+  @ApiResponse({ status: 200, description: "레슨 삭제 성공" })
+  async remove(
+    @Param("id", new ParseIntPipe()) id: number,
+    @Res() res: Response,
+  ) {
+    await this.lessonService.remove(id);
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: LessonMessage.DELETED,
     });
   }
 }
