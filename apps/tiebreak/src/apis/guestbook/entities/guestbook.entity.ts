@@ -20,6 +20,9 @@ export class Guestbook {
   @Column({ type: "text", nullable: true, default: "" })
   description: string;
 
+  @Column({ type: "text", default: "" })
+  hi: string;
+
   @CreateDateColumn()
   createdAt: Date;
 

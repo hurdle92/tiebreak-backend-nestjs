@@ -17,6 +17,7 @@ import { LessonTimeOption } from "./src/apis/lesson/entities/lesson_time/lesson-
 import { LessonCoreOption } from "./src/apis/lesson/entities/lesson_core/lesson-core-option.entity";
 import { LessonCoreBridge } from "./src/apis/lesson/entities/lesson_core/lesson-core-bridge.entity";
 import { LessonTimeBridge } from "./src/apis/lesson/entities/lesson_time/lesson-time-bridge.entity";
+import path from "path";
 
 dotenv.config();
 
@@ -47,6 +48,6 @@ export default new DataSource({
     LessonCoreBridge,
     LessonTimeBridge,
   ],
-  migrations: ["src/database/migrations/*.ts"],
+  migrations: [path.resolve(__dirname, "src/database/migrations/*{.ts,.js}")],
   migrationsTableName: "migrations",
 });
