@@ -14,7 +14,19 @@ export class User {
   id: number;
 
   @Column({ type: "text", default: "" })
+  user_id: string;
+
+  @Column({ type: "text", default: "", select: false })
+  password: string;
+
+  @Column({ type: "text", default: "" })
   name: string;
+
+  @Column({ type: "text", default: "" })
+  ntrp: string;
+
+  @Column({ type: "text", default: "" })
+  email: string;
 
   @CreateDateColumn({
     type: "timestamptz",
