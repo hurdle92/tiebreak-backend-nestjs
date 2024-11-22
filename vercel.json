@@ -8,8 +8,13 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "source": "/v1/:path*",
       "dest": "apps/tiebreak/src/main.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
+    },
+    {
+      "source": "/v2/:path*",
+      "dest": "apps/crm/src/main.ts",
       "methods": ["GET", "POST", "PUT", "DELETE"]
     },
     {
