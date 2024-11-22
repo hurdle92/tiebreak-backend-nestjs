@@ -1,9 +1,9 @@
 import { NestFactory } from "@nestjs/core";
-import { CrmModule } from "./crm.module";
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const PORT = 3000;
-  const app = await NestFactory.create(CrmModule);
+  const app = await NestFactory.create(AppModule);
   await app.listen(PORT);
 }
 bootstrap();
