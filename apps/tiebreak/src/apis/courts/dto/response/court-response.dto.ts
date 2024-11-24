@@ -81,7 +81,7 @@ export class CourtResponseDto {
   created_at: Date;
 
   constructor(court: Court) {
-    this.id = court.id;
+    this.id = Number(court.id);
     this.name = court.name;
     this.address = court.address;
     this.operationTime = court.operationTime;
