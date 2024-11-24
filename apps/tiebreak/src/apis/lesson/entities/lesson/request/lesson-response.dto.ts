@@ -6,6 +6,7 @@ import { Lesson } from "../lesson.entity";
 
 export class LessonResponseDto {
   id: number;
+  icon_thumbnail: string;
   good_comment: string;
   bad_comment: string;
   coach_comment: string;
@@ -19,6 +20,7 @@ export class LessonResponseDto {
 
   constructor(lesson: Lesson) {
     this.id = lesson.id;
+    this.icon_thumbnail = lesson.icon_thumbnail;
     this.good_comment = lesson.good_comment;
     this.bad_comment = lesson.bad_comment;
     this.coach_comment = lesson.coach_comment;

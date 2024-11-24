@@ -142,6 +142,7 @@ export class LessonService {
       await this.lessonRepository.save(lesson);
       await this.lessonCoreBridgeRepository.save(lessonCoreBridges);
       await queryRunner.commitTransaction();
+      console.log(lesson);
       return new LessonResponseDto(lesson);
     } catch (e) {
       await queryRunner.rollbackTransaction();

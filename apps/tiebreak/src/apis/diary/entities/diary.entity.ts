@@ -34,9 +34,6 @@ export class Diary {
   @Column({ type: "date" })
   playDate: Date;
 
-  // @ManyToOne(() => User, (user) => user.daries)
-  // user: User;
-
   @Column({ type: "int" })
   playDateYear: number;
 
@@ -49,10 +46,6 @@ export class Diary {
   @OneToOne(() => Court)
   @JoinColumn()
   court: Court;
-
-  // @OneToOne(() => DiaryCondition)
-  // @JoinColumn()
-  // diaryCondition: DiaryCondition;
 
   @CreateDateColumn()
   created_at: Date;

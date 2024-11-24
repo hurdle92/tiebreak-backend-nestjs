@@ -12,11 +12,17 @@ import { Court } from "../../../courts/entities/court.entity";
 import { User } from "../../../users/entities/user.entity";
 import { LessonCoreBridge } from "../lesson_core/lesson-core-bridge.entity";
 import { LessonTimeBridge } from "../lesson_time/lesson-time-bridge.entity";
+import { LESSON_ICON_DEFAULT_THUMBNAIL } from "../../../../configs/constants/links";
 
 @Entity("lesson")
 export class Lesson {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column("text", {
+    default: LESSON_ICON_DEFAULT_THUMBNAIL,
+  })
+  icon_thumbnail: string;
 
   @Column("text", { default: "" })
   good_comment: string;
@@ -77,6 +83,7 @@ export class Lesson {
     lesson_date: Date,
   ) {
     const lesson = new Lesson();
+    lesson.icon_thumbnail = LESSON_ICON_DEFAULT_THUMBNAIL;
     lesson.good_comment = good_comment;
     lesson.bad_comment = bad_comment;
     lesson.coach_comment = coach_comment;
