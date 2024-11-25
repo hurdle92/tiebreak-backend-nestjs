@@ -10,7 +10,6 @@ import {
 @Entity("users")
 export class User {
   @PrimaryGeneratedColumn({ type: "int8" })
-  @ApiProperty({ description: "유저 id" })
   id: number;
 
   @Column({ type: "text", default: "" })
