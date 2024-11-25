@@ -10,11 +10,14 @@ import {
   Body,
   Query,
   Delete,
+  UseGuards,
+  Req,
 } from "@nestjs/common";
 import { ApiOkResponse, ApiOperation } from "@nestjs/swagger";
 import { Response } from "express";
 import { SignInRequestDto } from "./entities/dto/request/sign-in-request.dto";
 import { AuthMessage } from "./entities/auth.message";
+import { JwtAccessAuthGuard } from "../../configs/guards/jwt-access.guard";
 
 @Controller("auth")
 export class AuthController {
@@ -35,4 +38,10 @@ export class AuthController {
       data: data,
     });
   }
+
+  @Get("profile")
+  @UseGuards(JwtAccessAuthGuard)
+  @ApiOperation({ summary: "프로필" })
+  @ApiOkResponse({ description: "프로필 조회에 성공했습니다." })
+  async authenticae(@Req() req: any) {}
 }

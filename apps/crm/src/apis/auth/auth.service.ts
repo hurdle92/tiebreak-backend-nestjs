@@ -28,22 +28,22 @@ export class AuthService {
   async signIn(requestDto: SignInRequestDto): Promise<SignInResponseDto> {
     const user = await this.userRepository.findOne({
       where: { user_id: requestDto.user_id },
-      select: ["id", "password"],
+      select: ["user_id", "password"],
     });
 
     if (!user) {
       throw new ForbiddenException({
         statusCode: HttpStatus.FORBIDDEN,
-        message: ["등록되지 않은 사용자입니다."],
+        message: "등록되지 않은 사용자입니다.",
         error: "Forbidden",
       });
     }
-    const payload = { user_id: user.user_id, password: user.password };
-    const isMatch = await bcrypt.compare(requestDto.password, payload.password);
+
+    const isMatch = await bcrypt.compare(requestDto.password, user.password);
     if (!isMatch) {
       throw new UnauthorizedException();
     }
-
+    const payload = { user_id: user.user_id };
     const access_token = await this.jwtService.signAsync(payload);
 
     return {
