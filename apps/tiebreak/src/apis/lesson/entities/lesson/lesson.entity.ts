@@ -44,12 +44,14 @@ export class Lesson {
   @OneToMany(
     () => LessonCoreBridge,
     (lessonCoreBridge) => lessonCoreBridge.lesson,
+    { cascade: true },
   )
   lesson_core_bridges: LessonCoreBridge[];
 
   @OneToMany(
     () => LessonTimeBridge,
     (lessonTimeBridge) => lessonTimeBridge.lesson,
+    { cascade: true },
   )
   lesson_time_bridges: LessonTimeBridge[];
 

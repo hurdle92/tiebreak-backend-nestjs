@@ -22,7 +22,9 @@ export class LessonCoreBridge {
   @PrimaryColumn()
   lesson_core_option_id: number;
 
-  @ManyToOne(() => Lesson, (lesson) => lesson.lesson_core_bridges)
+  @ManyToOne(() => Lesson, (lesson) => lesson.lesson_core_bridges, {
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "lesson_id", referencedColumnName: "id" })
   lesson: Lesson;
 
