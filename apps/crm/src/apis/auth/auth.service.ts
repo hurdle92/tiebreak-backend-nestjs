@@ -21,7 +21,7 @@ export class AuthService {
   ) {}
 
   /**
-   * 레슨 id에 해당하는 레슨 상세 정보를 조회합니다.
+   * 로그인 api
    *
    * @returns {Promise<SignInResponseDto>}
    */
