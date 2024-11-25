@@ -4,6 +4,7 @@ import { typeOrmModuleOptions } from "./database/typeorm.config";
 import { HealthModule } from "./apis/health/health.module";
 import { UserModule } from "./apis/user/user.module";
 import { AuthModule } from "./apis/auth/auth.module";
+import { ClubModule } from "./apis/club/club.module";
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { AuthModule } from "./apis/auth/auth.module";
     HealthModule,
     UserModule,
     AuthModule,
+    ClubModule,
   ],
   controllers: [],
   providers: [],
