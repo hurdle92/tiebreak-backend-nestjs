@@ -10,6 +10,7 @@ import {
 } from "typeorm";
 import { Club } from "../../club/entities/club.entity";
 import { MeetingCourtBridge } from "./meeting-court-bridge/meeting-court-bridge.entity";
+import { Match } from "../../match/entities/match.entity";
 
 @Entity("meetings")
 export class Meeting {
@@ -31,6 +32,9 @@ export class Meeting {
     (meetingCourtBridge) => meetingCourtBridge.meeting,
   )
   meeting_court_bridges: MeetingCourtBridge[];
+
+  @OneToMany(() => Match, (match) => match.meeting)
+  matches: Match[];
 
   @CreateDateColumn({
     type: "timestamptz",
