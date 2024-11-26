@@ -3,9 +3,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Club } from "../../club/entities/club.entity";
 
 @Entity("users")
 export class User {
@@ -26,6 +29,10 @@ export class User {
 
   @Column({ type: "text", default: "" })
   email: string;
+
+  @ManyToOne(() => Club, (club) => club.users)
+  @JoinColumn({ name: "club_id", referencedColumnName: "id" })
+  club: Club;
 
   @CreateDateColumn({
     type: "timestamptz",

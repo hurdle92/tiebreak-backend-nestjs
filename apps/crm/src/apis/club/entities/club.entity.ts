@@ -2,9 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { User } from "../../user/entity/user.entity";
 
 @Entity("clubs")
 export class Club {
@@ -13,6 +16,19 @@ export class Club {
 
   @Column({ type: "text", default: "" })
   name: string;
+
+  @Column({ type: "text", default: "" })
+  thumbnail: string;
+
+  @OneToMany(() => User, (user) => user.club)
+  users: User[];
+
+  @CreateDateColumn({
+    type: "timestamptz",
+    default: () => "CURRENT_TIMESTAMP",
+    nullable: false,
+  })
+  club_created_at: Date;
 
   @CreateDateColumn({
     type: "timestamptz",
