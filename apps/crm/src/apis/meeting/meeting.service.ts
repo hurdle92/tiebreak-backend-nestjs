@@ -11,7 +11,7 @@ export class MeetingService {
     private meetingRepository: Repository<Meeting>,
   ) {}
   /**
-   * 레슨 시간 옵션을 조회합니다.
+   * 클럽 id를 통해 정규 모임 리스트를 조회합니다.
    *
    * @returns {Promise<MeetingResponseDto>}
    */
