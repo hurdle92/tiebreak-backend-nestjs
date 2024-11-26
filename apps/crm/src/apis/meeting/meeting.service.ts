@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Meeting } from "./entities/meeting.entity";
 import { Repository } from "typeorm";
+import { MeetingResponseDto } from "./entities/dto/response/meeting-response.dto";
 
 @Injectable()
 export class MeetingService {
@@ -12,12 +13,13 @@ export class MeetingService {
   /**
    * 레슨 시간 옵션을 조회합니다.
    *
-   * @returns {Promise<LessonCreateRequestDto>}
+   * @returns {Promise<MeetingResponseDto>}
    */
-  async findMeetings(): Promise<LessonTimeOption[]> {
-    const lessonTimeOptions = await this.lessonTimeRepository.find({
-      order: { order: "ASC" },
+  async findMeetingsByClubId(clubId: number): Promise<MeetingResponseDto[]> {
+    const meetings = await this.meetingRepository.find({
+      where: { club: { id: clubId } },
     });
-    return lessonTimeOptions;
+    const result = meetings.map((meeting) => new MeetingResponseDto(meeting));
+    return result;
   }
 }
