@@ -1,4 +1,3 @@
-import { ColumnNumericTransformer } from "../../../configs/transformers/numeric_transformer";
 import { Diary } from "../../diary/entities/diary.entity";
 import { Lesson } from "../../lesson/entities/lesson/lesson.entity";
 import { Topics } from "../../topics/entities/topic.entity";
@@ -32,14 +31,10 @@ export class Court {
   @Column({ type: "text", default: " " })
   instagram: string;
 
-  @Column("numeric", {
-    transformer: new ColumnNumericTransformer(),
-  })
+  @Column({ type: "numeric" })
   lat: number;
 
-  @Column("numeric", {
-    transformer: new ColumnNumericTransformer(),
-  })
+  @Column({ type: "numeric" })
   lng: number;
 
   @Column({ type: "text", default: " " })

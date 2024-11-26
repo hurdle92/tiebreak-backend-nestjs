@@ -20,7 +20,7 @@ export class ClubService {
   async findOne(id: number): Promise<ClubResponseDto> {
     const club = await this.clubRepository.findOne({
       where: { id },
-      relations: ["users"],
+      relations: ["users", "meetings"],
     });
     return new ClubResponseDto(club);
   }

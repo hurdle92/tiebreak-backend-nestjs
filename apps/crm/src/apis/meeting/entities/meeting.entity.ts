@@ -9,6 +9,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Club } from "../../club/entities/club.entity";
+import { MeetingCourtBridge } from "./meeting-court-bridge/meeting-court-bridge.entity";
 
 @Entity("meetings")
 export class Meeting {
@@ -16,11 +17,20 @@ export class Meeting {
   id: number;
 
   @Column({ type: "text", default: "" })
+  name: string;
+
+  @Column({ type: "text", default: "" })
   regular_meeting_time: string;
 
   @ManyToOne(() => Club, (club) => club.meetings)
   @JoinColumn({ name: "club_id", referencedColumnName: "id" })
   club: Club;
+
+  @OneToMany(
+    () => MeetingCourtBridge,
+    (meetingCourtBridge) => meetingCourtBridge.meeting,
+  )
+  meeting_court_bridges: MeetingCourtBridge[];
 
   @CreateDateColumn({
     type: "timestamptz",

@@ -2,8 +2,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { MeetingCourtBridge } from "../../meeting/entities/meeting-court-bridge/meeting-court-bridge.entity";
 
 @Entity("courts")
 export class Court {
@@ -18,6 +20,12 @@ export class Court {
 
   @Column({ type: "text" })
   thumbnail: string;
+
+  @OneToMany(
+    () => MeetingCourtBridge,
+    (meetingCourtBridge) => meetingCourtBridge.court,
+  )
+  meeting_court_bridges: MeetingCourtBridge[];
 
   @CreateDateColumn({
     type: "timestamptz",
