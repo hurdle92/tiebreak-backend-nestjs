@@ -3,6 +3,8 @@ import { DataSource } from "typeorm";
 import path from "path";
 import { User } from "./src/apis/user/entity/user.entity";
 import { Club } from "./src/apis/club/entities/club.entity";
+import { Court } from "./src/apis/court/entities/court.entity";
+import { Meeting } from "./src/apis/meeting/entities/meeting.entity";
 
 dotenv.config();
 
@@ -14,7 +16,7 @@ export default new DataSource({
   password: process.env.CRM_DB_PASSWORD,
   database: process.env.CRM_DB_DATABASE,
   synchronize: false,
-  entities: [User, Club],
+  entities: [User, Club, Court, Meeting],
   migrations: [path.resolve(__dirname, "src/database/migrations/*{.ts,.js}")],
   migrationsTableName: "migrations",
 });

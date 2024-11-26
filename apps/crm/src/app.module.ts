@@ -8,6 +8,7 @@ import { ClubModule } from "./apis/club/club.module";
 import { MatchModule } from "./apis/match/match.module";
 import { MeetingModule } from "./apis/meeting/meeting.module";
 import { GameModule } from "./apis/game/game.module";
+import { CourtModule } from "./apis/court/court.module";
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { GameModule } from "./apis/game/game.module";
     MatchModule,
     MeetingModule,
     GameModule,
+    CourtModule,
   ],
   controllers: [],
   providers: [],
