@@ -2,12 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { User } from "../../user/entity/user.entity";
+import { Meeting } from "../../meeting/entities/meeting.entity";
 
 @Entity("clubs")
 export class Club {
@@ -22,6 +22,9 @@ export class Club {
 
   @OneToMany(() => User, (user) => user.club)
   users: User[];
+
+  @OneToMany(() => Meeting, (meeting) => meeting.club)
+  meetings: Meeting[];
 
   @CreateDateColumn({
     type: "timestamptz",
