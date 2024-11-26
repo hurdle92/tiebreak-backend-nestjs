@@ -9,6 +9,7 @@ import {
   Body,
   Query,
   Delete,
+  UseGuards,
 } from "@nestjs/common";
 import {
   ApiOkResponse,
@@ -22,12 +23,14 @@ import { Response } from "express";
 import { ClubService } from "./club.service";
 import { Club } from "./entities/club.entity";
 import { ClubMessage } from "./entities/club.message";
+import { JwtAccessAuthGuard } from "../../configs/guards/jwt-access.guard";
 
 @Controller("clubs")
 export class ClubController {
   constructor(private readonly clubService: ClubService) {}
 
   @Get("/:id")
+  @UseGuards(JwtAccessAuthGuard)
   @ApiOperation({ summary: "클럽 상세 조회" })
   @ApiParam({ name: "id", description: "클럽 ID" })
   @ApiResponse({
