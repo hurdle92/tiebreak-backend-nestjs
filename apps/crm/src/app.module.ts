@@ -5,6 +5,9 @@ import { HealthModule } from "./apis/health/health.module";
 import { UserModule } from "./apis/user/user.module";
 import { AuthModule } from "./apis/auth/auth.module";
 import { ClubModule } from "./apis/club/club.module";
+import { MatchModule } from "./apis/match/match.module";
+import { MeetingModule } from "./apis/meeting/meeting.module";
+import { GameModule } from "./apis/game/game.module";
 
 @Module({
   imports: [
@@ -13,6 +16,9 @@ import { ClubModule } from "./apis/club/club.module";
     UserModule,
     AuthModule,
     ClubModule,
+    MatchModule,
+    MeetingModule,
+    GameModule,
   ],
   controllers: [],
   providers: [],
