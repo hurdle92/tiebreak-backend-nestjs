@@ -20,7 +20,7 @@ export class Team {
   players: Player[];
 
   @ManyToOne(() => Game, (game) => game.teams)
-  @JoinColumn({ name: "team_id", referencedColumnName: "id" })
+  @JoinColumn({ name: "game_id", referencedColumnName: "id" })
   game: Game;
 
   @CreateDateColumn({
