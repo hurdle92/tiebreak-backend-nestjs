@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Match } from "./entities/match.entity";
 import { Repository } from "typeorm";
-import { match } from "assert";
+import { MatchResponseDto } from "./entities/response/match-response.dto";
 
 @Injectable()
 export class MatchService {
@@ -11,16 +11,16 @@ export class MatchService {
     private matchRepository: Repository<Match>,
   ) {}
   /**
-   * 클럽 id를 통해 정규 모임 리스트를 조회합니다.
+   * 경기 모임 리스트롤 조회합니다.
    *
-   * @returns {Promise<MeetingResponseDto>}
+   * @returns {Promise<MatchResponseDto>}
    */
-  async findMeetingsByClubId(clubId: number): Promise<MeetingResponseDto[]> {
-    const meetings = await this.matchRepository.find({
-      where: { club: { id: clubId } },
-      relations: ["meeting_court_bridges.court"],
+  async findMatchesByClubId(clubId: number): Promise<MatchResponseDto[]> {
+    const matches = await this.matchRepository.find({
+      where: { meeting: { club: { id: clubId } } },
+      // relations: ["meeting_court_bridges.court"],
     });
-    const result = meetings.map((meeting) => new MeetingResponseDto(meeting));
+    const result = matches.map((match) => new MatchResponseDto(match));
     return result;
   }
 }
