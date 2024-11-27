@@ -4,34 +4,26 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Meeting } from "../../meeting/entities/meeting.entity";
-import { Game } from "../../game/entities/game.entity";
+import { Match } from "../../match/entities/match.entity";
+import { GameType } from "./game-type.enum";
 
-@Entity("matches")
-export class Match {
+@Entity("games")
+export class Game {
   @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
-  @CreateDateColumn({
-    type: "timestamptz",
-    default: () => "CURRENT_TIMESTAMP",
-    nullable: false,
-  })
-  match_date: Date;
-
-  @ManyToOne(() => Meeting, (meeting) => meeting.matches)
-  @JoinColumn({ name: "meeting_id", referencedColumnName: "id" })
-  meeting: Meeting;
+  @ManyToOne(() => Match, (match) => match.games)
+  @JoinColumn({ name: "match_id", referencedColumnName: "id" })
+  match: Match;
 
   @Column({ type: "text", default: "" })
   note: string;
 
-  @OneToMany(() => Game, (game) => game.match)
-  games: Game[];
+  @Column({ type: "enum", enum: GameType, default: GameType.DOUBLE })
+  game_type: GameType;
 
   @CreateDateColumn({
     type: "timestamptz",

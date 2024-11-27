@@ -7,6 +7,7 @@ import { Court } from "./src/apis/court/entities/court.entity";
 import { Meeting } from "./src/apis/meeting/entities/meeting.entity";
 import { MeetingCourtBridge } from "./src/apis/meeting/entities/meeting-court-bridge/meeting-court-bridge.entity";
 import { Match } from "./src/apis/match/entities/match.entity";
+import { Game } from "./src/apis/game/entities/game.entity";
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ export default new DataSource({
   password: process.env.CRM_DB_PASSWORD,
   database: process.env.CRM_DB_DATABASE,
   synchronize: false,
-  entities: [User, Club, Court, Meeting, MeetingCourtBridge, Match],
+  entities: [User, Club, Court, Meeting, MeetingCourtBridge, Match, Game],
   migrations: [path.resolve(__dirname, "src/database/migrations/*{.ts,.js}")],
   migrationsTableName: "migrations",
 });
