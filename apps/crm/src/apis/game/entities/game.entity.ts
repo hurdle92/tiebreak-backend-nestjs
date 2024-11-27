@@ -4,11 +4,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { Match } from "../../match/entities/match.entity";
 import { GameType } from "./game-type.enum";
+import { Team } from "../../team/entities/team.entity";
 
 @Entity("games")
 export class Game {
@@ -24,6 +26,9 @@ export class Game {
 
   @Column({ type: "enum", enum: GameType, default: GameType.DOUBLE })
   game_type: GameType;
+
+  @OneToMany(() => Team, (team) => team.game)
+  teams: Team[];
 
   @CreateDateColumn({
     type: "timestamptz",
