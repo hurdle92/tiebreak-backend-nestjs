@@ -50,4 +50,27 @@ export class MatchController {
       data: matches,
     });
   }
+
+  @Get(":id")
+  @UseGuards(JwtAccessAuthGuard)
+  @ApiOperation({ summary: "경기 상세 조회" })
+  @ApiParam({ name: "id", description: "경기 id" })
+  @ApiResponse({
+    status: 200,
+    description: "경기 모임 상세 조회 성공",
+    type: Match,
+  })
+  async findMatchDetail(
+    @Req() req,
+    @Param("id", new ParseIntPipe()) id: number,
+    @Res() res: Response,
+  ) {
+    const user: UserPayload = req.user;
+    const match = await this.matchService.findMatchDetail(id);
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: MatchMessage.GET_MATCH_DETAIL,
+      data: match,
+    });
+  }
 }

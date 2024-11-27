@@ -23,4 +23,24 @@ export class MatchService {
     const result = matches.map((match) => new MatchResponseDto(match));
     return result;
   }
+
+  /**
+   * 경기 상세 정보를 조회합니다.
+   *
+   * @returns {Promise<MatchResponseDto>}
+   */
+  async findMatchDetail(id: number): Promise<MatchResponseDto> {
+    const match = await this.matchRepository.findOne({
+      where: { id },
+      relations: [
+        "games",
+        "games.teams",
+        "games.teams.players",
+        "games.teams.players.player_user_bridges",
+        "games.teams.players.player_user_bridges.user",
+      ],
+    });
+    const result = new MatchResponseDto(match);
+    return result;
+  }
 }
