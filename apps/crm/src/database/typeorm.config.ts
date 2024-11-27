@@ -20,4 +20,5 @@ export const typeOrmModuleOptions: TypeOrmModuleOptions = {
   synchronize: false,
   migrations: [__dirname + "/migrations/*.ts"],
   keepConnectionAlive: true,
+  parseInt8: true,
 };
