@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Match } from "../../match/entities/match.entity";
 import { PlayerUserBridge } from "./player-user-bridge/player-user-bridge";
 import { Team } from "../../team/entities/team.entity";
 
