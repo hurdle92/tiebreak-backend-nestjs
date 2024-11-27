@@ -4,10 +4,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { Club } from "../../club/entities/club.entity";
+import { PlayerUserBridge } from "../../player/entities/player-user-bridge/player-user-bridge";
 
 @Entity("users")
 export class User {
@@ -32,6 +34,12 @@ export class User {
   @ManyToOne(() => Club, (club) => club.users)
   @JoinColumn({ name: "club_id", referencedColumnName: "id" })
   club: Club;
+
+  @OneToMany(
+    () => PlayerUserBridge,
+    (playerUserBridge) => playerUserBridge.user,
+  )
+  player_user_bridges: PlayerUserBridge[];
 
   @CreateDateColumn({
     type: "timestamptz",
