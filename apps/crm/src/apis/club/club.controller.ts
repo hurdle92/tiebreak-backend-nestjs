@@ -5,14 +5,9 @@ import {
   ParseIntPipe,
   Res,
   HttpStatus,
-  Post,
-  Body,
-  Query,
-  Delete,
   UseGuards,
 } from "@nestjs/common";
 import {
-  ApiOkResponse,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -24,7 +19,6 @@ import { ClubService } from "./club.service";
 import { Club } from "./entities/club.entity";
 import { ClubMessage } from "./entities/club.message";
 import { JwtAccessAuthGuard } from "../../configs/guards/jwt-access.guard";
-import { Meeting } from "../meeting/entities/meeting.entity";
 import { MeetingService } from "../meeting/meeting.service";
 
 @Controller("clubs")
@@ -33,27 +27,6 @@ export class ClubController {
     private readonly clubService: ClubService,
     private readonly meetingService: MeetingService,
   ) {}
-
-  @Get("/:clubId/meetings")
-  @UseGuards(JwtAccessAuthGuard)
-  @ApiOperation({ summary: "클럽의 정규 모임 리스트 조회" })
-  @ApiParam({ name: "clubId", description: "클럽 ID" })
-  @ApiResponse({
-    status: 200,
-    description: "클럽의 미팅 목록 조회 성공",
-    type: [Meeting],
-  })
-  async findClubMeetings(
-    @Param("clubId", new ParseIntPipe()) clubId: number,
-    @Res() res: Response,
-  ) {
-    const meetings = await this.meetingService.findMeetingsByClubId(clubId);
-    return res.status(HttpStatus.OK).json({
-      code: 200,
-      message: ClubMessage.GET_MEETINGS_LIST,
-      data: meetings,
-    });
-  }
 
   @Get("/:id")
   @UseGuards(JwtAccessAuthGuard)

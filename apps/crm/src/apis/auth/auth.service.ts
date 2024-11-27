@@ -11,6 +11,7 @@ import { SignInRequestDto } from "./entities/dto/request/sign-in-request.dto";
 import { SignInResponseDto } from "./entities/dto/response/sign-in-response.dto";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
+import { UserPayload } from "../../configs/guards/types/user-payload.type";
 
 @Injectable()
 export class AuthService {
@@ -28,7 +29,8 @@ export class AuthService {
   async signIn(requestDto: SignInRequestDto): Promise<SignInResponseDto> {
     const user = await this.userRepository.findOne({
       where: { user_id: requestDto.user_id },
-      select: ["user_id", "password"],
+      relations: ["club"],
+      select: ["user_id", "password", "id", "club"],
     });
 
     if (!user) {
@@ -43,7 +45,11 @@ export class AuthService {
     if (!isMatch) {
       throw new UnauthorizedException();
     }
-    const payload = { user_id: user.user_id };
+    const payload: UserPayload = {
+      id: user.id,
+      user_id: user.user_id,
+      club_id: user.club.id,
+    };
     const access_token = await this.jwtService.signAsync(payload);
 
     return {
