@@ -28,7 +28,6 @@ export class CommentsController {
     @Res() res: Response,
   ) {
     const comment = await this.commentsService.create(requestDto);
-    console.log(comment);
 
     return res.status(HttpStatus.OK).json({
       code: 200,
