@@ -11,6 +11,7 @@ import {
 import { Match } from "../../match/entities/match.entity";
 import { GameType } from "./game-type.enum";
 import { Team } from "../../team/entities/team.entity";
+import { MeetingGameCourtOption } from "../../meeting/entities/meeting-game-court-option/meeting-game-court-option.entity";
 
 /**
  * 정규 게임에 속하는 게임들
@@ -35,6 +36,16 @@ export class Game {
 
   @OneToMany(() => Team, (team) => team.game)
   teams: Team[];
+
+  @ManyToOne(
+    () => MeetingGameCourtOption,
+    (meetingGameCourtOption) => meetingGameCourtOption.games,
+  )
+  @JoinColumn({
+    name: "meeting_game_court_option_id",
+    referencedColumnName: "id",
+  })
+  meeting_game_court_option: MeetingGameCourtOption;
 
   @CreateDateColumn({
     type: "timestamptz",

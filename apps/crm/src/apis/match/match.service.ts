@@ -32,13 +32,18 @@ export class MatchService {
   async findMatchDetail(id: number): Promise<MatchResponseDto> {
     const match = await this.matchRepository.findOne({
       where: { id },
-      relations: [
-        "games",
-        "games.teams",
-        "games.teams.players",
-        "games.teams.players.player_user_bridges",
-        "games.teams.players.player_user_bridges.user",
-      ],
+      relations: {
+        games: {
+          meeting_game_court_option: true,
+          teams: {
+            players: {
+              player_user_bridges: {
+                user: true,
+              },
+            },
+          },
+        },
+      },
     });
     const result = new MatchResponseDto(match);
     return result;
