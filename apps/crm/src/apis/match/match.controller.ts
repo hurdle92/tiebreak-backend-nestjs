@@ -28,6 +28,7 @@ import { MatchMessage } from "./entities/match.message";
 import { UserPayload } from "../../configs/guards/types/user-payload.type";
 
 @Controller("matches")
+@ApiTags("정규 경기 API")
 export class MatchController {
   constructor(private readonly matchService: MatchService) {}
 

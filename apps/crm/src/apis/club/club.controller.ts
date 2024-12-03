@@ -22,6 +22,7 @@ import { JwtAccessAuthGuard } from "../../configs/guards/jwt-access.guard";
 import { MeetingService } from "../meeting/meeting.service";
 
 @Controller("clubs")
+@ApiTags("클럽 API")
 export class ClubController {
   constructor(
     private readonly clubService: ClubService,

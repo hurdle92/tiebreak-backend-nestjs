@@ -13,7 +13,7 @@ import {
   UseGuards,
   Req,
 } from "@nestjs/common";
-import { ApiOkResponse, ApiOperation } from "@nestjs/swagger";
+import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { Response } from "express";
 import { SignInRequestDto } from "./entities/dto/request/sign-in-request.dto";
 import { AuthMessage } from "./entities/auth.message";
@@ -21,6 +21,7 @@ import { JwtAccessAuthGuard } from "../../configs/guards/jwt-access.guard";
 import { UserService } from "../user/user.service";
 
 @Controller("auth")
+@ApiTags("인증 API")
 export class AuthController {
   constructor(
     private readonly authService: AuthService,

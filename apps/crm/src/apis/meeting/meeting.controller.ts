@@ -23,6 +23,7 @@ import { UserPayload } from "../../configs/guards/types/user-payload.type";
 import { MeetingMessage } from "./entities/meeting.message";
 
 @Controller("meetings")
+@ApiTags("정규 모임 API")
 export class MeetingController {
   constructor(private readonly meetingService: MeetingService) {}
 
