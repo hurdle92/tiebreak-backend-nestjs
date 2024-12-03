@@ -66,7 +66,7 @@ export class LessonService {
     const lessons = await this.lessonRepository.find({
       where: {
         user: { id: userId },
-        created_at: Between(startDate, endDate),
+        lesson_date: Between(startDate, endDate),
       },
       relations: [
         "user",
