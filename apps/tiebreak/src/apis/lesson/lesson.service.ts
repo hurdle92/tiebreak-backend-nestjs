@@ -62,7 +62,7 @@ export class LessonService {
     month: number,
   ): Promise<LessonResponseDto[]> {
     const startDate = new Date(year, month - 1, 1);
-    const endDate = new Date(year, month, 0);
+    const endDate = new Date(year, month, 0, 23, 59, 59, 999);
     const lessons = await this.lessonRepository.find({
       where: {
         user: { id: userId },
