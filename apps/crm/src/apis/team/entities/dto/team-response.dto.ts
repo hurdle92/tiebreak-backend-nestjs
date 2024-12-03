@@ -1,7 +1,4 @@
-import { GameResponseDto } from "../../../game/entities/dto/response/game-response.dto";
-import { Game } from "../../../game/entities/game.entity";
 import { PlayerResponseDto } from "../../../player/entities/dto/response/player-response.dto";
-import { Player } from "../../../player/entities/player.entity";
 import { Team } from "../team.entity";
 
 export class TeamResponseDto {

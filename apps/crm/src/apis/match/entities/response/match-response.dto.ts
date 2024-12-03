@@ -1,5 +1,4 @@
 import { GameResponseDto } from "../../../game/entities/dto/response/game-response.dto";
-import { Game } from "../../../game/entities/game.entity";
 import { Meeting } from "../../../meeting/entities/meeting.entity";
 import { Match } from "../match.entity";
 

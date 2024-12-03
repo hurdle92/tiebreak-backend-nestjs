@@ -1,4 +1,3 @@
-import { Team } from "../../../../team/entities/team.entity";
 import { Match } from "../../../../match/entities/match.entity";
 import { GameType } from "../../game-type.enum";
 import { Game } from "../../game.entity";
