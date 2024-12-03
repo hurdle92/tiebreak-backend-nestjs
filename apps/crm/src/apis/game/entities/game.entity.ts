@@ -12,6 +12,12 @@ import { Match } from "../../match/entities/match.entity";
 import { GameType } from "./game-type.enum";
 import { Team } from "../../team/entities/team.entity";
 
+/**
+ * 정규 게임에 속하는 게임들
+ * 남복, 여복, 혼복, 단식
+ * 각 게임은 팀으로 이뤄져있다.
+ */
+
 @Entity("games")
 export class Game {
   @PrimaryGeneratedColumn({ type: "int8" })

@@ -11,7 +11,7 @@ import {
 import { Club } from "../../club/entities/club.entity";
 import { MeetingCourtBridge } from "./meeting-court-bridge/meeting-court-bridge.entity";
 import { Match } from "../../match/entities/match.entity";
-import { GameCourtOption } from "../../game/entities/game-court-option/game-court-option.entity";
+import { MeetingGameCourtOption } from "./meeting-game-court-option/meeting-game-court-option.entity";
 
 @Entity("meetings")
 export class Meeting {
@@ -38,10 +38,10 @@ export class Meeting {
   matches: Match[];
 
   @OneToMany(
-    () => GameCourtOption,
-    (gameCourtOption) => gameCourtOption.meeting,
+    () => MeetingGameCourtOption,
+    (meetingGameCourtOption) => meetingGameCourtOption.meeting,
   )
-  game_court_options: GameCourtOption[];
+  meeting_game_court_options: MeetingGameCourtOption[];
 
   @CreateDateColumn({
     type: "timestamptz",
