@@ -12,6 +12,7 @@ import { Match } from "../../match/entities/match.entity";
 import { GameType } from "./game-type.enum";
 import { Team } from "../../team/entities/team.entity";
 import { MeetingGameCourtOption } from "../../meeting/entities/meeting-game-court-option/meeting-game-court-option.entity";
+import { GameResult } from "./game-result/game-result.entity";
 
 /**
  * 정규 게임에 속하는 게임들
@@ -46,6 +47,9 @@ export class Game {
     referencedColumnName: "id",
   })
   meeting_game_court_option: MeetingGameCourtOption;
+
+  @OneToMany(() => GameResult, (gameResult) => gameResult.game)
+  game_results: GameResult[];
 
   @CreateDateColumn({
     type: "timestamptz",
