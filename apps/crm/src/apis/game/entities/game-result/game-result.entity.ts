@@ -21,7 +21,7 @@ export class GameResult {
   @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
-  @Column({ type: "enum", default: GameResultType.lose })
+  @Column({ type: "enum", enum: GameResultType, default: GameResultType.lose })
   game_result_type: GameResultType;
 
   @ManyToOne(() => Game, (game) => game.game_results)
