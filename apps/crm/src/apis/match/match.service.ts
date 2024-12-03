@@ -33,6 +33,7 @@ export class MatchService {
     const match = await this.matchRepository.findOne({
       where: { id },
       relations: {
+        meeting: true,
         games: {
           meeting_game_court_option: true,
           teams: {
