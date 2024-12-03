@@ -10,6 +10,7 @@ import { Game } from "../apis/game/entities/game.entity";
 import { PlayerUserBridge } from "../apis/player/entities/player-user-bridge/player-user-bridge";
 import { Player } from "../apis/player/entities/player.entity";
 import { Team } from "../apis/team/entities/team.entity";
+import { MeetingGameCourtOption } from "../apis/meeting/entities/meeting-game-court-option/meeting-game-court-option.entity";
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ export const typeOrmModuleOptions: TypeOrmModuleOptions = {
     Player,
     PlayerUserBridge,
     Team,
+    MeetingGameCourtOption,
   ],
   synchronize: false,
   migrations: [__dirname + "/migrations/*.ts"],
