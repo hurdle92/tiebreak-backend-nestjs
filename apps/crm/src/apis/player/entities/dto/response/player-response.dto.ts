@@ -13,8 +13,8 @@ export class PlayerResponseDto {
 
   constructor(player: Player) {
     this.id = player.id;
-    (this.user = player.player_user_bridges.map((bridge) => bridge.user)[0]),
-      (this.created_at = player.created_at);
+    this.user = player.player_user_bridges.map((bridge) => bridge.user)[0];
+    this.created_at = player.created_at;
     this.updated_at = player.updated_at;
   }
 }

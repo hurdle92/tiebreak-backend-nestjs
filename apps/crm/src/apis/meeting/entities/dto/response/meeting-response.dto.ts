@@ -22,10 +22,10 @@ export class MeetingResponseDto {
     this.name = meeting.name;
     this.regular_meeting_time = meeting.regular_meeting_time;
     this.club = meeting.club;
-    (this.meeting_court = meeting.meeting_court_bridges.map(
+    this.meeting_court = meeting.meeting_court_bridges.map(
       (bridge) => bridge.court,
-    )[0]),
-      (this.created_at = meeting.created_at);
+    )[0];
+    this.created_at = meeting.created_at;
     this.updated_at = meeting.updated_at;
   }
 }
