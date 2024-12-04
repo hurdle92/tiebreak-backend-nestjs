@@ -12,6 +12,7 @@ import { PlayerUserBridge } from "./src/apis/player/entities/player-user-bridge/
 import { Player } from "./src/apis/player/entities/player.entity";
 import { Team } from "./src/apis/team/entities/team.entity";
 import { MeetingGameCourtOption } from "./src/apis/meeting/entities/meeting-game-court-option/meeting-game-court-option.entity";
+import { GameResult } from "./src/apis/result/entities/game-result/game-result.entity";
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ export default new DataSource({
     PlayerUserBridge,
     Team,
     MeetingGameCourtOption,
+    GameResult,
   ],
   migrations: [path.resolve(__dirname, "src/database/migrations/*{.ts,.js}")],
   migrationsTableName: "migrations",
