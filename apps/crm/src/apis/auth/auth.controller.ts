@@ -33,10 +33,7 @@ export class AuthController {
   @ApiOkResponse({ description: "로그인에 성공했습니다." })
   async create(@Body() requestDto: SignInRequestDto, @Res() res: Response) {
     const data = await this.authService.signIn(requestDto);
-    res.setHeader("Authorization", "Bearer " + data.access_token);
-    res.cookie("access_token", data.access_token, {
-      httpOnly: true,
-    });
+
     return res.status(HttpStatus.OK).json({
       code: 200,
       message: AuthMessage.SIGN_IN,
