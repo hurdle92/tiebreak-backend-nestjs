@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -12,7 +13,7 @@ import { Match } from "../../match/entities/match.entity";
 import { GameType } from "./game-type.enum";
 import { Team } from "../../team/entities/team.entity";
 import { MeetingGameCourtOption } from "../../meeting/entities/meeting-game-court-option/meeting-game-court-option.entity";
-import { GameResult } from "./game-result/game-result.entity";
+import { GameResult } from "../../result/entities/game-result/game-result.entity";
 
 /**
  * 정규 게임에 속하는 게임들
@@ -48,8 +49,12 @@ export class Game {
   })
   meeting_game_court_option: MeetingGameCourtOption;
 
-  @OneToMany(() => GameResult, (gameResult) => gameResult.game)
-  game_results: GameResult[];
+  @OneToOne(() => GameResult, (gameResult) => gameResult.game)
+  @JoinColumn({
+    name: "game_result_id",
+    referencedColumnName: "id",
+  })
+  game_result: GameResult;
 
   @CreateDateColumn({
     type: "timestamptz",

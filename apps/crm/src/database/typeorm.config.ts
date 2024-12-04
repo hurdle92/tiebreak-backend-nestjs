@@ -11,7 +11,7 @@ import { PlayerUserBridge } from "../apis/player/entities/player-user-bridge/pla
 import { Player } from "../apis/player/entities/player.entity";
 import { Team } from "../apis/team/entities/team.entity";
 import { MeetingGameCourtOption } from "../apis/meeting/entities/meeting-game-court-option/meeting-game-court-option.entity";
-import { GameResult } from "../apis/game/entities/game-result/game-result.entity";
+import { GameResult } from "../apis/result/entities/game-result/game-result.entity";
 
 dotenv.config();
 
