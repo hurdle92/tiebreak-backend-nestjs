@@ -5,14 +5,19 @@ import { DataSource, Equal, Repository } from "typeorm";
 import { PlayerCreateRequestDto } from "./entities/dto/request/player-create-request.dto";
 import { PlayerResponseDto } from "./entities/dto/response/player-response.dto";
 import { Team } from "../team/entities/team.entity";
+import { PlayerUserBridge } from "./entities/player-user-bridge/player-user-bridge";
+import { User } from "../user/entity/user.entity";
 
 @Injectable()
 export class PlayerService {
   constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
     @InjectRepository(Player)
     private playerRepository: Repository<Player>,
     @InjectRepository(Team)
     private teamRepository: Repository<Team>,
+
     private dataSource: DataSource,
   ) {}
 
@@ -21,7 +26,7 @@ export class PlayerService {
    *
    * @returns {Promise<LessonCreateRequestDto>}
    */
-  async create(requestDto: PlayerCreateRequestDto): Promise<Player> {
+  async create(requestDto: PlayerCreateRequestDto): Promise<PlayerResponseDto> {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -29,9 +34,12 @@ export class PlayerService {
       const team = await this.teamRepository.findOne({
         where: { id: Equal(requestDto.team_id) },
       });
+      const user = await this.userRepository.findOne({
+        where: { id: Equal(requestDto.user_id) },
+      });
       const player = requestDto.toEntity(team);
-      console.log(player);
-      return player;
+      const player_user_bridge = PlayerUserBridge.create(player, user);
+
       //   const user = await this.userRepository.findOne({
       //     where: { id: requestDto.user_id },
       //   });
@@ -57,7 +65,8 @@ export class PlayerService {
       //   lesson.lesson_time_bridges = lessonTimeBridges;
       //   await this.lessonRepository.save(lesson);
       //   await this.lessonCoreBridgeRepository.save(lessonCoreBridges);
-      await queryRunner.commitTransaction();
+      // await queryRunner.commitTransaction();
+      return new PlayerResponseDto(player);
     } catch (e) {
       await queryRunner.rollbackTransaction();
     }

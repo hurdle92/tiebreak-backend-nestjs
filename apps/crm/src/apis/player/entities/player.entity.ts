@@ -42,6 +42,7 @@ export class Player {
 
   static create(team: Team) {
     const player = new Player();
+    player.player_user_bridges = [];
     player.team = team;
     return player;
   }

@@ -35,6 +35,7 @@ export class PlayerController {
     @Res() res: Response,
   ) {
     const player = await this.playerService.create(requestDto);
+    console.log(player);
     return res.status(HttpStatus.OK).json({
       code: 200,
       message: PlayerMessage.CREATE_PLAYER,
