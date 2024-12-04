@@ -39,4 +39,10 @@ export class Player {
     nullable: true,
   })
   updated_at: Date;
+
+  static create(team: Team) {
+    const player = new Player();
+    player.team = team;
+    return player;
+  }
 }
