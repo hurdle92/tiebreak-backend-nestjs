@@ -31,7 +31,7 @@ export class MatchResult {
   })
   match: Match;
 
-  @ManyToOne(() => GameResult, (gameResult) => gameResult.match_result)
+  @OneToMany(() => GameResult, (gameResult) => gameResult.match_result)
   game_results: GameResult[];
 
   @Column({ type: "text", default: "" })
