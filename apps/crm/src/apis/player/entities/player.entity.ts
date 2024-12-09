@@ -23,6 +23,7 @@ export class Player {
   @OneToMany(
     () => PlayerUserBridge,
     (playerUserBridge) => playerUserBridge.player,
+    { cascade: true },
   )
   player_user_bridges: PlayerUserBridge[];
 

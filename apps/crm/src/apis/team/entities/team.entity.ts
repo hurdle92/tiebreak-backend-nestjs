@@ -17,7 +17,7 @@ export class Team {
   @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
-  @OneToMany(() => Player, (player) => player.team)
+  @OneToMany(() => Player, (player) => player.team, { cascade: true })
   players: Player[];
 
   @ManyToOne(() => Game, (game) => game.teams)
