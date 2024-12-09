@@ -19,7 +19,11 @@ export class MatchService {
     const matches = await this.matchRepository.find({
       where: { meeting: { club: { id: clubId } } },
       relations: {
+        meeting: {
+          meeting_court_bridges: { court: true },
+        },
         games: {
+          meeting_game_court_option: true,
           teams: {
             players: {
               player_user_bridges: {
