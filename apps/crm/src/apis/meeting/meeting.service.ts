@@ -18,7 +18,11 @@ export class MeetingService {
   async findMeetingsByClubId(clubId: number): Promise<MeetingResponseDto[]> {
     const meetings = await this.meetingRepository.find({
       where: { club: { id: clubId } },
-      relations: ["meeting_court_bridges.court"],
+      relations: {
+        meeting_court_bridges: {
+          court: true,
+        },
+      },
     });
     const result = meetings.map((meeting) => new MeetingResponseDto(meeting));
     return result;
