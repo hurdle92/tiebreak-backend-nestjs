@@ -26,6 +26,9 @@ export class Player {
   )
   player_user_bridges: PlayerUserBridge[];
 
+  @Column({ type: "bool", default: false })
+  is_guest: boolean;
+
   @CreateDateColumn({
     type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP",
