@@ -43,10 +43,10 @@ export class Player {
   })
   updated_at: Date;
 
-  static create(team: Team) {
+  static create(team, is_guest) {
     const player = new Player();
-    player.player_user_bridges = [];
     player.team = team;
+    player.is_guest = is_guest;
     return player;
   }
 }

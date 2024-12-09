@@ -23,52 +23,42 @@ export class PlayerService {
 
   /**
    * 플레이어를 생성합니다.
+   * 유저정보가 존재할 시 브릿지도 함께 생성합니다.
+   * 유저정보는 옵셔널.
+   * 게스트일 경우 플레이어는 유저정보를 가지지 않습니다.
    *
    * @returns {Promise<LessonCreateRequestDto>}
    */
-  async create(requestDto: PlayerCreateRequestDto): Promise<PlayerResponseDto> {
+  async create(requestDto: PlayerCreateRequestDto): Promise<Player> {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
-      const team = await this.teamRepository.findOne({
-        where: { id: Equal(requestDto.team_id) },
+      const { team_id, user_id } = requestDto;
+      const team = await queryRunner.manager.findOne(Team, {
+        where: { id: Equal(team_id) },
       });
-      const user = await this.userRepository.findOne({
-        where: { id: Equal(requestDto.user_id) },
-      });
+
+      const user = user_id
+        ? await queryRunner.manager.findOne(User, {
+            where: { id: Equal(user_id) },
+          })
+        : null;
+
       const player = requestDto.toEntity(team);
-      const player_user_bridge = PlayerUserBridge.create(player, user);
 
-      //   const user = await this.userRepository.findOne({
-      //     where: { id: requestDto.user_id },
-      //   });
-      //   const court = await this.courtRepository.findOne({
-      //     where: { id: Equal(requestDto.court_id) },
-      //   });
-      //   const lessonCoreOptions = await this.lessonCoreRepository.find({
-      //     where: { id: In(requestDto.lesson_core_option_ids) },
-      //   });
-      //   const lessonTimeOptions = await this.lessonTimeRepository.find({
-      //     where: { id: In(requestDto.lesson_time_option_ids) },
-      //   });
-      //   const lesson = requestDto.toEntity(user, court);
-
-      //   const lessonCoreBridges = lessonCoreOptions.map((option) =>
-      //     LessonCoreBridge.create(lesson, option),
-      //   );
-
-      //   const lessonTimeBridges = lessonTimeOptions.map((option) =>
-      //     LessonTimeBridge.create(lesson, option),
-      //   );
-      //   lesson.lesson_core_bridges = lessonCoreBridges;
-      //   lesson.lesson_time_bridges = lessonTimeBridges;
-      //   await this.lessonRepository.save(lesson);
-      //   await this.lessonCoreBridgeRepository.save(lessonCoreBridges);
-      // await queryRunner.commitTransaction();
-      return new PlayerResponseDto(player);
+      const savedPlayer = await queryRunner.manager.save(Player, player);
+      if (user) {
+        const playerUserBridge = PlayerUserBridge.toEntity(savedPlayer, user);
+        await queryRunner.manager.save(PlayerUserBridge, playerUserBridge);
+      }
+      await queryRunner.commitTransaction();
+      return savedPlayer;
     } catch (e) {
       await queryRunner.rollbackTransaction();
+      throw e;
+    } finally {
+      await queryRunner.release();
     }
   }
 }

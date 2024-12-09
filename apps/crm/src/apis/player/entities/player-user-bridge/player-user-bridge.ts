@@ -45,7 +45,7 @@ export class PlayerUserBridge {
   })
   updated_at: Date;
 
-  static create(player: Player, user: User): PlayerUserBridge {
+  static toEntity(player: Player, user: User): PlayerUserBridge {
     const bridge = new PlayerUserBridge();
     bridge.player = player;
     bridge.user = user;
