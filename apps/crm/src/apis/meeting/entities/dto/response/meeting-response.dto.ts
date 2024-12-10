@@ -3,6 +3,7 @@ import { MeetingCourtBridge } from "../../meeting-court-bridge/meeting-court-bri
 import { Meeting } from "../../meeting.entity";
 import { Club } from "../../../../club/entities/club.entity";
 import { Court } from "apps/crm/src/apis/court/entities/court.entity";
+import { MeetingGameCourtOption } from "../../meeting-game-court-option/meeting-game-court-option.entity";
 
 export class MeetingResponseDto {
   id: number;
@@ -14,6 +15,7 @@ export class MeetingResponseDto {
   @ApiProperty({ description: "정규 모임이 속한 코트" })
   meeting_court: Court;
 
+  meeting_game_court_options: MeetingGameCourtOption[];
   created_at: Date;
   updated_at: Date;
 
@@ -25,6 +27,7 @@ export class MeetingResponseDto {
     this.meeting_court = meeting.meeting_court_bridges.map(
       (bridge) => bridge.court,
     )[0];
+    this.meeting_game_court_options = meeting.meeting_game_court_options;
     this.created_at = meeting.created_at;
     this.updated_at = meeting.updated_at;
   }

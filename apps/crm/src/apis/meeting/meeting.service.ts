@@ -25,26 +25,7 @@ export class MeetingService {
         meeting_court_bridges: {
           court: true,
         },
-      },
-    });
-    const result = meetings.map((meeting) => new MeetingResponseDto(meeting));
-    return result;
-  }
-
-  /**
-   * 정규 모임 코트 옵션 리스트를 조회합니다.
-   *
-   * @returns {Promise<MeetingResponseDto>}
-   */
-  async findMeetingGameCourtOptions(
-    clubId: number,
-  ): Promise<MeetingResponseDto[]> {
-    const courtOptions = await this.meetingGameCourtOptionRepository.find({
-      where: { meeting: { id: clubId } },
-      relations: {
-        meeting_court_bridges: {
-          court: true,
-        },
+        meeting_game_court_options: true,
       },
     });
     const result = meetings.map((meeting) => new MeetingResponseDto(meeting));
