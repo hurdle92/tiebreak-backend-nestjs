@@ -46,4 +46,27 @@ export class MeetingController {
       data: meetings,
     });
   }
+
+  @Get("game_court_options/:id")
+  @UseGuards(JwtAccessAuthGuard)
+  @ApiOperation({ summary: "정규모임 코트 옵션 조회" })
+  @ApiParam({ name: "meetingId", description: "정규모임 ID" })
+  @ApiResponse({
+    status: 200,
+    description: "클럽의 미팅 목록 조회 성공",
+    type: [Meeting],
+  })
+  async findMeetingGameCourtOptions(
+    @Req() req,
+    @Param("id", new ParseIntPipe()) id: number,
+    @Res() res: Response,
+  ) {
+    const courtOptions =
+      await this.meetingService.findMeetingGameCourtOptions(id);
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: MeetingMessage.GET_MEETING_GAME_COURT_OPTIONS,
+      data: courtOptions,
+    });
+  }
 }
