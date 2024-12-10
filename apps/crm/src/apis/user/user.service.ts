@@ -12,7 +12,7 @@ export class UserService {
     private userRepository: Repository<User>,
   ) {}
   /**
-   * 로그인 api
+   * 유저 프로필 정보
    *
    * @returns {Promise<SignInResponseDto>}
    */
@@ -22,5 +22,18 @@ export class UserService {
       relations: { club: true },
     });
     return new UserResponseDto(user);
+  }
+
+  /**
+   * 로그인 api
+   *
+   * @returns {Promise<SignInResponseDto>}
+   */
+  async findClubMembers(clubId: number): Promise<UserResponseDto[]> {
+    const users = await this.userRepository.find({
+      where: { club: { id: clubId } },
+    });
+    const result = users.map((user) => new UserResponseDto(user));
+    return result;
   }
 }
