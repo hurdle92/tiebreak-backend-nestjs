@@ -26,7 +26,7 @@ import { Match } from "./entities/match.entity";
 import { Response } from "express";
 import { MatchMessage } from "./entities/match.message";
 import { UserPayload } from "../../configs/guards/types/user-payload.type";
-import { MatchCreateRequestDto } from "./entities/dto/request/match-create.dto";
+import { MatchCreateRequestDto } from "./entities/dto/request/match-create-request.dto";
 
 @Controller("matches")
 @ApiTags("정규 경기 API")

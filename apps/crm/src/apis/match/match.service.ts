@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Match } from "./entities/match.entity";
 import { DataSource, Repository } from "typeorm";
 import { MatchResponseDto } from "./entities/dto/response/match-response.dto";
-import { MatchCreateRequestDto } from "./entities/dto/request/match-create.dto";
+import { MatchCreateRequestDto } from "./entities/dto/request/match-create-request.dto";
 import { Meeting } from "../meeting/entities/meeting.entity";
 
 @Injectable()
