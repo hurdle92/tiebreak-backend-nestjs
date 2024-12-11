@@ -1,7 +1,7 @@
-import { GameResponseDto } from "../../../game/entities/dto/response/game-response.dto";
-import { MeetingResponseDto } from "../../../meeting/entities/dto/response/meeting-response.dto";
-import { Meeting } from "../../../meeting/entities/meeting.entity";
-import { Match } from "../match.entity";
+import { GameResponseDto } from "../../../../game/entities/dto/response/game-response.dto";
+import { MeetingResponseDto } from "../../../../meeting/entities/dto/response/meeting-response.dto";
+import { Meeting } from "../../../../meeting/entities/meeting.entity";
+import { Match } from "../../match.entity";
 
 export class MatchResponseDto {
   id: number;
