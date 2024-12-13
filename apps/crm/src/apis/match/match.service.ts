@@ -5,13 +5,14 @@ import { DataSource, Repository } from "typeorm";
 import { MatchResponseDto } from "./entities/dto/response/match-response.dto";
 import { MatchCreateRequestDto } from "./entities/dto/request/match-create-request.dto";
 import { Meeting } from "../meeting/entities/meeting.entity";
+import { GameService } from "../game/game.service";
 
 @Injectable()
 export class MatchService {
   constructor(
     @InjectRepository(Match)
     private matchRepository: Repository<Match>,
-
+    private readonly gameService: GameService,
     private dataSource: DataSource,
   ) {}
   /**
@@ -87,6 +88,7 @@ export class MatchService {
       const match = requestDto.toEntity(meeting);
 
       const savedMatch = await queryRunner.manager.save(Match, match);
+
       await queryRunner.commitTransaction();
       return savedMatch;
     } catch (e) {

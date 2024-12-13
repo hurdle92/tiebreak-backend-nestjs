@@ -6,8 +6,11 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  ValidateNested,
 } from "class-validator";
+import { Type } from "class-transformer";
 import { Match } from "../../match.entity";
+import { GameCreateRequestDto } from "../../../../game/entities/dto/request/game-create-request.dto";
 
 export class MatchCreateRequestDto {
   @IsNumber()
@@ -22,6 +25,14 @@ export class MatchCreateRequestDto {
   @IsString()
   @ApiProperty({ description: "노트" })
   note: string;
+
+  @ApiProperty({
+    type: GameCreateRequestDto,
+    isArray: true,
+  })
+  @ValidateNested({ each: true })
+  @Type(() => GameCreateRequestDto)
+  games: GameCreateRequestDto[];
 
   toEntity(meeting): Match {
     const match = new Match();
