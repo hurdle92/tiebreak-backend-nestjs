@@ -22,6 +22,7 @@ export class MatchService {
   async findMatchesByClubId(clubId: number): Promise<MatchResponseDto[]> {
     const matches = await this.matchRepository.find({
       where: { meeting: { club: { id: clubId } } },
+      order: { id: "ASC" },
       relations: {
         meeting: {
           meeting_court_bridges: { court: true },
