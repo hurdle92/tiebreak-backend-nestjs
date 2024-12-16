@@ -1,8 +1,31 @@
 import { NestFactory } from "@nestjs/core";
-import { CrmModule } from "./crm.module";
+import { AppModule } from "./app.module";
+import { setupApp, setupSwagger } from "./configs";
+import { Logger, ValidationPipe } from "@nestjs/common";
 
 async function bootstrap() {
-  const app = await NestFactory.create(CrmModule);
-  await app.listen(3000);
+  const PORT = 4000;
+
+  const app = await NestFactory.create(AppModule);
+  setupApp(app);
+
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Accept");
+    next();
+  });
+
+  app.enableCors({
+    origin: ["http://localhost:3000", "http://localhost:8080"],
+    credentials: true,
+  });
+
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+
+  setupSwagger(app);
+  await app.listen(PORT);
+
+  Logger.log(`Server listening on port ${PORT}`);
 }
 bootstrap();
