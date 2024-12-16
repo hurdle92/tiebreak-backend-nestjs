@@ -9,6 +9,8 @@ import { GameService } from "../game/game.service";
 import { Game } from "../game/entities/game.entity";
 import { Team } from "../team/entities/team.entity";
 import { Player } from "../player/entities/player.entity";
+import { PlayerCreateRequestDto } from "../player/entities/dto/request/player-create-request.dto";
+import { PlayerService } from "../player/player.service";
 
 @Injectable()
 export class MatchService {
@@ -16,6 +18,7 @@ export class MatchService {
     @InjectRepository(Match)
     private matchRepository: Repository<Match>,
     private readonly gameService: GameService,
+    private readonly playerService: PlayerService,
     private dataSource: DataSource,
   ) {}
   /**
@@ -99,10 +102,12 @@ export class MatchService {
             const savedTeam = await manager.save(Team, team);
             if (teamDto.players.length > 0) {
               const { players } = teamDto;
-              const playersList = players.map((playerDto) =>
-                playerDto.toEntity(savedTeam),
-              );
-              const savedPlayers = await manager.save(Player, playersList);
+              for (const playerDto of players) {
+                const playerCreateDto = new PlayerCreateRequestDto();
+                playerCreateDto.team_id = savedTeam.id;
+                playerCreateDto.user_id = playerDto.user_id;
+                await this.playerService.create(playerCreateDto);
+              }
             }
           }
         }

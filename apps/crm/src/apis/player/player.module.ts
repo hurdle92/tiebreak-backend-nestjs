@@ -10,5 +10,6 @@ import { User } from "../user/entity/user.entity";
   imports: [TypeOrmModule.forFeature([Player, Team, User])],
   controllers: [PlayerController],
   providers: [PlayerService],
+  exports: [PlayerService],
 })
 export class PlayerModule {}
