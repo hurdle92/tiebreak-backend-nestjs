@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "apps/crm/src/main.ts",
+      "src": "apps/tiebreak/src/main.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "(.*)",
-      "dest": "apps/crm/src/main.ts",
+      "dest": "apps/tiebreak/src/main.ts",
       "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
     },
     {
