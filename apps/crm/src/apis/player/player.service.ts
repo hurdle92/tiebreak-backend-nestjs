@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Player } from "./entities/player.entity";
-import { DataSource, Equal, Repository } from "typeorm";
+import { DataSource, EntityManager, Equal, Repository } from "typeorm";
 import { PlayerCreateRequestDto } from "./entities/dto/request/player-create-request.dto";
 import { PlayerResponseDto } from "./entities/dto/response/player-response.dto";
 import { Team } from "../team/entities/team.entity";
@@ -29,36 +29,34 @@ export class PlayerService {
    *
    * @returns {Promise<LessonCreateRequestDto>}
    */
-  async create(requestDto: PlayerCreateRequestDto): Promise<Player> {
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
+  async create(
+    requestDto: PlayerCreateRequestDto,
+    manager: EntityManager,
+  ): Promise<Player> {
     try {
       const { team_id, user_id } = requestDto;
-      const team = await queryRunner.manager.findOne(Team, {
+      const team = await manager.findOne(Team, {
         where: { id: Equal(team_id) },
       });
 
       const user = user_id
-        ? await queryRunner.manager.findOne(User, {
+        ? await manager.findOne(User, {
             where: { id: Equal(user_id) },
           })
         : null;
 
       const player = requestDto.toEntity(team);
 
-      const savedPlayer = await queryRunner.manager.save(Player, player);
+      const savedPlayer = await manager.save(Player, player);
       if (user) {
         const playerUserBridge = PlayerUserBridge.toEntity(savedPlayer, user);
-        await queryRunner.manager.save(PlayerUserBridge, playerUserBridge);
+        await manager.save(PlayerUserBridge, playerUserBridge);
       }
-      await queryRunner.commitTransaction();
+
       return savedPlayer;
     } catch (e) {
-      await queryRunner.rollbackTransaction();
+      console.log(e);
       throw e;
-    } finally {
-      await queryRunner.release();
     }
   }
 }
