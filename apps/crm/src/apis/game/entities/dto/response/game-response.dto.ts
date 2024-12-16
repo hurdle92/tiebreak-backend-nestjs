@@ -1,7 +1,7 @@
 import { Match } from "../../../../match/entities/match.entity";
 import { GameType } from "../../game-type.enum";
 import { Game } from "../../game.entity";
-import { TeamResponseDto } from "../../../../team/entities/dto/team-response.dto";
+import { TeamResponseDto } from "../../../../team/entities/dto/response/team-response.dto";
 import { MeetingGameCourtOption } from "apps/crm/src/apis/meeting/entities/meeting-game-court-option/meeting-game-court-option.entity";
 
 export class GameResponseDto {

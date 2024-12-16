@@ -1,5 +1,5 @@
-import { PlayerResponseDto } from "../../../player/entities/dto/response/player-response.dto";
-import { Team } from "../team.entity";
+import { PlayerResponseDto } from "../../../../player/entities/dto/response/player-response.dto";
+import { Team } from "../../team.entity";
 
 export class TeamResponseDto {
   id: number;

@@ -7,6 +7,8 @@ import { MatchCreateRequestDto } from "./entities/dto/request/match-create-reque
 import { Meeting } from "../meeting/entities/meeting.entity";
 import { GameService } from "../game/game.service";
 import { Game } from "../game/entities/game.entity";
+import { Team } from "../team/entities/team.entity";
+import { Player } from "../player/entities/player.entity";
 
 @Injectable()
 export class MatchService {
@@ -84,8 +86,27 @@ export class MatchService {
 
       const match = await manager.save(Match, requestDto.toEntity(meeting));
 
-      const games = requestDto.games.map((gameDto) => gameDto.toEntity(match));
-      await manager.save(Game, games);
+      const { games } = requestDto;
+
+      for (const gameDto of games) {
+        const game = gameDto.toEntity(match);
+        const savedGame = await manager.save(Game, game);
+
+        if (gameDto.teams.length > 0) {
+          const { teams } = gameDto;
+          for (const teamDto of teams) {
+            const team = teamDto.toEntity(savedGame);
+            const savedTeam = await manager.save(Team, team);
+            if (teamDto.players.length > 0) {
+              const { players } = teamDto;
+              const playersList = players.map((playerDto) =>
+                playerDto.toEntity(savedTeam),
+              );
+              const savedPlayers = await manager.save(Player, playersList);
+            }
+          }
+        }
+      }
 
       return match;
     });
