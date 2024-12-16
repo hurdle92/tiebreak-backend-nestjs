@@ -7,10 +7,12 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  ValidateNested,
 } from "class-validator";
 import { Game } from "../../game.entity";
 import { GameType } from "../../game-type.enum";
-import { Match } from "../../../../match/entities/match.entity";
+import { TeamCreateRequestDto } from "../../../../team/entities/dto/requset/team-create-request.dto";
+import { Type } from "class-transformer";
 
 export class GameCreateRequestDto {
   @IsOptional()
@@ -25,6 +27,14 @@ export class GameCreateRequestDto {
     default: GameType.DOUBLE,
   })
   game_type: GameType;
+
+  @ApiProperty({
+    type: TeamCreateRequestDto,
+    isArray: true,
+  })
+  @ValidateNested({ each: true })
+  @Type(() => TeamCreateRequestDto)
+  teams: TeamCreateRequestDto[];
 
   toEntity(match): Game {
     const game = new Game();
