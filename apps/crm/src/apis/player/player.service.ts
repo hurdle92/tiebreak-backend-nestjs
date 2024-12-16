@@ -32,12 +32,10 @@ export class PlayerService {
   async create(
     requestDto: PlayerCreateRequestDto,
     manager: EntityManager,
+    team: Team,
   ): Promise<Player> {
     try {
-      const { team_id, user_id } = requestDto;
-      const team = await manager.findOne(Team, {
-        where: { id: Equal(team_id) },
-      });
+      const { user_id } = requestDto;
 
       const user = user_id
         ? await manager.findOne(User, {

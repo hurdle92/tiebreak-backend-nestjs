@@ -20,7 +20,7 @@ export class Team {
   @OneToMany(() => Player, (player) => player.team, { cascade: true })
   players: Player[];
 
-  @ManyToOne(() => Game, (game) => game.teams)
+  @ManyToOne(() => Game, (game) => game.teams, { onDelete: "CASCADE" })
   @JoinColumn({ name: "game_id", referencedColumnName: "id" })
   game: Game;
 

@@ -16,7 +16,7 @@ export class Player {
   @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
-  @ManyToOne(() => Team, (team) => team.players)
+  @ManyToOne(() => Team, (team) => team.players, { onDelete: "CASCADE" })
   @JoinColumn({ name: "team_id", referencedColumnName: "id" })
   team: Team;
 

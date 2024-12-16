@@ -8,10 +8,6 @@ export class PlayerCreateRequestDto {
   @ApiProperty({ description: "유저 id" })
   user_id: number;
 
-  @IsNumber()
-  @ApiProperty({ description: "팀 id" })
-  team_id: number;
-
   @IsBoolean()
   @ApiProperty({ description: "게스트 유무" })
   is_guest: boolean;

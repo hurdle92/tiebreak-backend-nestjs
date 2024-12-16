@@ -23,11 +23,15 @@ export class PlayerUserBridge {
   @PrimaryColumn()
   user_id: number;
 
-  @ManyToOne(() => Player, (player) => player.player_user_bridges)
+  @ManyToOne(() => Player, (player) => player.player_user_bridges, {
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "player_id", referencedColumnName: "id" })
   player: Player;
 
-  @ManyToOne(() => User, (user) => user.player_user_bridges)
+  @ManyToOne(() => User, (user) => user.player_user_bridges, {
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user: User;
 

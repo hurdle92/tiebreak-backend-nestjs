@@ -104,9 +104,12 @@ export class MatchService {
               const { players } = teamDto;
               for (const playerDto of players) {
                 const playerCreateDto = new PlayerCreateRequestDto();
-                playerCreateDto.team_id = savedTeam.id;
                 playerCreateDto.user_id = playerDto.user_id;
-                await this.playerService.create(playerCreateDto, manager);
+                await this.playerService.create(
+                  playerCreateDto,
+                  manager,
+                  savedTeam,
+                );
               }
             }
           }

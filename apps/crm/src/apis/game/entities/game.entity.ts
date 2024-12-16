@@ -26,7 +26,7 @@ export class Game {
   @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
-  @ManyToOne(() => Match, (match) => match.games)
+  @ManyToOne(() => Match, (match) => match.games, { onDelete: "CASCADE" })
   @JoinColumn({ name: "match_id", referencedColumnName: "id" })
   match: Match;
 
@@ -36,7 +36,7 @@ export class Game {
   @Column({ type: "enum", enum: GameType, default: GameType.DOUBLE })
   game_type: GameType;
 
-  @OneToMany(() => Team, (team) => team.game)
+  @OneToMany(() => Team, (team) => team.game, { cascade: true })
   teams: Team[];
 
   @ManyToOne(

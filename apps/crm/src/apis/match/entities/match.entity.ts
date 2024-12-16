@@ -37,7 +37,7 @@ export class Match {
   @Column({ type: "text", default: "" })
   note: string;
 
-  @OneToMany(() => Game, (game) => game.match)
+  @OneToMany(() => Game, (game) => game.match, { cascade: true })
   games: Game[];
 
   @OneToOne(() => MatchResult, (matchResult) => matchResult.match)

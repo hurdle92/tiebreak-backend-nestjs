@@ -34,7 +34,7 @@ export class Meeting {
   )
   meeting_court_bridges: MeetingCourtBridge[];
 
-  @OneToMany(() => Match, (match) => match.meeting)
+  @OneToMany(() => Match, (match) => match.meeting, { cascade: true })
   matches: Match[];
 
   @OneToMany(
