@@ -6,6 +6,7 @@ import { MatchResponseDto } from "./entities/dto/response/match-response.dto";
 import { MatchCreateRequestDto } from "./entities/dto/request/match-create-request.dto";
 import { Meeting } from "../meeting/entities/meeting.entity";
 import { GameService } from "../game/game.service";
+import { Game } from "../game/entities/game.entity";
 
 @Injectable()
 export class MatchService {
@@ -76,26 +77,17 @@ export class MatchService {
    * @returns {Promise<LessonCreateRequestDto>}
    */
   async createMatch(requestDto: MatchCreateRequestDto): Promise<Match> {
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-    try {
-      const { meeting_id } = requestDto;
-      const meeting = await queryRunner.manager.findOne(Meeting, {
-        where: { id: meeting_id },
+    return this.dataSource.transaction(async (manager) => {
+      const meeting = await manager.findOneOrFail(Meeting, {
+        where: { id: requestDto.meeting_id },
       });
 
-      const match = requestDto.toEntity(meeting);
+      const match = await manager.save(Match, requestDto.toEntity(meeting));
 
-      const savedMatch = await queryRunner.manager.save(Match, match);
+      const games = requestDto.games.map((gameDto) => gameDto.toEntity(match));
+      await manager.save(Game, games);
 
-      await queryRunner.commitTransaction();
-      return savedMatch;
-    } catch (e) {
-      await queryRunner.rollbackTransaction();
-      throw e;
-    } finally {
-      await queryRunner.release();
-    }
+      return match;
+    });
   }
 }
