@@ -55,11 +55,11 @@ export class MatchController {
 
   @Get(":id")
   @UseGuards(JwtAccessAuthGuard)
-  @ApiOperation({ summary: "경기 상세 조회" })
-  @ApiParam({ name: "id", description: "경기 id" })
+  @ApiOperation({ summary: "매치 상세 조회" })
+  @ApiParam({ name: "id", description: "매치 id" })
   @ApiResponse({
     status: 200,
-    description: "경기 모임 상세 조회 성공",
+    description: "매치 상세 조회 성공",
     type: Match,
   })
   async findMatchDetail(
