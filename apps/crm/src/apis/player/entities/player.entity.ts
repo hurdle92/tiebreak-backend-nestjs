@@ -30,6 +30,9 @@ export class Player {
   @Column({ type: "bool", default: false })
   is_guest: boolean;
 
+  @Column({ type: "text", default: "" })
+  guest_name: string;
+
   @CreateDateColumn({
     type: "timestamptz",
     default: () => "CURRENT_TIMESTAMP",
@@ -44,10 +47,11 @@ export class Player {
   })
   updated_at: Date;
 
-  static create(team, is_guest) {
+  static create(team, is_guest, guest_name) {
     const player = new Player();
     player.team = team;
     player.is_guest = is_guest;
+    player.guest_name = guest_name;
     return player;
   }
 }
