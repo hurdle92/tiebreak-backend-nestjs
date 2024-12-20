@@ -54,7 +54,6 @@ export class MatchController {
   }
 
   @Get(":id")
-  @UseGuards(JwtAccessAuthGuard)
   @ApiOperation({ summary: "매치 상세 조회" })
   @ApiParam({ name: "id", description: "매치 id" })
   @ApiResponse({
