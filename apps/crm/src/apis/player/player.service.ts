@@ -35,13 +35,14 @@ export class PlayerService {
     team: Team,
   ): Promise<Player> {
     try {
-      const { user_id } = requestDto;
+      const { user_id, is_guest } = requestDto;
 
-      const user = user_id
-        ? await manager.findOne(User, {
-            where: { id: Equal(user_id) },
-          })
-        : null;
+      const user =
+        user_id && !is_guest
+          ? await manager.findOne(User, {
+              where: { id: user_id },
+            })
+          : null;
 
       const player = requestDto.toEntity(team);
 
