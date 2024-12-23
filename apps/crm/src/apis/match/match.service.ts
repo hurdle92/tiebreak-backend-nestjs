@@ -11,6 +11,7 @@ import { Team } from "../team/entities/team.entity";
 import { Player } from "../player/entities/player.entity";
 import { PlayerCreateRequestDto } from "../player/entities/dto/request/player-create-request.dto";
 import { PlayerService } from "../player/player.service";
+import { MeetingGameCourtOption } from "../meeting/entities/meeting-game-court-option/meeting-game-court-option.entity";
 
 @Injectable()
 export class MatchService {
@@ -95,7 +96,12 @@ export class MatchService {
       const { games } = requestDto;
 
       for (const gameDto of games) {
-        const game = gameDto.toEntity(match);
+        const meetingGameCourtOption = gameDto.meeting_game_court_option_id
+          ? await manager.findOne(MeetingGameCourtOption, {
+              where: { id: gameDto.meeting_game_court_option_id },
+            })
+          : null;
+        const game = gameDto.toEntity(match, meetingGameCourtOption);
         const savedGame = await manager.save(Game, game);
 
         if (gameDto.teams.length > 0) {

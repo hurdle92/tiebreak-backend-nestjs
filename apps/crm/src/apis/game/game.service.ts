@@ -22,7 +22,7 @@ export class GameService {
     match: Match,
   ): Promise<Game> {
     try {
-      const game = requestDto.toEntity(match);
+      const game = requestDto.toEntity(match, null);
       const savedGame = await this.gameRepository.save(game);
       return savedGame;
     } catch (e) {

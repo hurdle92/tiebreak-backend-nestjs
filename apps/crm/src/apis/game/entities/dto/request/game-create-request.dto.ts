@@ -28,6 +28,11 @@ export class GameCreateRequestDto {
   })
   game_type: GameType;
 
+  @IsOptional()
+  @IsNumber()
+  @ApiProperty({ description: "게임 코트 옵션 ID" })
+  meeting_game_court_option_id: number;
+
   @ApiProperty({
     type: TeamCreateRequestDto,
     isArray: true,
@@ -36,11 +41,12 @@ export class GameCreateRequestDto {
   @Type(() => TeamCreateRequestDto)
   teams: TeamCreateRequestDto[];
 
-  toEntity(match): Game {
+  toEntity(match, meeting_game_court_option): Game {
     const game = new Game();
     game.match = match;
     game.note = this.note;
     game.game_type = this.game_type;
+    game.meeting_game_court_option = meeting_game_court_option;
     return game;
   }
 }
