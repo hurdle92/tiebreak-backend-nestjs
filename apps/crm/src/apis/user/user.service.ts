@@ -32,6 +32,7 @@ export class UserService {
   async findClubMembers(clubId: number): Promise<UserResponseDto[]> {
     const users = await this.userRepository.find({
       where: { club: { id: clubId } },
+      order: { name: "ASC" },
     });
     const result = users.map((user) => new UserResponseDto(user));
     return result;
