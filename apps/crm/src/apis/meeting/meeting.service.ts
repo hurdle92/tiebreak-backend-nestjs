@@ -27,6 +27,9 @@ export class MeetingService {
         },
         meeting_game_court_options: true,
       },
+      order: {
+        meeting_game_court_options: { id: "ASC" },
+      },
     });
     const result = meetings.map((meeting) => new MeetingResponseDto(meeting));
     return result;
