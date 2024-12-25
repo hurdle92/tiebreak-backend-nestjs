@@ -12,6 +12,7 @@ import { CourtModule } from "./apis/court/court.module";
 import { PlayerModule } from "./apis/player/player.module";
 import { TeamModule } from "./apis/team/team.module";
 import { ResultModule } from "./apis/result/result.module";
+import { AssignmentModule } from "./apis/assignment/assignment.module";
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ResultModule } from "./apis/result/result.module";
     PlayerModule,
     TeamModule,
     ResultModule,
+    AssignmentModule,
   ],
   controllers: [],
   providers: [],
