@@ -25,7 +25,7 @@ export class User {
   @Column({ type: "text", default: "" })
   name: string;
 
-  @Column({ type: "text", default: "" })
+  @Column({ type: "text", default: "0.0" })
   ntrp: string;
 
   @Column({ type: "text", default: "" })
