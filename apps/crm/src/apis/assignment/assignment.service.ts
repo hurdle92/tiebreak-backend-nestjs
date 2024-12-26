@@ -25,16 +25,11 @@ export class AssignmentService {
 
   /**
    * 폼 제출 api
-   * 간단히 이메일만 검증
+   * validation은 requet dto에서 처리
    *
    * @returns {Promise<AssignmentRegionResponseDto>}
    */
   async createForm(requestDto: AssignmentCreateRequestDto) {
-    if (!requestDto.email.endsWith("@lulumedic.com")) {
-      throw new BadRequestException(
-        "이메일은 lulumedic.com 도메인이어야 합니다.",
-      );
-    }
     return true;
   }
 }

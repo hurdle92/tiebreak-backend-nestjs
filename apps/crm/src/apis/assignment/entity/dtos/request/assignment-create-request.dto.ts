@@ -4,11 +4,7 @@ import {
   IsDate,
   IsDateString,
   IsEmail,
-  IsNumber,
-  IsOptional,
-  IsString,
   Matches,
-  ValidateNested,
 } from "class-validator";
 
 /**
@@ -21,7 +17,7 @@ import {
 export class AssignmentCreateRequestDto {
   @IsEmail()
   @Matches(/@lulumedic\.com$/, {
-    message: "이메일은 lulumedic.com 도메인이어야 합니다.",
+    message: "이메일은 lulumedic.com 도메인만 허용됩니다.",
   })
   email: string;
 }
