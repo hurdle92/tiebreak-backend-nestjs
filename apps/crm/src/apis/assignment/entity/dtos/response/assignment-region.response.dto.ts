@@ -1,4 +1,4 @@
-import { AssignmentRegion } from "../region.entity";
+import { AssignmentRegion } from "../../region.entity";
 
 export class AssignmentRegionResponseDto {
   label: string;
