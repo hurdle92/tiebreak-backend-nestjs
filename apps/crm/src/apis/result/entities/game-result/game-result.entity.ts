@@ -25,7 +25,7 @@ export class GameResult {
   @PrimaryGeneratedColumn({ type: "int8" })
   id: number;
 
-  @OneToOne(() => Game, (game) => game.game_result)
+  @ManyToOne(() => Game, (game) => game.game_results)
   @JoinColumn({
     name: "game_id",
     referencedColumnName: "id",

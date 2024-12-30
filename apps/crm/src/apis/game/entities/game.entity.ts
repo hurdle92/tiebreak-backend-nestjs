@@ -49,12 +49,8 @@ export class Game {
   })
   meeting_game_court_option: MeetingGameCourtOption;
 
-  @OneToOne(() => GameResult, (gameResult) => gameResult.game)
-  @JoinColumn({
-    name: "game_result_id",
-    referencedColumnName: "id",
-  })
-  game_result: GameResult;
+  @OneToMany(() => GameResult, (gameResult) => gameResult.game)
+  game_results: GameResult[];
 
   @CreateDateColumn({
     type: "timestamptz",
