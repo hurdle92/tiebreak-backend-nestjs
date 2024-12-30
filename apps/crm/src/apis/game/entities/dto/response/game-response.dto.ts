@@ -23,9 +23,10 @@ export class GameResponseDto {
     this.game_type = game.game_type;
     this.meeting_game_court_option = game.meeting_game_court_option;
     this.teams = game.teams.map((team) => new TeamResponseDto(team));
-    this.game_result = game.game_results
-      ? new GameResultResponseDto(game.game_results[0])
-      : null;
+    this.game_result =
+      game.game_results.length !== 0
+        ? new GameResultResponseDto(game.game_results[0])
+        : null;
     this.created_at = game.created_at;
     this.updated_at = game.updated_at;
   }
