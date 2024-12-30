@@ -1,5 +1,5 @@
 import { MatchResult } from "../../match-result.entity";
-import { GameResultResponseDto } from "../../../game-result/dto/game-result-response.dto";
+import { GameResultResponseDto } from "../../../game-result/dto/response/game-result-response.dto";
 import { Match } from "../../../../../match/entities/match.entity";
 
 export class MatchResultResponseDto {

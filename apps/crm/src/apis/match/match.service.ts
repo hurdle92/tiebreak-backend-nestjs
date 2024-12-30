@@ -72,7 +72,14 @@ export class MatchService {
               },
             },
           },
+          game_results: {
+            win_team: true,
+            lose_team: true,
+          },
         },
+      },
+      order: {
+        games: { id: "ASC" },
       },
     });
 

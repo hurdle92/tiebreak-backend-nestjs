@@ -27,6 +27,7 @@ import { ResultService } from "./result.service";
 import { GameResult } from "./entities/game-result/game-result.entity";
 import { GameResultMessage } from "./entities/game-result.message";
 import { MatchResult } from "./entities/match-result/match-result.entity";
+import { GameResultCreateRequestDto } from "./entities/game-result/dto/request/game-result-create-request.dto";
 
 @Controller("results")
 export class ResultController {
@@ -69,6 +70,25 @@ export class ResultController {
       code: 200,
       message: GameResultMessage.GET_MATCH_RESULT_DETAIL,
       data: result,
+    });
+  }
+
+  @Post("games")
+  @UseGuards(JwtAccessAuthGuard)
+  @ApiOperation({ summary: "클럽의 경기 모임 생성" })
+  @ApiResponse({
+    status: 200,
+    description: "클럽의 경기 모임 생성",
+  })
+  async createGameResult(
+    @Body() requestDto: GameResultCreateRequestDto,
+    @Res() res: Response,
+  ) {
+    const match = await this.resultService.createGameResult(requestDto);
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: GameResultMessage.CREATE_GAME_RESULT,
+      data: match,
     });
   }
 }

@@ -1,10 +1,9 @@
-import { Team } from "../../../../team/entities/team.entity";
-import { Game } from "../../../../game/entities/game.entity";
-import { GameResult } from "../game-result.entity";
+import { Team } from "../../../../../team/entities/team.entity";
+import { Game } from "../../../../../game/entities/game.entity";
+import { GameResult } from "../../game-result.entity";
 
 export class GameResultResponseDto {
   id: number;
-  game: Game;
   win_team: Team;
   lose_team: Team;
   is_draw: boolean;
@@ -13,7 +12,6 @@ export class GameResultResponseDto {
 
   constructor(gameResult: GameResult) {
     this.id = gameResult.id;
-    this.game = gameResult.game;
     this.win_team = gameResult.win_team;
     this.lose_team = gameResult.lose_team;
     this.is_draw = gameResult.is_draw;
