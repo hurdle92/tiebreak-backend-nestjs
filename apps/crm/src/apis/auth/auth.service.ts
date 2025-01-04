@@ -13,6 +13,7 @@ import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
 import { UserPayload } from "../../configs/guards/types/user-payload.type";
 import { SignUpRequestDto } from "./entities/dto/request/sign-up-request.dto";
+import { SignUpResponseDto } from "./entities/dto/response/sign-up-response.dto";
 
 @Injectable()
 export class AuthService {
@@ -64,8 +65,8 @@ export class AuthService {
    * 가입과 동시에 asscess_toekn 전달
    * @returns {Promise<SignInResponseDto>}
    */
-  async signUp(requestDto: SignUpRequestDto): Promise<User> {
-    const { user_id, password, password_confirm } = requestDto;
+  async signUp(requestDto: SignUpRequestDto): Promise<SignUpResponseDto> {
+    const { user_id, password } = requestDto;
     const user = await this.userRepository.findOne({ where: { user_id } });
     if (user) {
       throw new ForbiddenException({
@@ -78,6 +79,13 @@ export class AuthService {
 
     const userEntity = requestDto.toEntity(hashPassword);
     const result = await this.userRepository.save(userEntity);
-    return result;
+
+    const payload: UserPayload = {
+      id: result.id,
+      user_id: result.user_id,
+    };
+    const access_token = await this.jwtService.signAsync(payload);
+
+    return { user: result, access_token: access_token };
   }
 }

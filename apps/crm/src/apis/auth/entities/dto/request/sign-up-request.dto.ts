@@ -1,9 +1,14 @@
-import { IsString, Matches, ValidateIf } from "class-validator";
+import { IsOptional, IsString, Matches, ValidateIf } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { Match } from "../../../../../configs/decorators/match.decorator";
 import { User } from "../../../../user/entity/user.entity";
 
 export class SignUpRequestDto {
+  @IsString()
+  @IsOptional()
+  @ApiProperty({ description: "유저 이름" })
+  name: string;
+
   @IsString()
   @ApiProperty({ description: "유저 ID" })
   user_id: string;
@@ -19,6 +24,7 @@ export class SignUpRequestDto {
 
   toEntity(hashPassword): User {
     const user = new User();
+    user.name = this.name;
     user.user_id = this.user_id;
     user.password = hashPassword;
     return user;
