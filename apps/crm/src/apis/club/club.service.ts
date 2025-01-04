@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Club } from "./entities/club.entity";
 import { Repository } from "typeorm";
 import { ClubResponseDto } from "./entities/dto/club.response.dto";
+import { ClubCreateRequestDto } from "./entities/dto/club-create-request.dto";
 
 @Injectable()
 export class ClubService {
@@ -12,7 +13,7 @@ export class ClubService {
   ) {}
 
   /**
-   * 레슨 id에 해당하는 레슨 상세 정보를 조회합니다.
+   *
    *
    * @param {number} id - 레슨 id
    * @returns {Promise<ClubResponseDto>}
@@ -23,5 +24,16 @@ export class ClubService {
       relations: ["users", "meetings"],
     });
     return new ClubResponseDto(club);
+  }
+
+  /**
+   * 클럽생성 api
+   * 가입과 동시에 asscess_toekn 전달
+   * @returns {Promise<ClubResponseDto>}
+   */
+  async createClub(requestDto: ClubCreateRequestDto): Promise<Club> {
+    const clubEntity = requestDto.toEntity();
+    const result = await this.clubRepository.save(clubEntity);
+    return result;
   }
 }

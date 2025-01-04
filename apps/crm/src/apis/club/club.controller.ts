@@ -7,8 +7,11 @@ import {
   HttpStatus,
   UseGuards,
   Req,
+  Post,
+  Body,
 } from "@nestjs/common";
 import {
+  ApiOkResponse,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -22,6 +25,7 @@ import { ClubMessage } from "./entities/club.message";
 import { JwtAccessAuthGuard } from "../../configs/guards/jwt-access.guard";
 import { UserPayload } from "../../configs/guards/types/user-payload.type";
 import { UserService } from "../user/user.service";
+import { ClubCreateRequestDto } from "./entities/dto/club-create-request.dto";
 
 @Controller("clubs")
 @ApiTags("클럽 API")
@@ -30,6 +34,21 @@ export class ClubController {
     private readonly clubService: ClubService,
     private readonly userService: UserService,
   ) {}
+
+  @Post()
+  @ApiOperation({ summary: "클럽 생성" })
+  @ApiOkResponse({ description: "클럽 생성에 성공하였습니다." })
+  async createClub(
+    @Body() requestDto: ClubCreateRequestDto,
+    @Res() res: Response,
+  ) {
+    const data = await this.clubService.createClub(requestDto);
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: ClubMessage.CREATE_CLUB,
+      data: data,
+    });
+  }
 
   @Get("/members")
   @UseGuards(JwtAccessAuthGuard)
