@@ -28,7 +28,6 @@ async function bootstrap() {
   });
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  app.useGlobalFilters(new HttpExceptionFilter());
 
   setupSwagger(app);
   await app.listen(PORT);
