@@ -20,6 +20,9 @@ export class Club {
   @Column({ type: "text", default: "" })
   thumbnail: string;
 
+  @Column({ type: "text", default: "" })
+  description: string;
+
   @OneToMany(() => User, (user) => user.club)
   users: User[];
 

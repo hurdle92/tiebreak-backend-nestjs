@@ -6,6 +6,7 @@ export class ClubResponseDto {
   id: number;
   name: string;
   thumbnail: string;
+  description: string;
   users: User[];
   meetings: Meeting[];
   club_created_at: Date;
@@ -16,6 +17,7 @@ export class ClubResponseDto {
     this.id = club.id;
     this.name = club.name;
     this.thumbnail = club.thumbnail;
+    this.description = club.description;
     this.users = club.users;
     this.meetings = club.meetings;
     this.club_created_at = club.club_created_at;
