@@ -19,6 +19,7 @@ import { SignInRequestDto } from "./entities/dto/request/sign-in-request.dto";
 import { AuthMessage } from "./entities/auth.message";
 import { JwtAccessAuthGuard } from "../../configs/guards/jwt-access.guard";
 import { UserService } from "../user/user.service";
+import { SignUpRequestDto } from "./entities/dto/request/sign-up-request.dto";
 
 @Controller("auth")
 @ApiTags("인증 API")
@@ -31,12 +32,24 @@ export class AuthController {
   @Post("signin")
   @ApiOperation({ summary: "로그인" })
   @ApiOkResponse({ description: "로그인에 성공했습니다." })
-  async create(@Body() requestDto: SignInRequestDto, @Res() res: Response) {
+  async signin(@Body() requestDto: SignInRequestDto, @Res() res: Response) {
     const data = await this.authService.signIn(requestDto);
 
     return res.status(HttpStatus.OK).json({
       code: 200,
       message: AuthMessage.SIGN_IN,
+      data: data,
+    });
+  }
+
+  @Post("signup")
+  @ApiOperation({ summary: "회원가입" })
+  @ApiOkResponse({ description: "회원가입에 성공했습니다." })
+  async signup(@Body() requestDto: SignUpRequestDto, @Res() res: Response) {
+    const data = await this.authService.signUp(requestDto);
+    return res.status(HttpStatus.OK).json({
+      code: 200,
+      message: AuthMessage.SIGN_UP,
       data: data,
     });
   }
