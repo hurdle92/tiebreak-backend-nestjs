@@ -70,7 +70,7 @@ export class AuthService {
     const user = await this.userRepository.findOne({ where: { user_id } });
     if (user) {
       throw new ForbiddenException({
-        statusCode: HttpStatus.FORBIDDEN,
+        code: HttpStatus.FORBIDDEN,
         message: "이미 등록된 아이디입니다.",
         error: "Forbidden",
       });

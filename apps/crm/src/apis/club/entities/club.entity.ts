@@ -2,12 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { User } from "../../user/entity/user.entity";
 import { Meeting } from "../../meeting/entities/meeting.entity";
+import { Court } from "../../court/entities/court.entity";
 
 @Entity("clubs")
 export class Club {
@@ -25,6 +28,10 @@ export class Club {
 
   @OneToMany(() => User, (user) => user.club)
   users: User[];
+
+  @ManyToOne(() => Court, (court) => court.clubs)
+  @JoinColumn({ name: "court_id", referencedColumnName: "id" })
+  main_court: Court;
 
   @OneToMany(() => Meeting, (meeting) => meeting.club)
   meetings: Meeting[];

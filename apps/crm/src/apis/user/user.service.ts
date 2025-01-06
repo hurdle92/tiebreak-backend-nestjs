@@ -19,7 +19,7 @@ export class UserService {
   async findUserById(requestDto: UserFindByIdDto): Promise<UserResponseDto> {
     const user = await this.userRepository.findOne({
       where: { user_id: requestDto.user_id },
-      relations: { club: true },
+      relations: { club: { users: true, main_court: true } },
     });
     return new UserResponseDto(user);
   }

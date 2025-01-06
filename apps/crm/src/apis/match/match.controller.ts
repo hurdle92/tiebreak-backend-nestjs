@@ -39,12 +39,13 @@ export class MatchController {
   @ApiParam({ name: "clubId", description: "클럽 ID" })
   @ApiResponse({
     status: 200,
-    description: "클럽의 미팅 목록 조회 성공",
+    description: "클럽의 경기 모임 목록 조회 성공",
     type: [Match],
   })
   async findClubMatches(@Req() req, @Res() res: Response) {
     const user: UserPayload = req.user;
     const club_id = user.club_id;
+    console.log(club_id);
     const matches = await this.matchService.findMatchesByClubId(club_id);
     return res.status(HttpStatus.OK).json({
       code: 200,
