@@ -13,6 +13,7 @@ import { PlayerModule } from "./apis/player/player.module";
 import { TeamModule } from "./apis/team/team.module";
 import { ResultModule } from "./apis/result/result.module";
 import { AssignmentModule } from "./apis/assignment/assignment.module";
+import { MemoModule } from "./apis/memo/memo.module";
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { AssignmentModule } from "./apis/assignment/assignment.module";
     TeamModule,
     ResultModule,
     AssignmentModule,
+    MemoModule,
   ],
   controllers: [],
   providers: [],

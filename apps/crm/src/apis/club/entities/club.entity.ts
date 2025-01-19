@@ -26,6 +26,12 @@ export class Club {
   @Column({ type: "text", default: "" })
   description: string;
 
+  @Column({ type: "text", default: "" })
+  regular_play_time: string;
+
+  @Column({ type: "text", default: "" })
+  region: string;
+
   @OneToMany(() => User, (user) => user.club)
   users: User[];
 

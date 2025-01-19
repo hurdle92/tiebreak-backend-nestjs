@@ -14,6 +14,7 @@ import { MeetingGameCourtOption } from "../apis/meeting/entities/meeting-game-co
 import { GameResult } from "../apis/result/entities/game-result/game-result.entity";
 import { MatchResult } from "../apis/result/entities/match-result/match-result.entity";
 import { AssignmentRegion } from "../apis/assignment/entity/region.entity";
+import { Memo } from "../apis/memo/entities/memo.entity";
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ export const typeOrmModuleOptions: TypeOrmModuleOptions = {
     GameResult,
     MatchResult,
     AssignmentRegion,
+    Memo,
   ],
   synchronize: false,
   migrations: [__dirname + "/migrations/*.ts"],
