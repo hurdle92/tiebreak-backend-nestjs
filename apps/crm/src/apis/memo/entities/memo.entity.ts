@@ -16,7 +16,7 @@ export class Memo {
   title: string;
 
   @Column("text")
-  content: string;
+  description: string;
 
   @CreateDateColumn({
     type: "timestamptz",
@@ -31,4 +31,9 @@ export class Memo {
     nullable: true,
   })
   updated_at: Date;
+
+  update(title: string, description: string): void {
+    this.title = title;
+    this.description = description;
+  }
 }

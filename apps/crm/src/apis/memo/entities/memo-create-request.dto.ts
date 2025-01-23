@@ -14,12 +14,12 @@ export class MemoCreateRequestDto {
 
   @IsString()
   @IsNotEmpty()
-  content: string;
+  description: string;
 
   toEntity(): Memo {
     const memo = new Memo();
     memo.title = this.title;
-    memo.content = this.content;
+    memo.description = this.description;
     return memo;
   }
 }
