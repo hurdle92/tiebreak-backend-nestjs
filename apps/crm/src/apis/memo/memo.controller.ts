@@ -21,7 +21,7 @@ import {
 } from "@nestjs/swagger";
 import { Response } from "express";
 import { MemoService } from "./memo.service";
-import { MemoCreateRequestDto } from "./entities/memo-create-request.dto";
+import { MemoCreateRequestDto } from "./entities/dtos/memo-create-request.dto";
 import { MemoMessage } from "./entities/memo.message";
 import { MemoUpdateRequestDto } from "./entities/dtos/memo-update-request.dto";
 

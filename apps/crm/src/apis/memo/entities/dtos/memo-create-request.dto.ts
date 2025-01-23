@@ -5,7 +5,7 @@ import {
   IsUrl,
   isNotEmpty,
 } from "class-validator";
-import { Memo } from "./memo.entity";
+import { Memo } from "../memo.entity";
 
 export class MemoCreateRequestDto {
   @IsString()

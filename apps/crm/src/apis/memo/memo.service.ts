@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Memo } from "./entities/memo.entity";
 import { Repository } from "typeorm";
 import { MemoUpdateRequestDto } from "./entities/dtos/memo-update-request.dto";
-import { MemoCreateRequestDto } from "./entities/memo-create-request.dto";
+import { MemoCreateRequestDto } from "./entities/dtos/memo-create-request.dto";
 
 @Injectable()
 export class MemoService {
