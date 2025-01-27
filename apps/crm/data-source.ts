@@ -14,7 +14,6 @@ import { Team } from "./src/apis/team/entities/team.entity";
 import { MeetingGameCourtOption } from "./src/apis/meeting/entities/meeting-game-court-option/meeting-game-court-option.entity";
 import { GameResult } from "./src/apis/result/entities/game-result/game-result.entity";
 import { MatchResult } from "./src/apis/result/entities/match-result/match-result.entity";
-import { AssignmentRegion } from "./src/apis/assignment/entity/region.entity";
 import { Memo } from "./src/apis/memo/entities/memo.entity";
 
 dotenv.config();
@@ -41,7 +40,6 @@ export default new DataSource({
     MeetingGameCourtOption,
     GameResult,
     MatchResult,
-    AssignmentRegion,
     Memo,
   ],
   migrations: [path.resolve(__dirname, "src/database/migrations/*{.ts,.js}")],
